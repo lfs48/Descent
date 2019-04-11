@@ -3,9 +3,9 @@ class Screen {
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d");
 
-        this.player = new Player(240, 360, 0, 0, 10, 10);
-        this.leftWall = new RectActor(0, 0, 0, 0, 30, 720);
-        this.rightWall = new RectActor(450, 0, 0, 0, 30, 720);
+        this.player = new Player(this, 240, 360, 0, 0, 10, 10);
+        this.leftWall = new RectActor(this, 0, 0, 0, 0, 30, 720);
+        this.rightWall = new RectActor(this, 450, 0, 0, 0, 30, 720);
 
         this.gravity = -1;
 
@@ -22,10 +22,15 @@ class Screen {
         this.checkForCollisions = this.checkForCollisions.bind(this);
         this.generateObstacleq = this.generateObstacle.bind(this);
         this.getGravity = this.getGravity.bind(this);
+        this.setGravity = this.setGravity.bind(this);
     }
 
     getGravity() {
         return this.gravity;
+    }
+
+    setGravity(num) {
+        this.gravity = num;
     }
 
     clear() {
@@ -34,10 +39,13 @@ class Screen {
 
     draw() {
         this.clear();
-        if (Math.random() > 0.99) {
-            this.generateObstacle();
+        
+        if (this.gravity < 0) {
+            if (Math.random() > 0.99) {
+                this.generateObstacle();
+            }
+            this.gravity = Math.max(this.gravity - 0.005, -5);
         }
-        this.gravity = Math.max(this.gravity - 0.005, -5);
         this.updatePlayerDir();
         this.actors.forEach( actor => {
                 this.checkForCollisions(actor);
@@ -50,7 +58,7 @@ class Screen {
 
     generateObstacle() {
         const x = Math.max(30, (Math.random()*420) );
-        const obstacle = new RectActor(x, 700, 0, this.getGravity, 60, 20);
+        const obstacle = new RectActor(this, x, 700, 0, this.getGravity, 60, 20);
         this.actors.push(obstacle);
     }
 
@@ -74,7 +82,7 @@ class Screen {
     }
 
     handleShoot() {
-        const bullet = new CircleActor(this.player.x, this.player.y + 15, 0, 10, 2, 2);
+        const bullet = new CircleActor(this, this.player.x, this.player.y + 15, 0, 10, 2, 2);
         this.actors.push(bullet);
     }
 

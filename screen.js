@@ -7,6 +7,8 @@ class Screen {
         this.leftWall = new RectActor(0, 0, 0, 0, 30, 720);
         this.rightWall = new RectActor(450, 0, 0, 0, 30, 720);
 
+        this.gravity = -1;
+
         this.rightPressed = false;
         this.leftPressed = false;
         this.actors = [this.player, this.leftWall, this.rightWall];
@@ -19,6 +21,11 @@ class Screen {
         this.clearActors = this.clearActors.bind(this);
         this.checkForCollisions = this.checkForCollisions.bind(this);
         this.generateObstacleq = this.generateObstacle.bind(this);
+        this.getGravity = this.getGravity.bind(this);
+    }
+
+    getGravity() {
+        return this.gravity;
     }
 
     clear() {
@@ -42,7 +49,7 @@ class Screen {
 
     generateObstacle() {
         const x = Math.max(30, (Math.random()*420) );
-        const obstacle = new RectActor(x, 700, 0, -2, 60, 20);
+        const obstacle = new RectActor(x, 700, 0, this.getGravity, 60, 20);
         this.actors.push(obstacle);
     }
 

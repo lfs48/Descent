@@ -18,6 +18,7 @@ class Screen {
         this.handleShoot = this.handleShoot.bind(this);
         this.clearActors = this.clearActors.bind(this);
         this.checkForCollisions = this.checkForCollisions.bind(this);
+        this.generateObstacleq = this.generateObstacle.bind(this);
     }
 
     clear() {
@@ -26,6 +27,9 @@ class Screen {
 
     draw() {
         this.clear();
+        if (Math.random() > 0.99) {
+            this.generateObstacle();
+        }
         this.updatePlayerDir();
         this.actors.forEach( actor => {
                 this.checkForCollisions(actor);
@@ -34,6 +38,12 @@ class Screen {
             }
         );
         this.clearActors();
+    }
+
+    generateObstacle() {
+        const x = Math.max(30, (Math.random()*420) );
+        const obstacle = new RectActor(x, 700, 0, -2, 60, 20);
+        this.actors.push(obstacle);
     }
 
     checkForCollisions(actor) {

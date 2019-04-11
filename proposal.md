@@ -24,3 +24,21 @@ This game is inspired by [Downwell](https://en.wikipedia.org/wiki/Downwell_(vide
 * Vanilla Javascript for game logic.
 * HTML5 Canvas for rendering visuals.
 * Webpack for bundling.
+
+## Implementation Timeline
+
+### Day 1:
+
+* Render basic elements of the game (score card, stage boundary, player character)
+* Implement movement controls and falling physics
+
+### Day 2: 
+
+* Implement scoring system.
+* Generate and render obstacles.
+* Implement player character interaction with obstacles.
+
+### Day 3:
+
+* Generate and render enemies.
+* Implement player character interaction with enemies.

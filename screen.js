@@ -2,14 +2,19 @@ class Screen {
     constructor(canvas) {
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d");
-        this.player = new Actor(240, 360, 0, 0, 10);
+        this.player = new Actor(240, 360, 0, 0, 10, function(ctx) {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.r, 0, Math.PI*2, false);
+            ctx.fillStyle = "white";
+            ctx.fill();
+            ctx.closePath();
+        });
         this.rightPressed = false;
         this.leftPressed = false;
         this.actors = [this.player];
 
         this.clear = this.clear.bind(this);
         this.draw = this.draw.bind(this);
-        this.drawActor = this.drawActor.bind(this);
         this.keyDownHandler = this.keyDownHandler.bind(this);
         this.keyUpHandler = this.keyUpHandler.bind(this);
         this.handleShoot = this.handleShoot.bind(this);
@@ -27,18 +32,10 @@ class Screen {
         this.actors.forEach( actor => {
                 this.checkForCollisions(actor);
                 actor.updatePos();
-                this.drawActor(actor)
+                actor.drawFunction(this.ctx);
             }
         );
         this.clearActors();
-    }
-
-    drawActor(actor) {
-        this.ctx.beginPath();
-        this.ctx.arc(actor.x, actor.y, actor.r, 0, Math.PI*2, false);
-        this.ctx.fillStyle = "white";
-        this.ctx.fill();
-        this.ctx.closePath();
     }
 
     checkForCollisions(actor) {
@@ -62,7 +59,13 @@ class Screen {
     }
 
     handleShoot() {
-        const bullet = new Actor(this.player.x, this.player.y, 0, 10, 2);
+        const bullet = new Actor(this.player.x, this.player.y + 15, 0, 10, 2, function(ctx) {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.r, 0, Math.PI*2, false);
+            ctx.fillStyle = "white";
+            ctx.fill();
+            ctx.closePath();
+        });
         this.actors.push(bullet);
     }
 

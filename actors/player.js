@@ -12,6 +12,8 @@ class Player extends CircleActor {
             this.vx = -10;
         } else if (xBoundDown <= otherXBoundUp && xBoundUp > otherXBoundUp) {
             this.vx = 10;
+        } else if (yBoundUp >= otherYBoundDown && yBoundDown < otherYBoundDown) {
+            screen.setGravity(0);
         }
     }
 }

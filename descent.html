@@ -17,7 +17,9 @@
 <script>
     const canvas = document.getElementById("descent-canvas");
     const ctx = canvas.getContext("2d");
-    const player = new Actor(240, 50, 0, 4, 10);
+    const player = new Actor(240, 50, 0, 1, 10);
+    let rightPressed = false;
+    let leftPressed = false;
 
     const clear = () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -25,13 +27,45 @@
 
     const draw = () => {
         clear();
-        player.move();
+        updatePlayerPos();
         ctx.beginPath();
         ctx.arc(player.x, player.y, player.r, 0, Math.PI*2, false);
         ctx.fillStyle = "white";
         ctx.fill();
         ctx.closePath();
     }
+
+    document.addEventListener("keydown", keyDownHandler, false);
+    document.addEventListener("keyup", keyUpHandler, false);
+
+    function updatePlayerPos() {
+        player.stopHorzMove();
+        if (rightPressed && !leftPressed) {
+            player.moveRight();
+        }
+        if (leftPressed && !rightPressed) {
+            player.moveLeft();
+        }
+        player.updatePos();
+    }
+
+    function keyDownHandler(e) {
+        if(e.key == "Right" || e.key == "ArrowRight") {
+            rightPressed = true;
+        }
+        else if(e.key == "Left" || e.key == "ArrowLeft") {
+            leftPressed = true;
+        }
+    }
+
+    function keyUpHandler(e) {
+        if(e.key == "Right" || e.key == "ArrowRight") {
+            rightPressed = false;
+        }
+        else if(e.key == "Left" || e.key == "ArrowLeft") {
+            leftPressed = false;
+        }
+    }  
 
     setInterval(draw, 17);
 </script>

@@ -3,9 +3,9 @@ class Screen {
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d");
 
-        this.player = new Player(240, 360, 0, 0, 10, 10);
-        this.leftWall = new Wall(0, 0, 0, 0, 30, 720);
-        this.rightWall = new Wall(450, 0, 0, 0, 30, 720);
+        this.player = new CircleActor(240, 360, 0, 0, 10, 10);
+        this.leftWall = new RectActor(0, 0, 0, 0, 30, 720);
+        this.rightWall = new RectActor(450, 0, 0, 0, 30, 720);
 
         this.rightPressed = false;
         this.leftPressed = false;
@@ -57,7 +57,7 @@ class Screen {
     }
 
     handleShoot() {
-        const bullet = new Bullet(this.player.x, this.player.y + 15, 0, 10, 2, 2);
+        const bullet = new CircleActor(this.player.x, this.player.y + 15, 0, 10, 2, 2);
         this.actors.push(bullet);
     }
 

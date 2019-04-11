@@ -37,6 +37,7 @@ class Screen {
         if (Math.random() > 0.99) {
             this.generateObstacle();
         }
+        this.gravity = Math.max(this.gravity - 0.005, -5);
         this.updatePlayerDir();
         this.actors.forEach( actor => {
                 this.checkForCollisions(actor);

@@ -13,6 +13,7 @@ class Screen {
         this.keyDownHandler = this.keyDownHandler.bind(this);
         this.keyUpHandler = this.keyUpHandler.bind(this);
         this.handleShoot = this.handleShoot.bind(this);
+        this.clearActors = this.clearActors.bind(this);
     }
 
     clear() {
@@ -27,6 +28,7 @@ class Screen {
                 this.drawActor(actor)
             }
         );
+        this.clearActors();
     }
 
     drawActor(actor) {
@@ -52,8 +54,20 @@ class Screen {
         this.actors.push(bullet);
     }
 
+    clearActors() {
+        const toDelete = [];
+        this.actors.forEach( (actor, idx) => {
+            if (actor.x < 0 || actor.x > 480 || actor.y < 0 || actor.y > 720) {
+                toDelete.push(idx);
+                console.log("A bullet was cleared")
+            }
+        })
+        this.actors = this.actors.filter( (_, idx) => 
+            !toDelete.includes(idx)
+        )
+    }
+
     keyDownHandler(e) {
-        debugger
         if(e.key == "Right" || e.key == "ArrowRight") {
             this.rightPressed = true;
         }

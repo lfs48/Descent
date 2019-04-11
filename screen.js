@@ -14,6 +14,7 @@ class Screen {
         this.keyUpHandler = this.keyUpHandler.bind(this);
         this.handleShoot = this.handleShoot.bind(this);
         this.clearActors = this.clearActors.bind(this);
+        this.checkForCollisions = this.checkForCollisions.bind(this);
     }
 
     clear() {
@@ -24,6 +25,7 @@ class Screen {
         this.clear();
         this.updatePlayerDir();
         this.actors.forEach( actor => {
+                this.checkForCollisions(actor);
                 actor.updatePos();
                 this.drawActor(actor)
             }
@@ -37,6 +39,16 @@ class Screen {
         this.ctx.fillStyle = "white";
         this.ctx.fill();
         this.ctx.closePath();
+    }
+
+    checkForCollisions(actor) {
+        for(let i = 0; i < this.actors.length; i++) {
+            const otherActor = this.actors[i];
+            if (actor !== otherActor && actor.willCollide(otherActor) ) {
+                return true;
+            }
+        }
+        return false;
     }
 
     updatePlayerDir() {
@@ -59,7 +71,6 @@ class Screen {
         this.actors.forEach( (actor, idx) => {
             if (actor.x < 0 || actor.x > 480 || actor.y < 0 || actor.y > 720) {
                 toDelete.push(idx);
-                console.log("A bullet was cleared")
             }
         })
         this.actors = this.actors.filter( (_, idx) => 

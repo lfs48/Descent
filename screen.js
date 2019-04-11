@@ -10,10 +10,25 @@ class Screen {
             ctx.fill();
             ctx.closePath();
         });
+        this.leftWall = new Actor(0, 0, 0, 0, 30, 720, function(ctx) {
+            ctx.beginPath();
+            ctx.rect(this.x, this.y, this.width, this.height);
+            ctx.fillStyle = "red";
+            ctx.fill();
+            ctx.closePath();
+        });
+        this.rightWall = new Actor(450, 0, 0, 0, 30, 720, function(ctx) {
+            ctx.beginPath();
+            ctx.rect(this.x, this.y, this.width, this.height);
+            ctx.fillStyle = "red";
+            ctx.fill();
+            ctx.closePath();
+        });
+
 
         this.rightPressed = false;
         this.leftPressed = false;
-        this.actors = [this.player];
+        this.actors = [this.player, this.leftWall, this.rightWall];
 
         this.clear = this.clear.bind(this);
         this.draw = this.draw.bind(this);

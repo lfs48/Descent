@@ -2,13 +2,15 @@ class Screen {
     constructor(canvas) {
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d");
-        this.player = new Actor(240, 360, 0, 0, 10, function(ctx) {
+
+        this.player = new Actor(240, 360, 0, 0, 10, 10, function(ctx) {
             ctx.beginPath();
-            ctx.arc(this.x, this.y, this.r, 0, Math.PI*2, false);
+            ctx.arc(this.x, this.y, this.width, 0, Math.PI*2, false);
             ctx.fillStyle = "white";
             ctx.fill();
             ctx.closePath();
         });
+
         this.rightPressed = false;
         this.leftPressed = false;
         this.actors = [this.player];
@@ -59,9 +61,9 @@ class Screen {
     }
 
     handleShoot() {
-        const bullet = new Actor(this.player.x, this.player.y + 15, 0, 10, 2, function(ctx) {
+        const bullet = new Actor(this.player.x, this.player.y + 15, 0, 10, 2, 2, function(ctx) {
             ctx.beginPath();
-            ctx.arc(this.x, this.y, this.r, 0, Math.PI*2, false);
+            ctx.arc(this.x, this.y, this.width, 0, Math.PI*2, false);
             ctx.fillStyle = "white";
             ctx.fill();
             ctx.closePath();

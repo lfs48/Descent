@@ -9,16 +9,12 @@ class Actor {
     }
 
     willCollide(otherActor) {
-        const xBoundUp = this.x + this.vx + this.width;
-        const xBoundDown = this.x + this.vx - this.width;
-        const yBoundUp = this.y + this.vy + this.height;
-        const yBoundDown = this.y + this.vy - this.height;
-
-        const otherXBoundUp = otherActor.x + otherActor.vx + otherActor.width;
-        const otherXBoundDown = otherActor.x + otherActor.vx - otherActor.width;
-        const otherYBoundUp = otherActor.y + otherActor.vy + otherActor.height;
-        const otherYBoundDown = otherActor.y + otherActor.vy - otherActor.height;
-
+        const { xBoundUp, xBoundDown, yBoundUp, yBoundDown } = this.collisionBox();
+        const otherCollision = otherActor.collisionBox();
+        const otherXBoundUp = otherCollision.xBoundUp;
+        const otherXBoundDown = otherCollision.xBoundDown;
+        const otherYBoundUp = otherCollision.yBoundUp;
+        const otherYBoundDown = otherCollision.yBoundDown;
         const overlapX = !(
             (xBoundUp >= otherXBoundUp && xBoundDown >= otherXBoundUp) ||
             (xBoundDown <= otherXBoundDown && xBoundUp <= otherXBoundDown)
@@ -52,5 +48,9 @@ class Actor {
 
     stopHorzMove() {
         this.vx = 0;
+    }
+
+    handleCollision() {
+        
     }
 }

@@ -1,5 +1,14 @@
 class Player extends CircleActor {
 
+    constructor(x, y, vx, vy, width, height) {
+        super(x, y, vx, vy, width, height);
+        this.grounded = false;
+    }
+
+    unground() {
+        this.grounded = false;
+    }
+
     handleCollision(otherActor) {
         const { xBoundUp, xBoundDown, yBoundUp, yBoundDown } = this.collisionBox();
         const otherCollision = otherActor.collisionBox();
@@ -13,7 +22,7 @@ class Player extends CircleActor {
         } else if (xBoundDown <= otherXBoundUp && xBoundUp > otherXBoundUp) {
             this.vx = 10;
         } else if (yBoundUp >= otherYBoundDown && yBoundDown < otherYBoundDown) {
-            screen.setGravity(0);
+            this.grounded = true;
         }
     }
 }

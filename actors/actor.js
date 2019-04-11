@@ -8,6 +8,22 @@ class Actor {
         this.height = height;
     }
 
+    getVx() {
+        if (typeof this.vx === 'function') {
+            return this.vx();
+        } else {
+            return this.vx;
+        }
+    }
+
+    getVy() {
+        if (typeof this.vy === 'function') {
+            return this.vy();
+        } else {
+            return this.vy;
+        }  
+    }
+
     willCollide(otherActor) {
         const { xBoundUp, xBoundDown, yBoundUp, yBoundDown } = this.collisionBox();
         const otherCollision = otherActor.collisionBox();
@@ -30,8 +46,8 @@ class Actor {
     }
 
     updatePos() {
-        this.x += this.vx;
-        this.y += this.vy;
+        this.x += this.getVx();
+        this.y += this.getVy();
     }
 
     moveRight() {

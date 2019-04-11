@@ -9,10 +9,10 @@ class RectActor extends Actor {
 
     collisionBox() {
         return ({
-            xBoundUp: this.x + this.vx + this.width,
-            xBoundDown: this.x + this.vx,
-            yBoundUp: this.y + this.vy + this.height,
-            yBoundDown: this.y + this.vy
+            xBoundUp: this.x + this.getVx() + this.width,
+            xBoundDown: this.x + this.getVx(),
+            yBoundUp: this.y + this.getVy() + this.height,
+            yBoundDown: this.y + this.getVy()
         })
     }
 }

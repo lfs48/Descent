@@ -7,6 +7,31 @@ class Actor {
         this.r = r;
     }
 
+    willCollide(otherActor) {
+        const xBoundUp = this.x + this.vx + this.r;
+        const xBoundDown = this.x + this.vx - this.r;
+        const yBoundUp = this.y + this.vy + this.r;
+        const yBoundDown = this.y + this.vy - this.r
+
+        otherXBoundUp = otherActor.x + otherActor.vx + otherActor.r;
+        otherXBoundDown = otherActor.x + otherActor.vx - otherActor.r;
+        otherYBoundUp = otherActor.y + otherActor.vy + otherActor.r;
+        otherYBoundDown = otherActor.y + otherActor.vy - otherActor.r;
+
+        const overlapX = !(
+            (xBoundUp >= otherXBoundUp && xBoundDown >= otherXBoundUp) ||
+            (xBoundDown <= otherXBoundDown && xBoundUp <= otherXBoundDown)
+        );
+
+        const overlapY = !(
+            (yBoundUp >= otherYBoundUp && yBoundDown >= otherYBoundUp) ||
+            (yBoundDown <= otherYBoundDown && yBoundUp <= otherYBoundDown)
+        );
+
+        return (overlapX && overlapY);
+
+    }
+
     updatePos() {
         this.x += this.vx;
         this.y += this.vy;

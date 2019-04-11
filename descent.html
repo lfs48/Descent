@@ -10,10 +10,30 @@
 </head>
 <body>
 
-<canvas id="myCanvas" width="480" height="720"></canvas>
+<canvas id="descent-canvas" width="480" height="720"></canvas>
+
+<script src="./actor.js"></script>
 
 <script>
-	
+    const canvas = document.getElementById("descent-canvas");
+    const ctx = canvas.getContext("2d");
+    const player = new Actor(240, 50, 0, 4, 10);
+
+    const clear = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    const draw = () => {
+        clear();
+        player.move();
+        ctx.beginPath();
+        ctx.arc(player.x, player.y, player.r, 0, Math.PI*2, false);
+        ctx.fillStyle = "white";
+        ctx.fill();
+        ctx.closePath();
+    }
+
+    setInterval(draw, 17);
 </script>
 
 </body>

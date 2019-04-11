@@ -70,7 +70,7 @@ class Screen {
 
     generateEnemy() {
         const x = Math.max(30, (Math.random()*420) );
-        const obstacle = new CircleActor(x, 700, () => Math.random() < 0.5 ? -10 : 10 , this.getGravity, 30, 30);
+        const obstacle = new Enemy(x, 700, () => Math.random() < 0.5 ? -10 : 10 , this.getGravity, 30, 30);
         this.actors.push(obstacle);
     }
 
@@ -94,7 +94,7 @@ class Screen {
     }
 
     handleShoot() {
-        const bullet = new CircleActor(this.player.x, this.player.y + 15, 0, 10, 2, 2);
+        const bullet = new Bullet(this.player.x, this.player.y + 15, 0, 5, 2, 2);
         this.actors.push(bullet);
     }
 
@@ -102,6 +102,8 @@ class Screen {
         const toDelete = [];
         this.actors.forEach( (actor, idx) => {
             if (actor.x < 0 || actor.x > 480 || actor.y < 0 || actor.y > 720) {
+                toDelete.push(idx);
+            } else if (actor.remove) {
                 toDelete.push(idx);
             }
         })

@@ -28,15 +28,19 @@
     const draw = () => {
         clear();
         updatePlayerPos();
-        ctx.beginPath();
-        ctx.arc(player.x, player.y, player.r, 0, Math.PI*2, false);
-        ctx.fillStyle = "white";
-        ctx.fill();
-        ctx.closePath();
+        drawActor(player);
     }
 
     document.addEventListener("keydown", keyDownHandler, false);
     document.addEventListener("keyup", keyUpHandler, false);
+
+    function drawActor(actor) {
+        ctx.beginPath();
+        ctx.arc(actor.x, actor.y, actor.r, 0, Math.PI*2, false);
+        ctx.fillStyle = "white";
+        ctx.fill();
+        ctx.closePath();
+    }
 
     function updatePlayerPos() {
         player.stopHorzMove();

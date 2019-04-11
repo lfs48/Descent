@@ -55,6 +55,9 @@ class Screen {
             if (Math.random() > 0.99) {
                 this.generateObstacle();
             }
+            if (Math.random() > 0.99) {
+                this.generateEnemy();
+            }
             this.gravity = Math.min (Math.max(this.gravity - 0.005, -5), -1 );
         }
     }
@@ -62,6 +65,12 @@ class Screen {
     generateObstacle() {
         const x = Math.max(30, (Math.random()*420) );
         const obstacle = new RectActor(x, 700, 0, this.getGravity, 60, 20);
+        this.actors.push(obstacle);
+    }
+
+    generateEnemy() {
+        const x = Math.max(30, (Math.random()*420) );
+        const obstacle = new CircleActor(x, 700, () => Math.random() < 0.5 ? -10 : 10 , this.getGravity, 30, 30);
         this.actors.push(obstacle);
     }
 

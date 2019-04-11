@@ -1,10 +1,11 @@
 class Actor {
-    constructor(x, y, vx, vy, r, drawCb) {
+    constructor(x, y, vx, vy, r, drawFunction) {
         this.x = x;
         this.y = y;
         this.vx = vx;
         this.vy = vy;
         this.r = r;
+        this.drawFunction = drawFunction.bind(this);
     }
 
     willCollide(otherActor) {

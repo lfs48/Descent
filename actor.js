@@ -20,6 +20,10 @@ class Actor {
         this.vx = -2;
     }
 
+    accY(acc) {
+        this.vy = Math.min(this.vy + acc, 4);
+    }
+
     stopHorzMove() {
         this.vx = 0;
     }

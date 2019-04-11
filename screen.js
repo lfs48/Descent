@@ -3,7 +3,7 @@ class Screen {
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d");
 
-        this.player = new CircleActor(240, 360, 0, 0, 10, 10);
+        this.player = new Player(240, 360, 0, 0, 10, 10);
         this.leftWall = new RectActor(0, 0, 0, 0, 30, 720);
         this.rightWall = new RectActor(450, 0, 0, 0, 30, 720);
 
@@ -40,10 +40,9 @@ class Screen {
         for(let i = 0; i < this.actors.length; i++) {
             const otherActor = this.actors[i];
             if (actor !== otherActor && actor.willCollide(otherActor) ) {
-                return true;
+                actor.handleCollision(otherActor);
             }
         }
-        return false;
     }
 
     updatePlayerDir() {

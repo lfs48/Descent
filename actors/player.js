@@ -32,7 +32,7 @@ class Player extends CircleActor {
     }
 
     jump() {
-        this.y -= 2;
+        this.vy = -3;
     }
 
     center() {
@@ -40,6 +40,12 @@ class Player extends CircleActor {
             this.y = Math.min(360, this.y + 0.5);
         } else if (this.y > 360) {
             this.y = Math.max(360, this.y - 0.5);
+        }
+
+        if (this.vy < 0) {
+            this.vy = Math.min(0, this.vy + 0.5);
+        } else if (this.vy > 0) {
+            this.vy = Math.max(0, this.vy - 0.5);
         }
     }
 

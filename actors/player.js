@@ -5,6 +5,23 @@ class Player extends CircleActor {
         this.grounded = false;
         this.hp = 4;
         this.immune = false;
+        this.flash = false;
+    }
+
+    drawFunction(ctx) {
+        if (!this.flash) {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.width, 0, Math.PI*2, false);
+            ctx.fillStyle = "blue";
+            ctx.fill();
+            ctx.closePath();
+        }
+        if (this.immune) {
+            this.flash = !this.flash;
+        } else {
+            this.flash = false;
+        }
+        
     }
 
     unground() {

@@ -32,7 +32,8 @@ class Player extends CircleActor {
     }
 
     jump() {
-        this.vy = -3;
+        this.y -= 2;
+        this.vy = -1;
     }
 
     center() {

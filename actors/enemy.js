@@ -18,6 +18,14 @@ class Enemy extends CircleActor {
                 this.remove = true;
             }
         }
+
+        if (otherActor instanceof Wall) {
+            if (xBoundUp >= otherXBoundDown && xBoundDown < otherXBoundDown) {
+                this.vx = -5;
+            } else if (xBoundDown <= otherXBoundUp && xBoundUp > otherXBoundUp) {
+                this.vx = 5;
+            }
+        }
     }
 
     generateRandomPath() {

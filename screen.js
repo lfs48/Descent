@@ -4,8 +4,8 @@ class Screen {
         this.ctx = this.canvas.getContext("2d");
 
         this.player = new Player(240, 360, 0, 0, 15, 15);
-        this.leftWall = new RectActor(0, 0, 0, 0, 30, 720);
-        this.rightWall = new RectActor(450, 0, 0, 0, 30, 720);
+        this.leftWall = new Wall(0, 0, 0, 0, 30, 720);
+        this.rightWall = new Wall(450, 0, 0, 0, 30, 720);
 
         this.gravity = -1;
         this.shotCooldown = false;

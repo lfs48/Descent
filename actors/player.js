@@ -1,7 +1,8 @@
 class Player extends CircleActor {
 
-    constructor(x, y, vx, vy, width, height) {
-        super(x, y, vx, vy, width, height);
+    constructor(x, y, vx, vy) {
+        super(x, y, vx, vy);
+        this.radius = 15;
         this.grounded = false;
         this.hp = 4;
         this.immune = false;
@@ -12,7 +13,7 @@ class Player extends CircleActor {
     drawFunction(ctx) {
         if (!this.flash) {
             ctx.beginPath();
-            ctx.arc(this.x, this.y, this.width, 0, Math.PI*2, false);
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, false);
             ctx.fillStyle = "blue";
             ctx.fill();
             ctx.closePath();

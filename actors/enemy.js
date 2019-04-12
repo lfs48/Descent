@@ -1,13 +1,14 @@
 class Enemy extends CircleActor {
-    constructor(x, y, vx, vy, width, height) {
-        super(x, y, vx, vy, width, height);
+    constructor(x, y, vx, vy) {
+        super(x, y, vx, vy);
+        this.radius = 30;
         this.randomPath = false;
         this.generateRandomPath = this.generateRandomPath.bind(this);
     }
 
     drawFunction(ctx) {
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.width, 0, Math.PI*2, false);
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, false);
         ctx.fillStyle = "red";
         ctx.fill();
         ctx.closePath();

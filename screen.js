@@ -60,7 +60,7 @@ class Screen {
             if (Math.random() > 0.99) {
                 this.generateEnemy();
             }
-            this.gravity = Math.min (Math.max(this.gravity - 0.005, -5), -1 );
+            this.gravity = Math.max(this.gravity - 0.005, -5);
         }
     }
 
@@ -109,6 +109,13 @@ class Screen {
         }
     }
 
+    handleJump() {
+        if (this.player.grounded) {
+            this.player.jump();
+            setTimeout( () => this.player.vy = 0, 500);
+        }
+    }
+
     clearActors() {
         const toDelete = [];
         this.actors.forEach( (actor, idx) => {
@@ -129,9 +136,14 @@ class Screen {
         }
         else if(e.key == "Left" || e.key == "ArrowLeft") {
             this.leftPressed = true;
-        } else if (e.key == 'z' || e.key == 'Z') {
+        } 
+        if (e.key == 'z' || e.key == 'Z') {
             this.handleShoot();
         }
+        if (e.key == ' ') {
+            this.handleJump();
+        }
+
     }
 
     keyUpHandler(e) {

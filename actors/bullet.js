@@ -1,7 +1,8 @@
 class Bullet extends CircleActor {
 
-    constructor(x, y, vx, vy) {
+    constructor(x, y, vx, vy, screen) {
         super(x, y, vx, vy);
+        this.screen = screen;
         this.radius = 7;
     }
 
@@ -25,6 +26,7 @@ class Bullet extends CircleActor {
             this.remove = true;
             if (otherActor instanceof Enemy || otherActor instanceof Bouncy) {
                 otherActor.remove = true;
+                this.screen.gainScore(1);
             }
         }
     }

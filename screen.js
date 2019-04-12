@@ -43,6 +43,7 @@ class Screen {
         this.clear();
         this.player.unground();
         this.updatePlayerDir();
+        this.player.center();
         this.actors.forEach( actor => {
                 this.checkForCollisions(actor);
                 actor.updatePos();
@@ -112,7 +113,8 @@ class Screen {
     handleJump() {
         if (this.player.grounded) {
             this.player.jump();
-            setTimeout( () => this.player.vy = 0, 500);
+            this.gravity = 1;
+            setTimeout( () => this.gravity = -1, 500);
         }
     }
 

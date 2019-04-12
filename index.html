@@ -4,16 +4,21 @@
     <meta charset="utf-8" />
     <title>Descent</title>
     <style>
-    	* { padding: 0; margin: 0; }
-        #descent-container { display: flex; }
-    	#descent-canvas { background:rgb(0,0,0); display: block; margin: 0 auto; }
-        #score-canvas { background:rgb(255,255,255); display: block; margin: 0 auto; }
+        #descent-container { display: flex; justify-content: center; }
+    	#descent-canvas { background:rgb(0,0,0); }
+        #score-canvas { 
+            background:rgb(255,255,255); 
+            margin-right: 0 100px;
+            border: 3px solid gray;
+            border-radius: 5px;
+            height: 100px;
+        }
     </style>
 </head>
 <body>
 
 <div id="descent-container">
-    <canvas id="score-canvas" width="100" height="200"></canvas>
+    <canvas id="score-canvas" width="100" height="100"></canvas>
     <canvas id="descent-canvas" width="480" height="720"></canvas>
 </div>
 

@@ -6,13 +6,16 @@ class Screen {
         this.player = new Player(240, 360, 0, 0, 15, 15);
         this.leftWall = new Wall(0, 0, 0, 0, 30, 720);
         this.rightWall = new Wall(450, 0, 0, 0, 30, 720);
+        this.actors = [this.player, this.leftWall, this.rightWall];
 
         this.gravity = -1;
         this.shotCooldown = false;
 
         this.rightPressed = false;
         this.leftPressed = false;
-        this.actors = [this.player, this.leftWall, this.rightWall];
+
+        this.score = 0;
+        this.combo = 1;
 
         this.clear = this.clear.bind(this);
         this.draw = this.draw.bind(this);
@@ -25,6 +28,8 @@ class Screen {
         this.getGravity = this.getGravity.bind(this);
         this.setGravity = this.setGravity.bind(this);
         this.reload = this.reload.bind(this);
+        this.updateScore = this.updateScore.bind(this);
+        this.updateCombo = this.updateCombo.bind(this);
     }
 
     getGravity() {
@@ -62,6 +67,22 @@ class Screen {
                 this.generateEnemy();
             }
             this.gravity = Math.max(this.gravity - 0.005, -5);
+        }
+        this.updateCombo();
+        this.updateScore();
+    }
+
+    updateCombo() {
+        if (this.player.grounded) {
+            this.combo = 1;
+        } else {
+            this.combo += 0.01;
+        }
+    }
+
+    updateScore() {
+        if (!this.player.grounded) {
+            this.score += 0.01 * this.combo;
         }
     }
 

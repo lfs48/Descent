@@ -32,6 +32,14 @@ class Screen {
         this.updateCombo = this.updateCombo.bind(this);
     }
 
+    getScore() {
+        return Math.floor(this.score);
+    }
+
+    getCombo() {
+        return Math.round(this.combo*10)/10;
+    }
+
     getGravity() {
         return this.gravity;
     }

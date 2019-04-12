@@ -73,7 +73,7 @@ class Player extends CircleActor {
         if (otherActor instanceof Enemy) {
             this.takeDamage();
             this.immune = true;
-            setTimeout(() => this.immune = false, 1000);
+            setTimeout(() => this.immune = false, 3000);
         }
 
         if (otherActor instanceof Floor) {

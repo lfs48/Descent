@@ -1,4 +1,10 @@
 class Enemy extends CircleActor {
+    constructor(x, y, vx, vy, width, height) {
+        super(x, y, vx, vy, width, height);
+        this.randomPath = false;
+        this.generateRandomPath = this.generateRandomPath.bind(this);
+    }
+
     handleCollision(otherActor) {
         const { xBoundUp, xBoundDown, yBoundUp, yBoundDown } = this.collisionBox();
         const otherCollision = otherActor.collisionBox();
@@ -12,5 +18,19 @@ class Enemy extends CircleActor {
                 this.remove = true;
             }
         }
+    }
+
+    generateRandomPath() {
+        this.randomPath = false;
+        this.vx = Math.random() > 0.5 ? 5 : -5;
+    }
+
+    updatePos() {
+        if (!this.randomPath) {
+            this.randomPath = true;
+            setTimeout(this.generateRandomPath, 500);
+        }
+        this.x += this.getVx();
+        this.y += this.getVy();
     }
 }

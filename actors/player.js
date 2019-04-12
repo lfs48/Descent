@@ -53,7 +53,6 @@ class Player extends CircleActor {
     takeDamage() {
         if (!this.immune) {
             this.hp -= 1;
-            console.log("You took damage!")
         }
     }
 

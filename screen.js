@@ -160,7 +160,7 @@ class Screen {
     updateCombo() {
         if (this.player.grounded) {
             this.combo = 1;
-        } else {
+        } else if (this.gravity < -2) {
             this.combo += 0.01;
         }
     }

@@ -9,6 +9,10 @@ class Player extends CircleActor {
         this.grounded = false;
     }
 
+    jump() {
+        this.vy = -1;
+    }
+
     handleCollision(otherActor) {
         const { xBoundUp, xBoundDown, yBoundUp, yBoundDown } = this.collisionBox();
         const otherCollision = otherActor.collisionBox();

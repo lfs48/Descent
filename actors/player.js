@@ -6,6 +6,7 @@ class Player extends CircleActor {
         this.hp = 4;
         this.immune = false;
         this.flash = false;
+        this.won = false;
     }
 
     drawFunction(ctx) {
@@ -71,6 +72,10 @@ class Player extends CircleActor {
             this.takeDamage();
             this.immune = true;
             setTimeout(() => this.immune = false, 1000);
+        }
+
+        if (otherActor instanceof Floor) {
+            this.won = true;
         }
     }
 }

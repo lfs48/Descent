@@ -18,6 +18,7 @@ class Screen {
         this.combo = 1;
 
         this.distance = 0;
+        this.maxDistance = 0;
 
         this.clear = this.clear.bind(this);
         this.draw = this.draw.bind(this);
@@ -93,16 +94,20 @@ class Screen {
         this.actors.forEach( actor => {
             actor.drawFunction(this.ctx);
         });
+
         if (this.isGameOver()) {
             this.gameOverMessage();
         } else if(this.gameHasStarted()) {
+
             this.player.unground();
             this.updatePlayerDir();
             this.player.center();
+
             if (this.isEndOfStage() && !this.ending) {
                 this.ending = true;
                 this.generateFloor();
             }
+
             this.actors.forEach( actor => {
                     this.checkForCollisions(actor);
                     actor.updatePos();
@@ -110,7 +115,7 @@ class Screen {
             );
             this.clearActors();
 
-            if (!this.player.grounded && !this.isEndOfStage() ) {
+            if (!this.player.grounded && !this.isEndOfStage() && this.maxDistance === this.distance ) {
                 if (Math.random() > 0.99) {
                     this.generateObstacle();
                 }
@@ -120,8 +125,10 @@ class Screen {
                 if (Math.random() > 0.99) {
                     this.generateBouncy();
                 }
-                this.distance += this.gravity;
             }
+            
+            this.distance += this.gravity;
+            this.maxDistance = Math.min(this.maxDistance, this.distance);
             this.updateGravity();
             this.updateCombo();
             this.updateScore();
@@ -252,7 +259,7 @@ class Screen {
             this.handleShoot();
         }
         if (e.key == ' ') {
-            this.handleJump(3);
+            this.handleJump();
         }
 
     }

@@ -1,11 +1,9 @@
 class Actor {
-    constructor(x, y, vx, vy, width, height) {
+    constructor(x, y, vx, vy) {
         this.x = x;
         this.y = y;
         this.vx = vx;
         this.vy = vy;
-        this.width = width;
-        this.height = height;
     }
 
     getVx() {

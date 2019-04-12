@@ -33,6 +33,8 @@ class Screen {
         this.updateScore = this.updateScore.bind(this);
         this.updateCombo = this.updateCombo.bind(this);
         this.isGameOver = this.isGameOver.bind(this);
+        this.generateFloor = this.generateFloor.bind(this);
+        this.isEndOfStage = this.isEndOfStage.bind(this);
     }
 
     getScore() {
@@ -56,12 +58,21 @@ class Screen {
     }
 
     isGameOver() {
-        return (this.distance < - 5000 || this.player.hp < 1);
+        return (this.player.won || this.player.hp < 1);
     }
 
     gameOverMessage() {
         this.ctx.font = "50px Arial";
         this.ctx.fillText(`GAME OVER`, 100, 50);
+    }
+
+    isEndOfStage() {
+        return this.distance < -5000;
+    }
+
+    generateFloor() {
+        const floor = new Floor(30, 700, 0, this.getGravity, 420, 20);
+        this.actors.push(floor);
     }
 
     draw() {
@@ -76,6 +87,10 @@ class Screen {
             this.player.unground();
             this.updatePlayerDir();
             this.player.center();
+            if (this.isEndOfStage() && !this.ending) {
+                this.ending = true;
+                this.generateFloor();
+            }
             this.actors.forEach( actor => {
                     this.checkForCollisions(actor);
                     actor.updatePos();
@@ -86,7 +101,7 @@ class Screen {
 
             if (this.player.grounded) {
                 this.gravity = 0;
-            } else {
+            } else if (!this.isEndOfStage() ) {
                 if (Math.random() > 0.99) {
                     this.generateObstacle();
                 }

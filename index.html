@@ -25,15 +25,19 @@
 <script src="./actors/bullet.js"></script>
 <script src="./actors/wall.js"></script>
 <script src="./screen.js"></script>
+<script src="./score.js"></script>
 
 <script>
-    const canvas = document.getElementById("descent-canvas");
-    const screen = new Screen(canvas);
+    const descentCanvas = document.getElementById("descent-canvas");
+    const scoreCanvas = document.getElementById("score-canvas");
+    const screen = new Screen(descentCanvas);
+    const score = new Score(scoreCanvas, screen);
 
     document.addEventListener("keydown", screen.keyDownHandler, false);
     document.addEventListener("keyup", screen.keyUpHandler, false);
 
     setInterval(screen.draw, 17);
+    setInterval(score.draw, 17);
 </script>
 
 </body>

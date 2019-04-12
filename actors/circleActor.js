@@ -9,10 +9,10 @@ class CircleActor extends Actor {
 
     collisionBox() {
         return ({
-            xBoundUp: this.x + this.getVx() + this.width,
-            xBoundDown: this.x + this.getVx() - this.width,
-            yBoundUp: this.y + this.getVy() + this.height,
-            yBoundDown: this.y + this.getVy() - this.height
+            xBoundUp: this.x + this.getVx() + (this.width/1.25),
+            xBoundDown: this.x + this.getVx() - (this.width/1.25),
+            yBoundUp: this.y + this.getVy() + (this.height/1.25),
+            yBoundDown: this.y + this.getVy() - (this.height/1.25)
         })
     }
 }

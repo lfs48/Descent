@@ -59,12 +59,18 @@ class Screen {
         return this.distance < - 1000;
     }
 
+    gameOverMessage() {
+        this.ctx.font = "50px Arial";
+        this.ctx.fillText(`GAME OVER`, 100, 50);
+    }
+
     draw() {
         if (this.isGameOver()) {
             this.clear();
             this.actors.forEach( actor => {
                 actor.drawFunction(this.ctx);
             });
+            this.gameOverMessage();
         } else {
             this.clear();
             this.player.unground();

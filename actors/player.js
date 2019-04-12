@@ -10,7 +10,15 @@ class Player extends CircleActor {
     }
 
     jump() {
-        this.vy = -1;
+        this.y -= 2;
+    }
+
+    center() {
+        if (this.y < 360) {
+            this.y = Math.min(360, this.y + 0.5);
+        } else if (this.y > 360) {
+            this.y = Math.max(360, this.y - 0.5);
+        }
     }
 
     handleCollision(otherActor) {

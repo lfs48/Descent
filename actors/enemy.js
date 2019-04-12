@@ -7,8 +7,7 @@ class Enemy extends CircleActor {
         const otherYBoundUp = otherCollision.yBoundUp;
         const otherYBoundDown = otherCollision.yBoundDown;
 
-        if (typeof otherActor === 'Bullet') {
-            debugger
+        if (otherActor instanceof Bullet) {
             if (yBoundDown <= otherYBoundUp && yBoundUp > otherYBoundUp) {
                 this.remove = true;
             }

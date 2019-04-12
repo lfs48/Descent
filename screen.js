@@ -237,7 +237,7 @@ class Screen {
     clearActors() {
         const toDelete = [];
         this.actors.forEach( (actor, idx) => {
-            if (actor.x < 0 || actor.x > 480 || actor.y < 0 || actor.y > 720) {
+            if (actor.x < 0 || actor.x > 480 || actor.y < -20 || actor.y > 740) {
                 toDelete.push(idx);
             } else if (actor.remove) {
                 toDelete.push(idx);

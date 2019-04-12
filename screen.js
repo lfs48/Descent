@@ -3,11 +3,12 @@ class Screen {
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d");
 
-        this.player = new Player(240, 360, 0, 0, 10, 10);
+        this.player = new Player(240, 360, 0, 0, 15, 15);
         this.leftWall = new RectActor(0, 0, 0, 0, 30, 720);
         this.rightWall = new RectActor(450, 0, 0, 0, 30, 720);
 
         this.gravity = -1;
+        this.shotCooldown = false;
 
         this.rightPressed = false;
         this.leftPressed = false;
@@ -23,6 +24,7 @@ class Screen {
         this.generateObstacleq = this.generateObstacle.bind(this);
         this.getGravity = this.getGravity.bind(this);
         this.setGravity = this.setGravity.bind(this);
+        this.reload = this.reload.bind(this);
     }
 
     getGravity() {
@@ -93,9 +95,17 @@ class Screen {
         }
     }
 
+    reload() {
+        this.shotCooldown = false;
+    }
+
     handleShoot() {
-        const bullet = new Bullet(this.player.x, this.player.y + 15, 0, 5, 2, 2);
-        this.actors.push(bullet);
+        if (!this.shotCooldown) {
+            const bullet = new Bullet(this.player.x, this.player.y + 15, 0, 10, 6, 6);
+            this.actors.push(bullet);
+            this.shotCooldown = true;
+            setTimeout(this.reload, 500);
+        }
     }
 
     clearActors() {

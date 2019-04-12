@@ -118,7 +118,7 @@ class Screen {
 
     generateObstacle() {
         const x = Math.max(30, (Math.random()*420) );
-        const obstacle = new RectActor(x, 700, 0, this.getGravity, 60, 20);
+        const obstacle = new Obstacle(x, 700, 0, this.getGravity, 60, 20);
         this.actors.push(obstacle);
     }
 

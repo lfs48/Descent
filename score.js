@@ -11,8 +11,8 @@ class Score {
 
     draw() {
         this.clear();
-        this.ctx.fillText(`Score: ${screen.getScore()}`, 0, 50);
-        this.ctx.fillText(`Combo: ${screen.getCombo()}`, 0, 100);
+        this.ctx.fillText(`Score: ${screen.getScore()}`, 12, 35);
+        this.ctx.fillText(`Combo: ${screen.getCombo()}`, 12, 75);
     }
 
     clear() {

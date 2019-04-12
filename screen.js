@@ -56,7 +56,7 @@ class Screen {
     }
 
     isGameOver() {
-        return this.distance < - 1000;
+        return this.distance < - 5000;
     }
 
     gameOverMessage() {

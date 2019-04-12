@@ -3,6 +3,8 @@ class Player extends CircleActor {
     constructor(x, y, vx, vy, width, height) {
         super(x, y, vx, vy, width, height);
         this.grounded = false;
+        this.hp = 4;
+        this.immune = false;
     }
 
     unground() {
@@ -18,6 +20,13 @@ class Player extends CircleActor {
             this.y = Math.min(360, this.y + 0.5);
         } else if (this.y > 360) {
             this.y = Math.max(360, this.y - 0.5);
+        }
+    }
+
+    takeDamage() {
+        if (!this.immune) {
+            this.hp -= 1;
+            console.log("You took damage!")
         }
     }
 
@@ -40,6 +49,11 @@ class Player extends CircleActor {
             if (yBoundUp >= otherYBoundDown && yBoundDown < otherYBoundDown) {
                 this.grounded = true;
             }
+        }
+        if (otherActor instanceof Enemy) {
+            this.takeDamage();
+            this.immune = true;
+            setTimeout(() => this.immune = false, 1000);
         }
     }
 }

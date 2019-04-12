@@ -88,14 +88,13 @@ class Screen {
     }
 
     draw() {
+        this.clear();
+        this.actors.forEach( actor => {
+            actor.drawFunction(this.ctx);
+        });
         if (this.isGameOver()) {
-            this.clear();
-            this.actors.forEach( actor => {
-                actor.drawFunction(this.ctx);
-            });
             this.gameOverMessage();
         } else if(this.gameHasStarted()) {
-            this.clear();
             this.player.unground();
             this.updatePlayerDir();
             this.player.center();
@@ -106,7 +105,6 @@ class Screen {
             this.actors.forEach( actor => {
                     this.checkForCollisions(actor);
                     actor.updatePos();
-                    actor.drawFunction(this.ctx);
                 }
             );
             this.clearActors();
@@ -126,12 +124,6 @@ class Screen {
             this.updateCombo();
             this.updateScore();
         } else {
-            this.clear();
-            this.actors.forEach( actor => {
-                this.checkForCollisions(actor);
-                actor.updatePos();
-                actor.drawFunction(this.ctx);
-            });
             this.ctx.font = "15px Arial";
             this.ctx.fillStyle = "white";
             this.ctx.fillText(`Press Left`, 100, 360);

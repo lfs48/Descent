@@ -1,7 +1,8 @@
 class Player extends CircleActor {
 
-    constructor(x, y, vx, vy) {
+    constructor(x, y, vx, vy, screen) {
         super(x, y, vx, vy);
+        this.screen = screen;
         this.radius = 15;
         this.grounded = false;
         this.hp = 4;
@@ -77,6 +78,15 @@ class Player extends CircleActor {
 
         if (otherActor instanceof Floor) {
             this.won = true;
+        }
+
+        if (otherActor instanceof Bouncy) {
+            if (yBoundUp >= otherYBoundDown && yBoundDown < otherYBoundDown) {
+                this.grounded = true;
+                this.screen.handleBounce();
+                otherActor.remove = true;
+                this.grounded = false;
+            }
         }
     }
 }

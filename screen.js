@@ -3,7 +3,7 @@ class Screen {
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d");
 
-        this.player = new Player(240, 360, 0, 0);
+        this.player = new Player(240, 360, 0, 0, this);
         this.leftWall = new Wall(0, 0, 0, 0);
         this.rightWall = new Wall(450, 0, 0, 0);
         this.actors = [this.player, this.leftWall, this.rightWall];
@@ -117,6 +117,9 @@ class Screen {
                 if (Math.random() > 0.99) {
                     this.generateEnemy();
                 }
+                if (Math.random() > 0.99) {
+                    this.generateBouncy();
+                }
                 this.distance += this.gravity;
             }
             this.updateGravity();
@@ -170,8 +173,15 @@ class Screen {
     generateEnemy() {
         const x = Math.max(30, (Math.random()*420) );
         const vx = Math.random() > 0.5 ? 5 : -5;
-        const obstacle = new Enemy(x, 700, vx, this.getGravity);
-        this.actors.push(obstacle);
+        const enemy = new Enemy(x, 700, vx, this.getGravity);
+        this.actors.push(enemy);
+    }
+
+    generateBouncy() {
+        const x = Math.max(30, (Math.random()*420) );
+        const vx = Math.random() > 0.5 ? 2 : -2;
+        const bouncy = new Bouncy(x, 700, vx, this.getGravity);
+        this.actors.push(bouncy);
     }
 
     checkForCollisions(actor) {
@@ -213,6 +223,10 @@ class Screen {
         }
     }
 
+    handleBounce() {
+        this.gravity = 5;
+    }
+
     clearActors() {
         const toDelete = [];
         this.actors.forEach( (actor, idx) => {
@@ -238,7 +252,7 @@ class Screen {
             this.handleShoot();
         }
         if (e.key == ' ') {
-            this.handleJump();
+            this.handleJump(3);
         }
 
     }

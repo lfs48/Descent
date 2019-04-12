@@ -3,9 +3,9 @@ class Screen {
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d");
 
-        this.player = new Player(240, 360, 0, 0, 15, 15);
-        this.leftWall = new Wall(0, 0, 0, 0, 30, 720);
-        this.rightWall = new Wall(450, 0, 0, 0, 30, 720);
+        this.player = new Player(240, 360, 0, 0);
+        this.leftWall = new Wall(0, 0, 0, 0);
+        this.rightWall = new Wall(450, 0, 0, 0);
         this.actors = [this.player, this.leftWall, this.rightWall];
 
         this.gravity = -1;
@@ -71,7 +71,7 @@ class Screen {
     }
 
     generateFloor() {
-        const floor = new Floor(30, 700, 0, this.getGravity, 420, 20);
+        const floor = new Floor(30, 700, 0, this.getGravity);
         this.actors.push(floor);
     }
 
@@ -133,14 +133,14 @@ class Screen {
 
     generateObstacle() {
         const x = Math.max(30, (Math.random()*420) );
-        const obstacle = new Obstacle(x, 700, 0, this.getGravity, 60, 20);
+        const obstacle = new Obstacle(x, 700, 0, this.getGravity);
         this.actors.push(obstacle);
     }
 
     generateEnemy() {
         const x = Math.max(30, (Math.random()*420) );
         const vx = Math.random() > 0.5 ? 5 : -5;
-        const obstacle = new Enemy(x, 700, vx, this.getGravity, 30, 30);
+        const obstacle = new Enemy(x, 700, vx, this.getGravity);
         this.actors.push(obstacle);
     }
 
@@ -169,7 +169,7 @@ class Screen {
 
     handleShoot() {
         if (!this.shotCooldown && !this.isGameOver()) {
-            const bullet = new Bullet(this.player.x, this.player.y + 15, 0, 10, 6, 6);
+            const bullet = new Bullet(this.player.x, this.player.y + 15, 0, 10);
             this.actors.push(bullet);
             this.shotCooldown = true;
             setTimeout(this.reload, 500);

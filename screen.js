@@ -17,6 +17,8 @@ class Screen {
         this.score = 0;
         this.combo = 1;
 
+        this.distance = 0;
+
         this.clear = this.clear.bind(this);
         this.draw = this.draw.bind(this);
         this.keyDownHandler = this.keyDownHandler.bind(this);
@@ -30,6 +32,7 @@ class Screen {
         this.reload = this.reload.bind(this);
         this.updateScore = this.updateScore.bind(this);
         this.updateCombo = this.updateCombo.bind(this);
+        this.isGameOver = this.isGameOver.bind(this);
     }
 
     getScore() {
@@ -52,32 +55,45 @@ class Screen {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
 
-    draw() {
-        this.clear();
-        this.player.unground();
-        this.updatePlayerDir();
-        this.player.center();
-        this.actors.forEach( actor => {
-                this.checkForCollisions(actor);
-                actor.updatePos();
-                actor.drawFunction(this.ctx);
-            }
-        );
-        this.clearActors();
+    isGameOver() {
+        return this.distance < - 1000;
+    }
 
-        if (this.player.grounded) {
-            this.gravity = 0;
+    draw() {
+        if (this.isGameOver()) {
+            this.clear();
+            this.actors.forEach( actor => {
+                actor.drawFunction(this.ctx);
+            });
         } else {
-            if (Math.random() > 0.99) {
-                this.generateObstacle();
+            this.clear();
+            this.player.unground();
+            this.updatePlayerDir();
+            this.player.center();
+            this.actors.forEach( actor => {
+                    this.checkForCollisions(actor);
+                    actor.updatePos();
+                    actor.drawFunction(this.ctx);
+                }
+            );
+            this.clearActors();
+
+            if (this.player.grounded) {
+                this.gravity = 0;
+            } else {
+                if (Math.random() > 0.99) {
+                    this.generateObstacle();
+                }
+                if (Math.random() > 0.99) {
+                    this.generateEnemy();
+                }
+                this.gravity = Math.max(this.gravity - 0.005, -5);
+                this.distance += this.gravity;
             }
-            if (Math.random() > 0.99) {
-                this.generateEnemy();
-            }
-            this.gravity = Math.max(this.gravity - 0.005, -5);
+            this.updateCombo();
+            this.updateScore();
         }
-        this.updateCombo();
-        this.updateScore();
+            
     }
 
     updateCombo() {
@@ -131,7 +147,7 @@ class Screen {
     }
 
     handleShoot() {
-        if (!this.shotCooldown) {
+        if (!this.shotCooldown && !this.isGameOver()) {
             const bullet = new Bullet(this.player.x, this.player.y + 15, 0, 10, 6, 6);
             this.actors.push(bullet);
             this.shotCooldown = true;

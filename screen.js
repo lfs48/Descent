@@ -36,6 +36,7 @@ class Screen {
         this.generateFloor = this.generateFloor.bind(this);
         this.isEndOfStage = this.isEndOfStage.bind(this);
         this.gameHasStarted = this.gameHasStarted.bind(this);
+        this.updateGravity = this.updateGravity.bind(this);
     }
 
     gameHasStarted() {
@@ -109,18 +110,16 @@ class Screen {
             );
             this.clearActors();
 
-            if (this.player.grounded) {
-                this.gravity = 0;
-            } else if (!this.isEndOfStage() ) {
+            if (!this.player.grounded && !this.isEndOfStage() ) {
                 if (Math.random() > 0.99) {
                     this.generateObstacle();
                 }
                 if (Math.random() > 0.99) {
                     this.generateEnemy();
                 }
-                this.gravity = Math.max(this.gravity - 0.005, -5);
                 this.distance += this.gravity;
             }
+            this.updateGravity();
             this.updateCombo();
             this.updateScore();
         } else {
@@ -130,6 +129,22 @@ class Screen {
             this.ctx.fillText(`Press Right`, 300, 360);
         }
             
+    }
+
+    updateGravity() {
+        if (this.player.grounded) {
+            this.gravity = 0;
+        } else if (this.gravity > -1) {
+            this.gravity -= 0.15;
+        } else if (this.gravity > -2) {
+            this.gravity -= 0.07;
+        } else if (this.gravity > -4) {
+            this.gravity -= 0.04;
+        } else if (this.gravity > -6) {
+            this.gravity -= 0.02;
+        } else {
+            this.gravity = this.gravity - 0.0005;
+        }
     }
 
     updateCombo() {
@@ -194,8 +209,7 @@ class Screen {
     handleJump() {
         if (this.player.grounded) {
             this.player.jump();
-            this.gravity = 1;
-            setTimeout( () => this.gravity = -1, 500);
+            this.gravity = 3;
         }
     }
 

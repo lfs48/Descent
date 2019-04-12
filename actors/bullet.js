@@ -23,6 +23,9 @@ class Bullet extends CircleActor {
 
         if (yBoundUp >= otherYBoundDown && yBoundDown < otherYBoundDown) {
             this.remove = true;
+            if (otherActor instanceof Enemy || otherActor instanceof Bouncy) {
+                otherActor.remove = true;
+            }
         }
     }
 }

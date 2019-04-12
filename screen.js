@@ -38,6 +38,7 @@ class Screen {
         this.isEndOfStage = this.isEndOfStage.bind(this);
         this.gameHasStarted = this.gameHasStarted.bind(this);
         this.updateGravity = this.updateGravity.bind(this);
+        this.gainScore = this.gainScore.bind(this);
     }
 
     gameHasStarted() {
@@ -165,6 +166,10 @@ class Screen {
         }
     }
 
+    gainScore(num) {
+        this.score += num * this.combo;
+    }
+
     updateScore() {
         if (!this.player.grounded) {
             this.score += 0.01 * this.combo;
@@ -216,7 +221,7 @@ class Screen {
 
     handleShoot() {
         if (!this.shotCooldown && !this.isGameOver()) {
-            const bullet = new Bullet(this.player.x, this.player.y + 15, 0, 10);
+            const bullet = new Bullet(this.player.x, this.player.y + 15, 0, 10, this);
             this.actors.push(bullet);
             this.shotCooldown = true;
             setTimeout(this.reload, 500);

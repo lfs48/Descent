@@ -35,6 +35,18 @@ class Screen {
         this.isGameOver = this.isGameOver.bind(this);
         this.generateFloor = this.generateFloor.bind(this);
         this.isEndOfStage = this.isEndOfStage.bind(this);
+        this.gameHasStarted = this.gameHasStarted.bind(this);
+    }
+
+    gameHasStarted() {
+        if (this.started) {
+            return true;
+        } else if (this.rightPressed || this.leftPressed) {
+            this.started = true;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     getScore() {
@@ -82,7 +94,7 @@ class Screen {
                 actor.drawFunction(this.ctx);
             });
             this.gameOverMessage();
-        } else {
+        } else if(this.gameHasStarted()) {
             this.clear();
             this.player.unground();
             this.updatePlayerDir();
@@ -113,6 +125,17 @@ class Screen {
             }
             this.updateCombo();
             this.updateScore();
+        } else {
+            this.clear();
+            this.actors.forEach( actor => {
+                this.checkForCollisions(actor);
+                actor.updatePos();
+                actor.drawFunction(this.ctx);
+            });
+            this.ctx.font = "15px Arial";
+            this.ctx.fillStyle = "white";
+            this.ctx.fillText(`Press Left`, 100, 360);
+            this.ctx.fillText(`Press Right`, 300, 360);
         }
             
     }

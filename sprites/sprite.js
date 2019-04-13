@@ -1,9 +1,9 @@
 class Sprite {
-    constructor(actor, file, numFrames) {
+    constructor(actor, file, numFrames = 1, ticksPerFrame = 15) {
         this.actor = actor;
         this.frameIndex = 0;
         this.tickCount = 0;
-        this.ticksPerFrame = 15;
+        this.ticksPerFrame = ticksPerFrame;
         this.numFrames = numFrames;
         this.spritesheet = new Image();
         this.spritesheet.src = file;

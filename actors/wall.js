@@ -7,8 +7,4 @@ class Wall extends RectActor {
         this.activeSprite = new Sprite(this, 'assets/wall.png');
     }
 
-    drawFunction(ctx) {
-        this.activeSprite.draw(ctx);
-        this.activeSprite.update();
-    }
 }

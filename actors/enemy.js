@@ -14,11 +14,6 @@ class Enemy extends RectActor {
         this.activeSprite = this.sprites[`default${this.direction}`];
     }
 
-    drawFunction(ctx) {
-        this.activeSprite.draw(ctx);
-        this.activeSprite.update();
-    }
-
     handleCollision(otherActor) {
         const { xBoundUp, xBoundDown, yBoundUp, yBoundDown } = this.collisionBox();
         const otherCollision = otherActor.collisionBox();

@@ -6,8 +6,4 @@ class Visual extends CircleActor {
         this.activeSprite = new Sprite(this, file, numFrames, framesPerTick);
     }
 
-    drawFunction(ctx) {
-        this.activeSprite.draw(ctx);
-        this.activeSprite.update();
-    }
 }

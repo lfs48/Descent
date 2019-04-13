@@ -1,17 +1,17 @@
-class Bouncy extends CircleActor {
+class Bouncy extends RectActor {
     constructor(x, y, vx, vy) {
         super(x, y, vx, vy);
-        this.radius = 50;
+        this.width = 79;
+        this.height = 49;
+        this.direction = "Right";
         this.randomPath = false;
         this.generateRandomPath = this.generateRandomPath.bind(this);
+        this.activeSprite = new Sprite(this, 'assets/bouncy-right.png', 6);
     }
 
     drawFunction(ctx) {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, false);
-        ctx.fillStyle = "white";
-        ctx.fill();
-        ctx.closePath();
+        this.activeSprite.draw(ctx);
+        this.activeSprite.update();
     }
 
     handleCollision(otherActor) {
@@ -30,9 +30,9 @@ class Bouncy extends CircleActor {
 
         if (otherActor instanceof Wall) {
             if (xBoundUp >= otherXBoundDown && xBoundDown < otherXBoundDown) {
-                this.vx = -5;
+                this.vx = -2;
             } else if (xBoundDown <= otherXBoundUp && xBoundUp > otherXBoundUp) {
-                this.vx = 5;
+                this.vx = 2;
             }
         }
     }

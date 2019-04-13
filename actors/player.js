@@ -7,6 +7,7 @@ class Player extends RectActor {
         this.width = 60;
         this.grounded = false;
         this.hp = 4;
+        this.grounded = false;
         this.immune = false;
         this.flash = false;
         this.won = false;

@@ -4,7 +4,9 @@ class Screen {
         this.ctx = this.canvas.getContext("2d");
 
         this.player = new Player(210, 330, 0, 0, this);
-        this.actors = [this.player];
+        this.leftWall = new Wall(0, 0, 0, 0);
+        this.rightWall = new Wall(454, 0, 0, 0);
+        this.actors = [this.player, this.rightWall, this.leftWall];
 
         this.gravity = -1;
         this.shotCooldown = false;
@@ -97,32 +99,19 @@ class Screen {
             const leftWall = new Wall(0, 720, 0, this.getGravity);
             const rightWall = new Wall(450, 720, 0, this.getGravity);
             this.actors.push(leftWall, rightWall);
-            setTimeout( () => this.wallCooldown = false, 180);
-        }
-    }
-
-    updateVariables() {
-        this.distance += this.gravity;
-        this.maxDistance = Math.min(this.maxDistance, this.distance);
-        this.updateGravity();
-        if ( this.gameHasStarted() ) {
-            this.updateCombo();
-            this.updateScore();
+            setTimeout( () => this.wallCooldown = false, 100);
         }
     }
 
     draw() {
         this.clear();
+        this.actors.forEach( actor => {
+            actor.drawFunction(this.ctx);
+        });
 
-        this.updateVariables();
         if ( (-1 * this.maxDistance) % 107 < 10) {
             this.generateWalls();
         }
-
-        this.actors.forEach( actor => {
-            actor.drawFunction(this.ctx);
-            actor.updatePos();
-        });
 
         if (this.isGameOver()) {
             this.gameOverMessage();
@@ -138,6 +127,7 @@ class Screen {
 
             this.actors.forEach( actor => {
                     this.checkForCollisions(actor);
+                    actor.updatePos();
                 }
             );
             this.clearActors();
@@ -154,6 +144,11 @@ class Screen {
                 }
             }
             
+            this.distance += this.gravity;
+            this.maxDistance = Math.min(this.maxDistance, this.distance);
+            this.updateGravity();
+            this.updateCombo();
+            this.updateScore();
         } else {
             this.ctx.font = "15px Arial";
             this.ctx.fillStyle = "white";

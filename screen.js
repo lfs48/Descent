@@ -38,6 +38,7 @@ class Screen {
         this.gameHasStarted = this.gameHasStarted.bind(this);
         this.updateGravity = this.updateGravity.bind(this);
         this.gainScore = this.gainScore.bind(this);
+        this.renderInstructions = this.renderInstructions.bind(this);
     }
 
     gameHasStarted() {
@@ -47,6 +48,7 @@ class Screen {
             this.started = true;
             this.distance = 0;
             this.maxDistance = 0;
+            this.underRenderInstructions();
             return true;
         } else {
             return false;
@@ -150,10 +152,7 @@ class Screen {
             this.updateScore();
 
         } else {
-            this.ctx.font = "15px Arial";
-            this.ctx.fillStyle = "white";
-            this.ctx.fillText(`Press Left`, 100, 360);
-            this.ctx.fillText(`Press Right`, 300, 360);
+            setTimeout( () => this.renderInstructions(), 3000);
             this.distance += this.gravity;
             this.maxDistance = Math.min(this.maxDistance, this.distance);
             this.updateGravity();
@@ -163,6 +162,20 @@ class Screen {
         );
         }
             
+    }
+
+    underRenderInstructions() {
+        this.leftArrow.remove = true;
+        this.rightArrow.remove = true;
+    }
+
+    renderInstructions() {
+        if (!this.hasArrows) {
+            this.hasArrows = true;
+            this.leftArrow = new Visual(100, 340, 0, 0, 80, 66, 'assets/arrow-left.png', 2, 60);
+            this.rightArrow = new Visual(300, 340, 0, 0, 80, 66, 'assets/arrow-right.png', 2, 60);
+            this.actors.push(this.leftArrow, this.rightArrow);
+        }
     }
 
     updateGravity() {

@@ -22,6 +22,10 @@ class Actor {
         }  
     }
 
+    updateSprite(type = 'default') {
+        this.activeSprite = this.sprites[`${type}${this.direction || ""}`];
+    }
+
     willCollide(otherActor) {
         const { xBoundUp, xBoundDown, yBoundUp, yBoundDown } = this.collisionBox();
         const otherCollision = otherActor.collisionBox();

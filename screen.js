@@ -4,9 +4,9 @@ class Screen {
         this.ctx = this.canvas.getContext("2d");
 
         this.player = new Player(210, 330, 0, 0, this);
-        this.leftWall = new Wall(0, 0, 0, 0);
-        this.rightWall = new Wall(454, 0, 0, 0);
-        this.actors = [this.player, this.rightWall, this.leftWall];
+        // this.leftWall = new Wall(0, 0, 0, 0);
+        // this.rightWall = new Wall(454, 0, 0, 0);
+        this.actors = [this.player];
 
         this.gravity = -1;
         this.shotCooldown = false;
@@ -103,8 +103,16 @@ class Screen {
 
     draw() {
         this.clear();
+
+        this.distance += this.gravity;
+        this.maxDistance = Math.min(this.maxDistance, this.distance);
+        if ( (-1 * this.maxDistance) % 107 < 10) {
+            this.generateWalls();
+        }
+
         this.actors.forEach( actor => {
             actor.drawFunction(this.ctx);
+            actor.updatePos();
         });
 
         if (this.isGameOver()) {
@@ -121,15 +129,11 @@ class Screen {
 
             this.actors.forEach( actor => {
                     this.checkForCollisions(actor);
-                    actor.updatePos();
                 }
             );
             this.clearActors();
 
             if (!this.player.grounded && !this.isEndOfStage() && this.maxDistance === this.distance ) {
-                if ( (-1 * this.maxDistance) % 107 < 10) {
-                    this.generateWalls();
-                }
                 if (Math.random() > 0.99) {
                     this.generateObstacle();
                 }
@@ -141,8 +145,6 @@ class Screen {
                 }
             }
             
-            this.distance += this.gravity;
-            this.maxDistance = Math.min(this.maxDistance, this.distance);
             this.updateGravity();
             this.updateCombo();
             this.updateScore();

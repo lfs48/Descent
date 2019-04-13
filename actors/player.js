@@ -20,10 +20,6 @@ class Player extends RectActor {
         this.activeSprite = this.sprites['fallingRight'];
     }
 
-    updateSprite(type) {
-        this.activeSprite = this.sprites[`${type}${this.direction}`];
-    }
-
     drawFunction(ctx) {
         if (!this.flash) {
             this.activeSprite.draw(ctx);

@@ -4,9 +4,7 @@ class Screen {
         this.ctx = this.canvas.getContext("2d");
 
         this.player = new Player(210, 330, 0, 0, this);
-        this.leftWall = new Wall(0, 0, 0, 0);
-        this.rightWall = new Wall(454, 0, 0, 0);
-        this.actors = [this.player, this.rightWall, this.leftWall];
+        this.actors = [this.player];
 
         this.gravity = -1;
         this.shotCooldown = false;
@@ -97,7 +95,7 @@ class Screen {
         if (!this.wallCooldown) {
             this.wallCooldown = true;
             const leftWall = new Wall(0, 720, 0, this.getGravity);
-            const rightWall = new Wall(450, 720, 0, this.getGravity);
+            const rightWall = new Wall(454, 720, 0, this.getGravity);
             this.actors.push(leftWall, rightWall);
             setTimeout( () => this.wallCooldown = false, 100);
         }
@@ -116,6 +114,7 @@ class Screen {
         if (this.isGameOver()) {
             this.gameOverMessage();
         } else if(this.gameHasStarted()) {
+            
             this.player.unground();
             this.updatePlayerDir();
             this.player.center();
@@ -149,11 +148,19 @@ class Screen {
             this.updateGravity();
             this.updateCombo();
             this.updateScore();
+
         } else {
             this.ctx.font = "15px Arial";
             this.ctx.fillStyle = "white";
             this.ctx.fillText(`Press Left`, 100, 360);
             this.ctx.fillText(`Press Right`, 300, 360);
+            this.distance += this.gravity;
+            this.maxDistance = Math.min(this.maxDistance, this.distance);
+            this.updateGravity();
+            this.actors.forEach( actor => {
+                actor.updatePos();
+            }
+        );
         }
             
     }
@@ -258,7 +265,7 @@ class Screen {
     clearActors() {
         const toDelete = [];
         this.actors.forEach( (actor, idx) => {
-            if (actor.x < 0 || actor.x > 480 || actor.y < -100 || actor.y > 800) {
+            if (actor.x < 0 || actor.x > 480 || actor.y < -200 || actor.y > 920) {
                 toDelete.push(idx);
             } else if (actor.remove) {
                 toDelete.push(idx);

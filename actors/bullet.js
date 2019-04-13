@@ -15,6 +15,7 @@ class Bullet extends CircleActor {
     }
 
     handleCollision(otherActor) {
+        this.remove = true;
         const { xBoundUp, xBoundDown, yBoundUp, yBoundDown } = this.collisionBox();
         const otherCollision = otherActor.collisionBox();
         const otherXBoundUp = otherCollision.xBoundUp;
@@ -23,7 +24,6 @@ class Bullet extends CircleActor {
         const otherYBoundDown = otherCollision.yBoundDown;
 
         if (yBoundUp >= otherYBoundDown && yBoundDown < otherYBoundDown) {
-            this.remove = true;
             if (otherActor instanceof Enemy || otherActor instanceof Bouncy) {
                 otherActor.remove = true;
                 this.screen.gainScore(1);

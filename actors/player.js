@@ -10,47 +10,19 @@ class Player extends RectActor {
         this.immune = false;
         this.flash = false;
         this.won = false;
-
-        this.sprite = new Image();
-        this.sprite.src = "assets/player-spritesheet.gif";
-        this.frameIndex = 0,
-        this.tickCount = 0,
-        this.ticksPerFrame = 15;
-        this.numFrames = 4;
-
-    }
-
-    update() {
-        this.tickCount += 1;	
-        if (this.tickCount > this.ticksPerFrame) {
-            this.tickCount = 0;
-            if (this.frameIndex < this.numFrames - 1) {
-                this.frameIndex += 1; 
-            } else {
-                this.frameIndex = 0;
-            }
-        }
+        this.sprite = new PlayerFallingSprite(this);
     }
 
     drawFunction(ctx) {
         if (!this.flash) {
-            ctx.drawImage(
-                this.sprite, 
-                (this.frameIndex * this.width), 
-                0,
-                this.width,
-                this.height,
-                this.x,
-                this.y,
-                this.height,
-                this.width);
+            this.sprite.draw(ctx);
         }
         if (this.immune) {
             this.flash = !this.flash;
         } else {
             this.flash = false;
         }
-        this.update();
+        this.sprite.update();
     }
 
     unground() {

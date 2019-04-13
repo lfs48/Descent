@@ -4,8 +4,6 @@ class Screen {
         this.ctx = this.canvas.getContext("2d");
 
         this.player = new Player(210, 330, 0, 0, this);
-        // this.leftWall = new Wall(0, 0, 0, 0);
-        // this.rightWall = new Wall(454, 0, 0, 0);
         this.actors = [this.player];
 
         this.gravity = -1;
@@ -47,6 +45,8 @@ class Screen {
             return true;
         } else if (this.rightPressed || this.leftPressed) {
             this.started = true;
+            this.distance = 0;
+            this.maxDistance = 0;
             return true;
         } else {
             return false;
@@ -101,11 +101,20 @@ class Screen {
         }
     }
 
+    updateVariables() {
+        this.distance += this.gravity;
+        this.maxDistance = Math.min(this.maxDistance, this.distance);
+        this.updateGravity();
+        if ( this.gameHasStarted() ) {
+            this.updateCombo();
+            this.updateScore();
+        }
+    }
+
     draw() {
         this.clear();
 
-        this.distance += this.gravity;
-        this.maxDistance = Math.min(this.maxDistance, this.distance);
+        this.updateVariables();
         if ( (-1 * this.maxDistance) % 107 < 10) {
             this.generateWalls();
         }
@@ -145,9 +154,6 @@ class Screen {
                 }
             }
             
-            this.updateGravity();
-            this.updateCombo();
-            this.updateScore();
         } else {
             this.ctx.font = "15px Arial";
             this.ctx.fillStyle = "white";

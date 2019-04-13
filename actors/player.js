@@ -1,23 +1,23 @@
-class Player extends CircleActor {
+class Player extends RectActor {
 
     constructor(x, y, vx, vy, screen) {
         super(x, y, vx, vy);
         this.screen = screen;
-        this.radius = 15;
+        this.height = 28;
+        this.width = 28;
         this.grounded = false;
         this.hp = 4;
         this.immune = false;
         this.flash = false;
         this.won = false;
+
+        this.sprite = new Image();
+        this.sprite.src = "assets/spritesheet.bmp";
     }
 
     drawFunction(ctx) {
         if (!this.flash) {
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, false);
-            ctx.fillStyle = "blue";
-            ctx.fill();
-            ctx.closePath();
+            ctx.drawImage(this.sprite, 166, 66, 14, 14, this.x, this.y, this.height, this.width);
         }
         if (this.immune) {
             this.flash = !this.flash;

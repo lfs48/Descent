@@ -30,8 +30,8 @@ class Sprite {
             this.actor.height,
             this.actor.x,
             this.actor.y,
-            this.actor.height,
-            this.actor.width
+            this.actor.width,
+            this.actor.height
         );
     }
 

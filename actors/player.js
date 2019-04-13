@@ -10,15 +10,18 @@ class Player extends RectActor {
         this.immune = false;
         this.flash = false;
         this.won = false;
+        this.direction = "Right";
         this.sprites = {
-            falling: new PlayerFallingSprite(this),
-            standing: new PlayerStandingSprite(this)
+            fallingRight: new Sprite(this, 'assets/player-falling-right.gif', 1),
+            fallingLeft: new Sprite(this, 'assets/player-falling-left.gif', 1),
+            standingRight: new Sprite(this, 'assets/player-standing-right.gif', 1),
+            standingLeft: new Sprite(this, 'assets/player-standing-left.gif', 1),
         };
-        this.activeSprite = this.sprites['falling'];
+        this.activeSprite = this.sprites['fallingRight'];
     }
 
     updateSprite(type) {
-        this.activeSprite = this.sprites[type];
+        this.activeSprite = this.sprites[`${type}${this.direction}`];
     }
 
     drawFunction(ctx) {
@@ -41,6 +44,16 @@ class Player extends RectActor {
     ground() {
         this.grounded = true;
         this.updateSprite('standing');
+    }
+
+    moveRight() {
+        this.vx = 2;
+        this.direction = "Right";
+    }
+
+    moveLeft() {
+        this.vx = -2;
+        this.direction = "Left";
     }
 
     jump() {

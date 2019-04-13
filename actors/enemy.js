@@ -8,8 +8,8 @@ class Enemy extends RectActor {
 
         this.direction = vx > 0 ? 'Right' : 'Left';
         this.sprites = {
-            defaultRight: new Sprite(this, 'assets/big-ghost-right.png', 1),
-            defaultLeft: new Sprite(this, 'assets/big-ghost-left.png', 1)
+            defaultRight: new Sprite(this, 'assets/big-ghost-right.png', 6),
+            defaultLeft: new Sprite(this, 'assets/big-ghost-left.png', 6)
         };
         this.activeSprite = this.sprites[`default${this.direction}`];
     }

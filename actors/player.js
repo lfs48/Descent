@@ -13,10 +13,10 @@ class Player extends RectActor {
         this.won = false;
         this.direction = "Right";
         this.sprites = {
-            fallingRight: new Sprite(this, 'assets/player-falling-right.gif', 1),
-            fallingLeft: new Sprite(this, 'assets/player-falling-left.gif', 1),
-            standingRight: new Sprite(this, 'assets/player-standing-right.gif', 1),
-            standingLeft: new Sprite(this, 'assets/player-standing-left.gif', 1),
+            fallingRight: new Sprite(this, 'assets/player-falling-right.gif'),
+            fallingLeft: new Sprite(this, 'assets/player-falling-left.gif'),
+            standingRight: new Sprite(this, 'assets/player-standing-right.gif'),
+            standingLeft: new Sprite(this, 'assets/player-standing-left.gif'),
         };
         this.activeSprite = this.sprites['fallingRight'];
     }

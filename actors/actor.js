@@ -48,18 +48,6 @@ class Actor {
         this.y += this.getVy();
     }
 
-    moveRight() {
-        this.vx = 2;
-    }
-
-    moveLeft() {
-        this.vx = -2;
-    }
-
-    accY(acc) {
-        this.vy = Math.min(this.vy + acc, 4);
-    }
-
     stopHorzMove() {
         this.vx = 0;
     }

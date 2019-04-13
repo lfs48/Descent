@@ -1,17 +1,22 @@
-class Enemy extends CircleActor {
+class Enemy extends RectActor {
     constructor(x, y, vx, vy) {
         super(x, y, vx, vy);
-        this.radius = 30;
+        this.width = 40;
+        this.height = 35;
         this.randomPath = false;
         this.generateRandomPath = this.generateRandomPath.bind(this);
+
+        this.direction = vx > 0 ? 'Right' : 'Left';
+        this.sprites = {
+            defaultRight: new Sprite(this, 'assets/big-ghost-right.png', 1),
+            defaultLeft: new Sprite(this, 'assets/big-ghost-left.png', 1)
+        };
+        this.activeSprite = this.sprites[`default${this.direction}`];
     }
 
     drawFunction(ctx) {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, false);
-        ctx.fillStyle = "red";
-        ctx.fill();
-        ctx.closePath();
+        this.activeSprite.draw(ctx);
+        this.activeSprite.update();
     }
 
     handleCollision(otherActor) {
@@ -31,8 +36,12 @@ class Enemy extends CircleActor {
         if (otherActor instanceof Wall) {
             if (xBoundUp >= otherXBoundDown && xBoundDown < otherXBoundDown) {
                 this.vx = -5;
+                this.direction = 'Left';
+                this.updateSprite();
             } else if (xBoundDown <= otherXBoundUp && xBoundUp > otherXBoundUp) {
                 this.vx = 5;
+                this.direction = 'Right';
+                this.updateSprite();
             }
         }
     }
@@ -40,6 +49,8 @@ class Enemy extends CircleActor {
     generateRandomPath() {
         this.randomPath = false;
         this.vx = Math.random() > 0.5 ? 5 : -5;
+        this.direction = this.vx > 0 ? 'Right' : 'Left';
+        this.updateSprite();
     }
 
     updatePos() {

@@ -3,7 +3,7 @@ class Screen {
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d");
 
-        this.player = new Player(240, 360, 0, 0, this);
+        this.player = new Player(210, 330, 0, 0, this);
         this.leftWall = new Wall(0, 0, 0, 0);
         this.rightWall = new Wall(450, 0, 0, 0);
         this.actors = [this.player, this.leftWall, this.rightWall];

@@ -39,6 +39,7 @@ class Screen {
         this.updateGravity = this.updateGravity.bind(this);
         this.gainScore = this.gainScore.bind(this);
         this.renderInstructions = this.renderInstructions.bind(this);
+        this.unrenderInstructions = this.unrenderInstructions.bind(this);
     }
 
     gameHasStarted() {
@@ -48,7 +49,7 @@ class Screen {
             this.started = true;
             this.distance = 0;
             this.maxDistance = 0;
-            this.underRenderInstructions();
+            this.unrenderInstructions();
             return true;
         } else {
             return false;
@@ -164,16 +165,20 @@ class Screen {
             
     }
 
-    underRenderInstructions() {
-        this.leftArrow.remove = true;
-        this.rightArrow.remove = true;
+    unrenderInstructions() {
+        if (this.hasArrows) {
+            this.leftArrow.remove = true;
+            this.rightArrow.remove = true;
+        } else {
+            this.hasArrows = true;
+        }
     }
 
     renderInstructions() {
         if (!this.hasArrows) {
             this.hasArrows = true;
-            this.leftArrow = new Visual(100, 340, 0, 0, 80, 66, 'assets/arrow-left.png', 2, 60);
-            this.rightArrow = new Visual(300, 340, 0, 0, 80, 66, 'assets/arrow-right.png', 2, 60);
+            this.leftArrow = new Visual(100, 340, 0, 0, 80, 66, 'assets/arrow-left.png', 2, 45);
+            this.rightArrow = new Visual(300, 340, 0, 0, 80, 66, 'assets/arrow-right.png', 2, 45);
             this.actors.push(this.leftArrow, this.rightArrow);
         }
     }

@@ -10,23 +10,37 @@ class Player extends RectActor {
         this.immune = false;
         this.flash = false;
         this.won = false;
-        this.sprite = new PlayerFallingSprite(this);
+        this.sprites = {
+            falling: new PlayerFallingSprite(this),
+            standing: new PlayerStandingSprite(this)
+        };
+        this.activeSprite = this.sprites['falling'];
+    }
+
+    updateSprite(type) {
+        this.activeSprite = this.sprites[type];
     }
 
     drawFunction(ctx) {
         if (!this.flash) {
-            this.sprite.draw(ctx);
+            this.activeSprite.draw(ctx);
         }
         if (this.immune) {
             this.flash = !this.flash;
         } else {
             this.flash = false;
         }
-        this.sprite.update();
+        this.activeSprite.update();
     }
 
     unground() {
         this.grounded = false;
+        this.updateSprite('falling');
+    }
+
+    ground() {
+        this.grounded = true;
+        this.updateSprite('standing');
     }
 
     jump() {
@@ -71,7 +85,7 @@ class Player extends RectActor {
         }
         if (otherActor instanceof Obstacle) {
             if (yBoundUp >= otherYBoundDown && yBoundDown < otherYBoundDown) {
-                this.grounded = true;
+                this.ground();
             }
         }
         if (otherActor instanceof Enemy) {
@@ -82,6 +96,7 @@ class Player extends RectActor {
 
         if (otherActor instanceof Floor) {
             this.won = true;
+            this.ground();
         }
 
         if (otherActor instanceof Bouncy) {

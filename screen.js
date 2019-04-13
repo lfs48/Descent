@@ -184,7 +184,7 @@ class Screen {
 
     generateEnemy() {
         const x = Math.max(30, (Math.random()*420) );
-        const vx = Math.random() > 0.5 ? 5 : -5;
+        const vx = Math.random() > 0.5 ? 3 : -3;
         const enemy = new Enemy(x, 700, vx, this.getGravity);
         this.actors.push(enemy);
     }

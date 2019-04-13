@@ -1,8 +1,8 @@
 class Enemy extends RectActor {
     constructor(x, y, vx, vy) {
         super(x, y, vx, vy);
-        this.width = 40;
-        this.height = 35;
+        this.width = 80;
+        this.height = 70;
         this.randomPath = false;
         this.generateRandomPath = this.generateRandomPath.bind(this);
 
@@ -35,11 +35,11 @@ class Enemy extends RectActor {
 
         if (otherActor instanceof Wall) {
             if (xBoundUp >= otherXBoundDown && xBoundDown < otherXBoundDown) {
-                this.vx = -5;
+                this.vx = -3;
                 this.direction = 'Left';
                 this.updateSprite();
             } else if (xBoundDown <= otherXBoundUp && xBoundUp > otherXBoundUp) {
-                this.vx = 5;
+                this.vx = 3;
                 this.direction = 'Right';
                 this.updateSprite();
             }
@@ -48,7 +48,7 @@ class Enemy extends RectActor {
 
     generateRandomPath() {
         this.randomPath = false;
-        this.vx = Math.random() > 0.5 ? 5 : -5;
+        this.vx = Math.random() > 0.5 ? 3 : -3;
         this.direction = this.vx > 0 ? 'Right' : 'Left';
         this.updateSprite();
     }

@@ -5,8 +5,8 @@ class Screen {
 
         this.player = new Player(210, 330, 0, 0, this);
         this.leftWall = new Wall(0, 0, 0, 0);
-        this.rightWall = new Wall(450, 0, 0, 0);
-        this.actors = [this.player, this.leftWall, this.rightWall];
+        this.rightWall = new Wall(454, 0, 0, 0);
+        this.actors = [this.player, this.rightWall, this.leftWall];
 
         this.gravity = -1;
         this.shotCooldown = false;
@@ -19,6 +19,7 @@ class Screen {
 
         this.distance = 0;
         this.maxDistance = 0;
+        this.lastWallPos = 0;
 
         this.clear = this.clear.bind(this);
         this.draw = this.draw.bind(this);
@@ -90,6 +91,16 @@ class Screen {
         this.actors.push(floor);
     }
 
+    generateWalls() {
+        if (!this.wallCooldown) {
+            this.wallCooldown = true;
+            const leftWall = new Wall(0, 720, 0, this.getGravity);
+            const rightWall = new Wall(450, 720, 0, this.getGravity);
+            this.actors.push(leftWall, rightWall);
+            setTimeout( () => this.wallCooldown = false, 180);
+        }
+    }
+
     draw() {
         this.clear();
         this.actors.forEach( actor => {
@@ -99,7 +110,6 @@ class Screen {
         if (this.isGameOver()) {
             this.gameOverMessage();
         } else if(this.gameHasStarted()) {
-
             this.player.unground();
             this.updatePlayerDir();
             this.player.center();
@@ -117,6 +127,9 @@ class Screen {
             this.clearActors();
 
             if (!this.player.grounded && !this.isEndOfStage() && this.maxDistance === this.distance ) {
+                if ( (-1 * this.maxDistance) % 107 < 10) {
+                    this.generateWalls();
+                }
                 if (Math.random() > 0.99) {
                     this.generateObstacle();
                 }
@@ -153,7 +166,7 @@ class Screen {
             this.gravity -= 0.04;
         } else if (this.gravity > -6) {
             this.gravity -= 0.02;
-        } else {
+        } else if (this.gravity > -10) {
             this.gravity = this.gravity - 0.0005;
         }
     }
@@ -242,7 +255,7 @@ class Screen {
     clearActors() {
         const toDelete = [];
         this.actors.forEach( (actor, idx) => {
-            if (actor.x < 0 || actor.x > 480 || actor.y < -20 || actor.y > 740) {
+            if (actor.x < 0 || actor.x > 480 || actor.y < -100 || actor.y > 800) {
                 toDelete.push(idx);
             } else if (actor.remove) {
                 toDelete.push(idx);

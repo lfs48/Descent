@@ -6,6 +6,11 @@ class Actor {
         this.vy = vy;
     }
 
+    drawFunction(ctx) {
+        this.activeSprite.draw(ctx);
+        this.activeSprite.update();
+    }
+
     getVx() {
         if (typeof this.vx === 'function') {
             return this.vx();

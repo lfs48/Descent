@@ -3,8 +3,8 @@ class Player extends RectActor {
     constructor(x, y, vx, vy, screen) {
         super(x, y, vx, vy);
         this.screen = screen;
-        this.height = 28;
-        this.width = 28;
+        this.height = 60;
+        this.width = 60;
         this.grounded = false;
         this.hp = 4;
         this.immune = false;
@@ -12,19 +12,45 @@ class Player extends RectActor {
         this.won = false;
 
         this.sprite = new Image();
-        this.sprite.src = "assets/spritesheet.bmp";
+        this.sprite.src = "assets/player-spritesheet.gif";
+        this.frameIndex = 0,
+        this.tickCount = 0,
+        this.ticksPerFrame = 15;
+        this.numFrames = 4;
+
+    }
+
+    update() {
+        this.tickCount += 1;	
+        if (this.tickCount > this.ticksPerFrame) {
+            this.tickCount = 0;
+            if (this.frameIndex < this.numFrames - 1) {
+                this.frameIndex += 1; 
+            } else {
+                this.frameIndex = 0;
+            }
+        }
     }
 
     drawFunction(ctx) {
         if (!this.flash) {
-            ctx.drawImage(this.sprite, 166, 66, 14, 14, this.x, this.y, this.height, this.width);
+            ctx.drawImage(
+                this.sprite, 
+                (this.frameIndex * this.width), 
+                0,
+                this.width,
+                this.height,
+                this.x,
+                this.y,
+                this.height,
+                this.width);
         }
         if (this.immune) {
             this.flash = !this.flash;
         } else {
             this.flash = false;
         }
-        
+        this.update();
     }
 
     unground() {

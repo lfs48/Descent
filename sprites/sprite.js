@@ -3,7 +3,7 @@ class Sprite {
         this.actor = actor;
         this.frameIndex = 0;
         this.tickCount = 0;
-        this.ticksPerFrame = 8;
+        this.ticksPerFrame = 15;
         this.numFrames = numFrames;
         this.spritesheet = new Image();
         this.spritesheet.src = file;

@@ -16,4 +16,19 @@ class Sprite {
             }
         }
     }
+
+    draw(ctx) {
+        ctx.drawImage(
+            this.spritesheet, 
+            (this.frameIndex * this.actor.width), 
+            0,
+            this.actor.width,
+            this.actor.height,
+            this.actor.x,
+            this.actor.y,
+            this.actor.height,
+            this.actor.width
+        );
+    }
+
 }

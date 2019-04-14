@@ -4,7 +4,7 @@ class enemyFactory {
         this.screen = screen;
         this.enemyTypes = [Ghost, Skull];
         this.shouldGenerateEnemy = this.shouldGenerateEnemy.bind(this);
-        this.generateEnemy = this.generateEnemy.bind(this);
+        this.generateEnemies = this.generateEnemies.bind(this);
     }
 
     shouldGenerateEnemy() {
@@ -15,16 +15,33 @@ class enemyFactory {
         }
     }
 
+    numToGenerate() {
+        const r = Math.random();
+        if (r < 0.7) {
+            return 1;
+        } else if (r < 0.9) {
+            return 2;
+        } else {
+            return 3;
+        }
+    }
+
     getRandomEnemyType() {
         const r = Math.floor(Math.random() * this.enemyTypes.length);
         return this.enemyTypes[r];
     }
 
-    generateEnemy() {
-        const enemyType = this.getRandomEnemyType();
-        const x = Math.max(30, (Math.random()*420) );
-        const enemy = new enemyType({x:x, y:740, vy:this.screen.getGravity, screen:this.screen});
-        return enemy;
+    generateEnemies() {
+        const enemies = [];
+        const r = this.numToGenerate();
+        for(let i = 0; i < r; i++) {
+            const enemyType = this.getRandomEnemyType();
+            const x = Math.max(60, (Math.random()*420) );
+            const y = 740 + (Math.random() * 50);
+            const enemy = new enemyType({x:x, y:y, vy:this.screen.getGravity, screen:this.screen});
+            enemies.push(enemy);
+        }
+        return enemies;
     }
 
 }

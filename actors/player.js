@@ -119,6 +119,7 @@ class Player extends Actor {
 
         if (otherActor instanceof Floor) {
             this.won = true;
+            this.screen.submitScore();
             this.ground();
         }
 

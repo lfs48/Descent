@@ -13,6 +13,10 @@ class Score {
         this.clear();
         this.ctx.fillText(`Score: ${screen.getScore()}`, 12, 35);
         this.ctx.fillText(`Combo: ${screen.getCombo()}`, 12, 75);
+        const cookie = document.cookie
+        if (cookie.includes("hiscore=")) {
+            this.ctx.fillText(`Hiscore: ${cookie.slice(cookie.indexOf("=")+1)}`, 12, 75);
+        }
     }
 
     clear() {

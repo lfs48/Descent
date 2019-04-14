@@ -75,6 +75,8 @@ class Player extends RectActor {
     takeDamage() {
         if (!this.immune) {
             this.hp -= 1;
+            this.immune = true;
+            setTimeout(() => this.immune = false, 3000);
         }
     }
 
@@ -114,8 +116,6 @@ class Player extends RectActor {
         }
         if (otherActor instanceof Enemy) {
             this.takeDamage();
-            this.immune = true;
-            setTimeout(() => this.immune = false, 3000);
         }
 
         if (otherActor instanceof Floor) {

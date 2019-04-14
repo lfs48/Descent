@@ -123,7 +123,7 @@ class Screen {
     }
 
     generateWalls() {
-        if (!this.wallCooldown) {
+        if (!this.wallCooldown && this.maxDistance === this.distance) {
             this.wallCooldown = true;
             const leftWall = new Wall({x:0, y:720, vy:this.getGravity});
             const rightWall = new Wall({x:454, y:720, vy:this.getGravity});

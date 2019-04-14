@@ -3,8 +3,8 @@ class Player extends RectActor {
     constructor(x, y, vx, vy, screen) {
         super(x, y, vx, vy);
         this.screen = screen;
-        this.height = 60;
-        this.width = 60;
+        this.height = 45;
+        this.width = 35;
         this.grounded = false;
         this.hp = 4;
         this.grounded = false;
@@ -13,10 +13,10 @@ class Player extends RectActor {
         this.won = false;
         this.direction = "Right";
         this.sprites = {
-            fallingRight: new Sprite(this, 'assets/player-falling-right.gif'),
-            fallingLeft: new Sprite(this, 'assets/player-falling-left.gif'),
-            standingRight: new Sprite(this, 'assets/player-standing-right.gif'),
-            standingLeft: new Sprite(this, 'assets/player-standing-left.gif'),
+            fallingRight: new Sprite(this, 'assets/player-falling-right.png'),
+            fallingLeft: new Sprite(this, 'assets/player-falling-left.png'),
+            standingRight: new Sprite(this, 'assets/player-standing-right.png'),
+            standingLeft: new Sprite(this, 'assets/player-standing-left.png'),
         };
         this.activeSprite = this.sprites['fallingRight'];
     }

@@ -152,7 +152,7 @@ class Screen {
 
             if (this.isEndOfStage() && !this.ending) {
                 this.ending = true;
-                this.generateFloor();
+                setTimeout(this.generateFloor, 1000);
             }
 
             this.actors.forEach( actor => {

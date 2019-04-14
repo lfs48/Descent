@@ -44,12 +44,12 @@ class Player extends RectActor {
     }
 
     moveRight() {
-        this.vx = 2;
+        this.vx = 3;
         this.direction = "Right";
     }
 
     moveLeft() {
-        this.vx = -2;
+        this.vx = -3;
         this.direction = "Left";
     }
 

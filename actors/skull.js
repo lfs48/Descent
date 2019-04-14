@@ -4,7 +4,6 @@ class Skull extends Enemy {
         this.width = 40;
         this.height = 46;
         this.randomPath = false;
-        this.generateRandomPath = this.generateRandomPath.bind(this);
 
         this.direction = vx > 0 ? 'Right' : 'Left';
         this.sprites = {
@@ -14,10 +13,4 @@ class Skull extends Enemy {
         this.activeSprite = this.sprites[`default${this.direction}`];
     }
 
-    generateRandomPath() {
-        this.randomPath = false;
-        this.vx = Math.random() > 0.5 ? 3 : -3;
-        this.direction = this.vx > 0 ? 'Right' : 'Left';
-        this.updateSprite();
-    }
 }

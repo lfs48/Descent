@@ -16,7 +16,7 @@ class Healthbar {
         this.ctx.fillStyle = "red";
         this.ctx.fill();
         this.ctx.closePath();
-        this.ctx.fillStyle = "black";
+        this.ctx.fillStyle = "white";
         this.ctx.fillText(`${this.screen.player.hp} / 4`, 35, 30);
     }
 

@@ -27,6 +27,7 @@ class Screen {
         this.renderInstructions = this.renderInstructions.bind(this);
         this.unrenderInstructions = this.unrenderInstructions.bind(this);
         this.initializeGame = this.initializeGame.bind(this);
+        this.submitScore = this.submitScore.bind(this);
     }
 
     initializeGame() {
@@ -98,6 +99,17 @@ class Screen {
         } else {
             this.ctx.fillText(`GAME OVER`, 170, 100);
             this.ctx.fillText(`PRESS ENTER TO PLAY AGAIN`, 50, 200);
+        }
+    }
+
+    submitScore() {
+        if (document.cookie.includes("hiscore=") ) {
+            hiscore = cookie.slice(cookie.indexOf("=")+1);
+            if (this.score > hiscore) {
+                document.cookie = `hiscore=${this.getScore()}`;
+            }
+        } else {
+            document.cookie = `hiscore=${this.getScore()}`;
         }
     }
 

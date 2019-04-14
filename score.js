@@ -11,11 +11,14 @@ class Score {
 
     draw() {
         this.clear();
-        this.ctx.fillText(`Score: ${screen.getScore()}`, 12, 35);
-        this.ctx.fillText(`Combo: ${screen.getCombo()}`, 12, 75);
         const cookie = document.cookie
         if (cookie.includes("hiscore=")) {
-            this.ctx.fillText(`Hiscore: ${cookie.slice(cookie.indexOf("=")+1)}`, 12, 75);
+            this.ctx.fillText(`Score: ${screen.getScore()}`, 12, 25);
+            this.ctx.fillText(`Combo: ${screen.getCombo()}`, 12, 45);
+            this.ctx.fillText(`Hiscore: ${cookie.slice(cookie.indexOf("=")+1)}`, 12, 65);
+        } else {
+            this.ctx.fillText(`Score: ${screen.getScore()}`, 12, 35);
+            this.ctx.fillText(`Combo: ${screen.getCombo()}`, 12, 75);
         }
     }
 

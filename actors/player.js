@@ -94,8 +94,33 @@ class Player extends RectActor {
             }
         }
         if (otherActor instanceof Obstacle) {
-            if (yBoundUp >= otherYBoundDown && yBoundDown < otherYBoundDown) {
-                this.ground();
+
+            // if (yBoundDown <= otherYBoundUp && yBoundUp > otherYBoundUp) {
+            //     this.y += (otherYBoundUp - yBoundDown) / 2;
+            // }
+
+            // if (yBoundUp >= otherYBoundDown && yBoundDown < otherYBoundDown) {
+            //     this.ground();
+            //     this.y-= (yBoundUp - otherYBoundDown) / 2;
+            // }
+
+            
+
+            if ( (xBoundUp > otherXBoundDown && xBoundDown < otherXBoundDown) || (xBoundDown < otherXBoundUp && xBoundUp > otherXBoundUp) ) {
+                if (xBoundUp >= otherXBoundDown && xBoundDown < otherXBoundDown) {
+                    this.x -= (xBoundUp - otherXBoundDown);
+                } else if (xBoundDown <= otherXBoundUp && xBoundUp > otherXBoundUp) {
+                    this.x += (otherXBoundUp - xBoundDown) / 2
+                }
+            } else {
+                if (yBoundDown <= otherYBoundUp && yBoundUp > otherYBoundUp) {
+                    this.y += (otherYBoundUp - yBoundDown) / 2;
+                }
+    
+                if (yBoundUp >= otherYBoundDown && yBoundDown < otherYBoundDown) {
+                    this.ground();
+                    this.y-= (yBoundUp - otherYBoundDown) / 2;
+                }
             }
         }
         if (otherActor instanceof Enemy) {

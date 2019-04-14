@@ -254,7 +254,8 @@ class Screen {
     generateEnemy() {
         const x = Math.max(30, (Math.random()*420) );
         const vx = Math.random() > 0.5 ? 3 : -3;
-        const enemy = new Enemy(x, 700, vx, this.getGravity);
+        const enemyType = Math.random() > 0.5 ? Enemy : Skull
+        const enemy = new enemyType(x, 700, vx, this.getGravity);
         this.actors.push(enemy);
     }
 

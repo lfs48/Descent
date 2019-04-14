@@ -55,7 +55,6 @@ class Player extends Actor {
 
     jump() {
         this.y -= 2;
-        this.vy = -1;
     }
 
     center() {

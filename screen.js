@@ -272,7 +272,7 @@ class Screen {
     handleJump() {
         if (this.player.grounded) {
             this.player.jump();
-            this.gravity = 3;
+            this.gravity = 5;
         }
     }
 

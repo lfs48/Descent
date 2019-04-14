@@ -4,21 +4,11 @@ class Bullet extends Actor {
         super(x, y, vx, vy);
         this.screen = screen;
         this.width = 28;
-        this.height = 4;
+        this.height = 44;
         this.sprites = {
-            spawning: new Sprite(this, "./assets/bullet-spawning.png", 10, 1),
             default: new Sprite(this, "./assets/bullet.png")
         }
-        this.activeSprite = this.sprites.spawning;
-    }
-
-    drawFunction(ctx) {
-        this.activeSprite.draw(ctx);
-        this.activeSprite.update();
-        this.height += 4;
-        if (this.height >= 46) {
-            this.activeSprite = this.sprites.default
-        }
+        this.activeSprite = this.sprites.default;
     }
 
     handleCollision(otherActor) {

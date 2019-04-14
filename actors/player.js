@@ -88,9 +88,9 @@ class Player extends RectActor {
 
         if (otherActor instanceof Wall) {
             if (xBoundUp >= otherXBoundDown && xBoundDown < otherXBoundDown) {
-                this.vx = -10;
+                this.x -= (xBoundUp - otherXBoundDown) / 2;
             } else if (xBoundDown <= otherXBoundUp && xBoundUp > otherXBoundUp) {
-                this.vx = 10;
+                this.x += (otherXBoundUp - xBoundDown) / 2
             }
         }
         if (otherActor instanceof Obstacle) {

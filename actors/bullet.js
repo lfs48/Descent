@@ -1,4 +1,4 @@
-class Bullet extends RectActor {
+class Bullet extends Actor {
 
     constructor(x, y, vx, vy, screen) {
         super(x, y, vx, vy);

@@ -1,4 +1,4 @@
-class Enemy extends RectActor {
+class Enemy extends Actor {
     constructor(x, y, vx, vy) {
         super(x, y, vx, vy);
         this.width = 80;

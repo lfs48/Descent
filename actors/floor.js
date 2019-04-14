@@ -1,4 +1,4 @@
-class Floor extends RectActor {
+class Floor extends Actor {
 
     constructor(x, y, vx, vy) {
         super(x, y, vx, vy);

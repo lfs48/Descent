@@ -1,4 +1,4 @@
-class Wall extends RectActor {
+class Wall extends Actor {
 
     constructor(x, y, vx, vy) {
         super(x, y, vx, vy);

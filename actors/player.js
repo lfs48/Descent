@@ -1,4 +1,4 @@
-class Player extends RectActor {
+class Player extends Actor {
 
     constructor(x, y, vx, vy, screen) {
         super(x, y, vx, vy);

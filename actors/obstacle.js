@@ -1,4 +1,4 @@
-class Obstacle extends RectActor {
+class Obstacle extends Actor {
     
     constructor(x, y, vx, vy) {
         super(x, y, vx, vy);

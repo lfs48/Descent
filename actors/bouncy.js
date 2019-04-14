@@ -1,4 +1,4 @@
-class Bouncy extends RectActor {
+class Bouncy extends Actor {
     constructor(x, y, vx, vy) {
         super(x, y, vx, vy);
         this.width = 79;

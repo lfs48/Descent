@@ -14,7 +14,7 @@ class Enemy extends Actor {
             }
         }
 
-        if (otherActor instanceof Wall || otherActor instanceof Obstacle) {
+        if (otherActor instanceof Wall) {
             if (xBoundUp >= otherXBoundDown && xBoundDown < otherXBoundDown) {
                 this.vx = -this.vx;
                 this.direction = 'Left';

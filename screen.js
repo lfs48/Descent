@@ -153,7 +153,7 @@ class Screen {
 
             if (this.isEndOfStage() && !this.ending) {
                 this.ending = true;
-                setTimeout(this.generateFloor, 1000);
+                setTimeout(this.generateFloor, 2000);
             }
 
             this.actors.forEach( actor => {
@@ -163,15 +163,18 @@ class Screen {
             );
             this.clearActors();
 
-            if (!this.player.grounded && !this.isEndOfStage() && this.maxDistance === this.distance ) {
-                if (Math.random() > 0.99) {
-                    this.generateObstacle();
-                }
-                if (this.enemyFactory.shouldGenerateEnemy()) {
-                    this.actors.push( this.enemyFactory.generateEnemy() )
-                }
-                if (Math.random() > 0.99) {
-                    this.generateBouncy();
+            if (!this.recentSpawn && !this.player.grounded && !this.isEndOfStage() && this.maxDistance === this.distance ) {
+                const r = Math.random();
+                if (r > 0.97) {
+                    this.recentSpawn = true;
+                    if (r >= 0.97 && r < 0.98) {
+                        this.generateObstacle();
+                    } else if (r >= 0.98 && r < 0.99) {
+                        this.actors.push( this.enemyFactory.generateEnemy() )
+                    } else {
+                        this.generateBouncy();
+                    }
+                    setTimeout( () => this.recentSpawn = false, 100 );
                 }
             }
             
@@ -247,15 +250,15 @@ class Screen {
     }
 
     generateObstacle() {
-        const x = Math.max(30, (Math.random()*420) );
-        const obstacle = new Obstacle({x:x, y:700, vy:this.getGravity});
+        const x = Math.max(30, (Math.random()*298) );
+        const obstacle = new Obstacle({x:x, y:740, vy:this.getGravity});
         this.actors.push(obstacle);
     }
 
     generateBouncy() {
         const x = Math.max(30, (Math.random()*420) );
         const vx = Math.random() > 0.5 ? 2 : -2;
-        const bouncy = new Bouncy({x:x, y:700, vx:vx, vy:this.getGravity});
+        const bouncy = new Bouncy({x:x, y:740, vx:vx, vy:this.getGravity});
         this.actors.push(bouncy);
     }
 

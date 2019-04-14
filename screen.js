@@ -2,6 +2,7 @@ class Screen {
     constructor(canvas) {
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d");
+        this.enemyFactory = new enemyFactory(this);
 
         this.initializeGame();
 
@@ -166,8 +167,8 @@ class Screen {
                 if (Math.random() > 0.99) {
                     this.generateObstacle();
                 }
-                if (Math.random() > 0.99) {
-                    this.generateEnemy();
+                if (this.enemyFactory.shouldGenerateEnemy()) {
+                    this.actors.push( this.enemyFactory.generateEnemy() )
                 }
                 if (Math.random() > 0.99) {
                     this.generateBouncy();
@@ -249,14 +250,6 @@ class Screen {
         const x = Math.max(30, (Math.random()*420) );
         const obstacle = new Obstacle(x, 700, 0, this.getGravity);
         this.actors.push(obstacle);
-    }
-
-    generateEnemy() {
-        const x = Math.max(30, (Math.random()*420) );
-        const vx = Math.random() > 0.5 ? 3 : -3;
-        const enemyType = Math.random() > 0.5 ? Ghost : Skull
-        const enemy = new enemyType(x, 700, vx, this.getGravity);
-        this.actors.push(enemy);
     }
 
     generateBouncy() {

@@ -17,6 +17,8 @@ class Player extends Actor {
             fallingLeft: new Sprite(this, 'assets/player-falling-left.png'),
             standingRight: new Sprite(this, 'assets/player-standing-right.png'),
             standingLeft: new Sprite(this, 'assets/player-standing-left.png'),
+            landedRight: new Sprite(this, 'assets/player-landed-right.png', 8, 10),
+            landedLeft: new Sprite(this, 'assets/player-landed-left.png', 8 , 10)
         };
         this.activeSprite = this.sprites['fallingRight'];
     }
@@ -55,6 +57,15 @@ class Player extends Actor {
 
     jump() {
         this.y -= 2;
+    }
+
+    win() {
+        this.width = 60;
+        this.won = true;
+        this.screen.submitScore();
+        this.ground();
+        this.updateSprite('landed');
+        setTimeout(() => this.updateSprite('standing'), 1360);
     }
 
     center() {
@@ -118,9 +129,7 @@ class Player extends Actor {
         }
 
         if (otherActor instanceof Floor) {
-            this.won = true;
-            this.screen.submitScore();
-            this.ground();
+            this.win();
         }
 
         if (otherActor instanceof Bouncy) {

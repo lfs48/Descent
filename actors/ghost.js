@@ -1,6 +1,7 @@
 class Ghost extends Enemy {
-    constructor(x, y, vx, vy) {
+    constructor(x, y, vx, vy, screen) {
         super(x, y, vx, vy);
+        this.screen = screen;
         this.width = 80;
         this.height = 70;
         this.randomPath = false;
@@ -14,9 +15,13 @@ class Ghost extends Enemy {
         this.activeSprite = this.sprites[`default${this.direction}`];
     }
 
+    getVy() {
+        return this.screen.getGravity() - 1;
+    }
+
     generateRandomPath() {
         this.randomPath = false;
-        this.vx = Math.random() > 0.5 ? 3 : -3;
+        this.vx = Math.random() > 0.5 ? 2 : -2;
         this.direction = this.vx > 0 ? 'Right' : 'Left';
         this.updateSprite();
     }

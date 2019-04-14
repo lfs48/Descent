@@ -104,7 +104,7 @@ class Screen {
 
     submitScore() {
         if (document.cookie.includes("hiscore=") ) {
-            hiscore = document.cookie.slice(document.cookie.indexOf("=")+1);
+            hiscore = document.cookie.slice(document.cookie.indexOf("hiscore=")+1);
             if (this.score > hiscore) {
                 document.cookie = `hiscore=${this.getScore()}`;
             }

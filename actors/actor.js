@@ -11,6 +11,15 @@ class Actor {
         this.activeSprite.update();
     }
 
+    collisionBox() {
+        return ({
+            xBoundUp: this.x + this.getVx() + this.width,
+            xBoundDown: this.x + this.getVx(),
+            yBoundUp: this.y + this.getVy() + this.height,
+            yBoundDown: this.y + this.getVy()
+        })
+    }
+
     getVx() {
         if (typeof this.vx === 'function') {
             return this.vx();

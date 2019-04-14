@@ -13,7 +13,6 @@ class Screen {
         this.handleShoot = this.handleShoot.bind(this);
         this.clearActors = this.clearActors.bind(this);
         this.checkForCollisions = this.checkForCollisions.bind(this);
-        this.generateObstacleq = this.generateObstacle.bind(this);
         this.getGravity = this.getGravity.bind(this);
         this.setGravity = this.setGravity.bind(this);
         this.reload = this.reload.bind(this);
@@ -165,12 +164,12 @@ class Screen {
 
             if (!this.recentSpawn && !this.player.grounded && !this.isEndOfStage() && this.maxDistance === this.distance ) {
                 const r = Math.random();
-                if (r > 0.97) {
+                if (r > 0.95) {
                     this.recentSpawn = true;
-                    if (r >= 0.97 && r < 0.98) {
+                    if (r <= 0.965) {
                         this.generateObstacle();
-                    } else if (r >= 0.98 && r < 0.99) {
-                        this.actors.push( this.enemyFactory.generateEnemy() )
+                    } else if (r <= 0.985) {
+                        this.generateEnemies();
                     } else {
                         this.generateBouncy();
                     }
@@ -247,6 +246,11 @@ class Screen {
         if (!this.player.grounded) {
             this.score += 0.01 * this.combo;
         }
+    }
+
+    generateEnemies() {
+        const enemies = this.enemyFactory.generateEnemies();
+        this.actors = this.actors.concat(enemies);
     }
 
     generateObstacle() {

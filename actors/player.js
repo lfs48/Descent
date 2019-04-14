@@ -95,9 +95,9 @@ class Player extends RectActor {
         }
         if (otherActor instanceof Obstacle) {
 
-            if ( (xBoundUp > otherXBoundDown && xBoundDown < otherXBoundDown) || (xBoundDown < otherXBoundUp && xBoundUp > otherXBoundUp) ) {
+            if ( (xBoundUp > otherXBoundDown && otherXBoundDown - xBoundDown > this.width / 2) || (xBoundDown < otherXBoundUp && xBoundUp - otherXBoundUp > this.width / 2) ) {
                 if (xBoundUp >= otherXBoundDown && xBoundDown < otherXBoundDown) {
-                    this.x -= (xBoundUp - otherXBoundDown);
+                    this.x -= (xBoundUp - otherXBoundDown) / 2;
                 } else if (xBoundDown <= otherXBoundUp && xBoundUp > otherXBoundUp) {
                     this.x += (otherXBoundUp - xBoundDown) / 2
                 }

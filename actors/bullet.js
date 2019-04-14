@@ -1,8 +1,8 @@
 class Bullet extends Actor {
 
-    constructor(x, y, vx, vy, screen) {
-        super(x, y, vx, vy);
-        this.screen = screen;
+    constructor(options) {
+        super(options);
+        this.screen = options.screen;
         this.width = 28;
         this.height = 44;
         this.sprites = {

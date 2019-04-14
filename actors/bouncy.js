@@ -1,6 +1,6 @@
 class Bouncy extends Actor {
-    constructor(x, y, vx, vy) {
-        super(x, y, vx, vy);
+    constructor(options) {
+        super(options);
         this.width = 79;
         this.height = 49;
         this.direction = "Right";

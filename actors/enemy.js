@@ -14,13 +14,13 @@ class Enemy extends Actor {
             }
         }
 
-        if (otherActor instanceof Wall) {
+        if (otherActor instanceof Wall || otherActor instanceof Obstacle) {
             if (xBoundUp >= otherXBoundDown && xBoundDown < otherXBoundDown) {
-                this.vx = -3;
+                this.vx = -this.vx;
                 this.direction = 'Left';
                 this.updateSprite();
             } else if (xBoundDown <= otherXBoundUp && xBoundUp > otherXBoundUp) {
-                this.vx = 3;
+                this.vx = -this.vx;
                 this.direction = 'Right';
                 this.updateSprite();
             }

@@ -1,8 +1,8 @@
 class Player extends Actor {
 
-    constructor(x, y, vx, vy, screen) {
-        super(x, y, vx, vy);
-        this.screen = screen;
+    constructor(options) {
+        super(options);
+        this.screen = options.screen;
         this.height = 45;
         this.width = 35;
         this.grounded = false;

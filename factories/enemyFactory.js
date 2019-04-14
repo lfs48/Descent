@@ -23,8 +23,7 @@ class enemyFactory {
     generateEnemy() {
         const enemyType = this.getRandomEnemyType();
         const x = Math.max(30, (Math.random()*420) );
-        const vx = Math.random() > 0.5 ? 3 : -3;
-        const enemy = new enemyType(x, 720, vx, this.screen.getGravity, this.screen);
+        const enemy = new enemyType({x:x, y:720, vy:this.screen.getGravity, screen:this.screen});
         return enemy;
     }
 

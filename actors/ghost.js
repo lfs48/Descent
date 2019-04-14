@@ -1,13 +1,14 @@
 class Ghost extends Enemy {
-    constructor(x, y, vx, vy, screen) {
-        super(x, y, vx, vy);
-        this.screen = screen;
+    constructor(options) {
+        super(options);
+        this.screen = options.screen;
+        this.vx = Math.random() > 0.5 ? 2 : -2;
         this.width = 80;
         this.height = 70;
         this.randomPath = false;
         this.generateRandomPath = this.generateRandomPath.bind(this);
 
-        this.direction = vx > 0 ? 'Right' : 'Left';
+        this.direction = this.vx > 0 ? 'Right' : 'Left';
         this.sprites = {
             defaultRight: new Sprite(this, 'assets/big-ghost-right.png', 6),
             defaultLeft: new Sprite(this, 'assets/big-ghost-left.png', 6)

@@ -1,7 +1,7 @@
 class Obstacle extends Actor {
     
-    constructor(x, y, vx, vy) {
-        super(x, y, vx, vy);
+    constructor(options) {
+        super(options);
         this.height = 38;
         this.width = 152;
         this.activeSprite = new Sprite(this, './assets/obstacle.png');

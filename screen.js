@@ -32,7 +32,7 @@ class Screen {
     }
 
     initializeGame() {
-        this.player = new Player(210, 330, 0, 0, this);
+        this.player = new Player({x:210, y:330, screen:this});
         this.actors = [this.player];
 
         this.gravity = -1;
@@ -119,15 +119,15 @@ class Screen {
     }
 
     generateFloor() {
-        const floor = new Floor(30, 700, 0, this.getGravity);
+        const floor = new Floor({x:30, y:700, vy:this.getGravity});
         this.actors.push(floor);
     }
 
     generateWalls() {
         if (!this.wallCooldown) {
             this.wallCooldown = true;
-            const leftWall = new Wall(0, 720, 0, this.getGravity);
-            const rightWall = new Wall(454, 720, 0, this.getGravity);
+            const leftWall = new Wall({x:0, y:720, vy:this.getGravity});
+            const rightWall = new Wall({x:454, y:720, vy:this.getGravity});
             this.actors.push(leftWall, rightWall);
             setTimeout( () => this.wallCooldown = false, 100);
         }
@@ -206,8 +206,8 @@ class Screen {
     renderInstructions() {
         if (!this.hasArrows) {
             this.hasArrows = true;
-            this.leftArrow = new Visual(100, 340, 0, 0, 80, 66, 'assets/arrow-left.png', 2, 45);
-            this.rightArrow = new Visual(300, 340, 0, 0, 80, 66, 'assets/arrow-right.png', 2, 45);
+            this.leftArrow = new Visual({x:100, y:340, width:80, height:66, file:'assets/arrow-left.png', numFrames:2, framesPerTick:45});
+            this.rightArrow = new Visual({x:300, y:340, width:80, height:66, file:'assets/arrow-right.png', numFrames:2, framesPerTick:45});
             this.actors.push(this.leftArrow, this.rightArrow);
         }
     }
@@ -248,14 +248,14 @@ class Screen {
 
     generateObstacle() {
         const x = Math.max(30, (Math.random()*420) );
-        const obstacle = new Obstacle(x, 700, 0, this.getGravity);
+        const obstacle = new Obstacle({x:x, y:700, vy:this.getGravity});
         this.actors.push(obstacle);
     }
 
     generateBouncy() {
         const x = Math.max(30, (Math.random()*420) );
         const vx = Math.random() > 0.5 ? 2 : -2;
-        const bouncy = new Bouncy(x, 700, vx, this.getGravity);
+        const bouncy = new Bouncy({x:x, y:700, vx:vx, vy:this.getGravity});
         this.actors.push(bouncy);
     }
 
@@ -284,7 +284,7 @@ class Screen {
 
     handleShoot() {
         if (!this.shotCooldown && !this.isGameOver()) {
-            const bullet = new Bullet(this.player.x + this.player.vx + 3.5, this.player.y + 40, 0, 7, this);
+            const bullet = new Bullet({x:this.player.x + this.player.vx + 3.5, y:this.player.y + 40, vy:7, screen:this});
             this.actors.push(bullet);
             this.shotCooldown = true;
             setTimeout(this.reload, 500);

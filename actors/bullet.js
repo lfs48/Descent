@@ -1,21 +1,30 @@
-class Bullet extends CircleActor {
+class Bullet extends RectActor {
 
     constructor(x, y, vx, vy, screen) {
         super(x, y, vx, vy);
         this.screen = screen;
-        this.radius = 7;
+        this.width = 28;
+        this.height = 4;
+        this.sprites = {
+            spawning: new Sprite(this, "./assets/bullet-spawning.png", 10, 1),
+            default: new Sprite(this, "./assets/bullet.png")
+        }
+        this.activeSprite = this.sprites.spawning;
     }
 
     drawFunction(ctx) {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, false);
-        ctx.fillStyle = "white";
-        ctx.fill();
-        ctx.closePath();
+        this.activeSprite.draw(ctx);
+        this.activeSprite.update();
+        this.height += 4;
+        if (this.height >= 46) {
+            this.activeSprite = this.sprites.default
+        }
     }
 
     handleCollision(otherActor) {
-        this.remove = true;
+        if (!(otherActor instanceof Player)) {
+            this.remove = true;
+        }
         const { xBoundUp, xBoundDown, yBoundUp, yBoundDown } = this.collisionBox();
         const otherCollision = otherActor.collisionBox();
         const otherXBoundUp = otherCollision.xBoundUp;

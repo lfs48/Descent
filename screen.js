@@ -3,21 +3,7 @@ class Screen {
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d");
 
-        this.player = new Player(210, 330, 0, 0, this);
-        this.actors = [this.player];
-
-        this.gravity = -1;
-        this.shotCooldown = false;
-
-        this.rightPressed = false;
-        this.leftPressed = false;
-
-        this.score = 0;
-        this.combo = 1;
-
-        this.distance = 0;
-        this.maxDistance = 0;
-        this.lastWallPos = 0;
+        this.initializeGame();
 
         this.clear = this.clear.bind(this);
         this.draw = this.draw.bind(this);
@@ -40,6 +26,28 @@ class Screen {
         this.gainScore = this.gainScore.bind(this);
         this.renderInstructions = this.renderInstructions.bind(this);
         this.unrenderInstructions = this.unrenderInstructions.bind(this);
+        this.initializeGame = this.initializeGame.bind(this);
+    }
+
+    initializeGame() {
+        this.player = new Player(210, 330, 0, 0, this);
+        this.actors = [this.player];
+
+        this.gravity = -1;
+        this.shotCooldown = false;
+
+        this.rightPressed = false;
+        this.leftPressed = false;
+
+        this.hasArrows = false;
+        this.started = false;
+        this.ending = false;
+
+        this.score = 0;
+        this.combo = 1;
+
+        this.distance = 0;
+        this.maxDistance = 0;
     }
 
     gameHasStarted() {
@@ -82,7 +90,10 @@ class Screen {
 
     gameOverMessage() {
         this.ctx.font = "50px Arial";
-        this.ctx.fillText(`GAME OVER`, 100, 50);
+        this.ctx.fillStyle = "white";
+        this.ctx.fillText(`GAME OVER`, 100, 100);
+        this.ctx.fillText(`PRESS ENTER TO`, 30, 200);
+        this.ctx.fillText(`PLAY AGAIN`, 100, 300);
     }
 
     isEndOfStage() {
@@ -306,6 +317,9 @@ class Screen {
         }
         if (e.key == ' ') {
             this.handleJump();
+        }
+        if (e.key == 'Enter' && this.isGameOver() ) {
+            this.initializeGame();
         }
 
     }

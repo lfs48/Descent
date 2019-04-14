@@ -262,7 +262,7 @@ class Screen {
 
     handleShoot() {
         if (!this.shotCooldown && !this.isGameOver()) {
-            const bullet = new Bullet(this.player.x + 30, this.player.y + 60, 0, 10, this);
+            const bullet = new Bullet(this.player.x + this.player.vx + 3.5, this.player.y + 40, 0, 7, this);
             this.actors.push(bullet);
             this.shotCooldown = true;
             setTimeout(this.reload, 500);

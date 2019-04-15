@@ -11,6 +11,7 @@ class Enemy extends Actor {
         if (otherActor instanceof Bullet) {
             if (yBoundDown <= otherYBoundUp && yBoundUp > otherYBoundUp) {
                 this.remove = true;
+                otherActor.remove = true;
             }
         }
 

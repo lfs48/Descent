@@ -11,6 +11,7 @@ class Player extends Actor {
         this.immune = false;
         this.flash = false;
         this.won = false;
+        this.ammo = 3;
         this.direction = "Right";
         this.sprites = {
             fallingRight: new Sprite(this, 'assets/player-falling-right.png'),
@@ -43,6 +44,7 @@ class Player extends Actor {
     ground() {
         this.grounded = true;
         this.updateSprite('standing');
+        this.ammo = 3;
     }
 
     moveRight() {

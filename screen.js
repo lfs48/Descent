@@ -298,11 +298,12 @@ class Screen {
     }
 
     handleShoot() {
-        if (!this.shotCooldown && !this.isGameOver()) {
+        if (!this.shotCooldown && this.player.ammo > 0 && !this.isGameOver()) {
             this.handleBounce();
             const bullet = new Bullet({x:this.player.x + this.player.vx + 3.5, y:this.player.y + 40, vy:7, screen:this});
             this.actors.push(bullet);
             this.shotCooldown = true;
+            this.player.ammo -= 1;
             setTimeout(this.reload, 500);
         }
     }

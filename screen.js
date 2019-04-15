@@ -3,6 +3,7 @@ class Screen {
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d");
         this.enemyFactory = new enemyFactory(this);
+        this.blockFactory = new blockFactory(this);
 
         this.initializeGame();
 
@@ -28,6 +29,7 @@ class Screen {
         this.unrenderInstructions = this.unrenderInstructions.bind(this);
         this.initializeGame = this.initializeGame.bind(this);
         this.submitScore = this.submitScore.bind(this);
+        this.generateBlocks = this.generateBlocks.bind(this);
     }
 
     initializeGame() {
@@ -166,8 +168,8 @@ class Screen {
                 const r = Math.random();
                 if (r > 0.95) {
                     this.recentSpawn = true;
-                    if (r <= 0.965) {
-                        this.generateObstacle();
+                    if (r <= 0.97) {
+                        this.generateBlocks();
                     } else if (r <= 0.985) {
                         this.generateEnemies();
                     } else {
@@ -257,6 +259,12 @@ class Screen {
         const x = Math.max(30, (Math.random()*298) );
         const obstacle = new Obstacle({x:x, y:740, vy:this.getGravity});
         this.actors.push(obstacle);
+
+    }
+
+    generateBlocks() {
+        const blocks = this.blockFactory.generateBlocks();
+        this.actors = this.actors.concat(blocks); 
     }
 
     generateBouncy() {

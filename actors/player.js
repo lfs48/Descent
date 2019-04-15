@@ -46,12 +46,12 @@ class Player extends Actor {
     }
 
     moveRight() {
-        this.vx = 3;
+        this.vx = 5;
         this.direction = "Right";
     }
 
     moveLeft() {
-        this.vx = -3;
+        this.vx = -5;
         this.direction = "Left";
     }
 

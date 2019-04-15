@@ -115,6 +115,7 @@ class Player extends Actor {
                 }
             } else {
                 if (yBoundDown <= otherYBoundUp && yBoundUp > otherYBoundUp) {
+                    this.screen.setGravity(0);
                     this.y += (otherYBoundUp - yBoundDown) / 2;
                 }
     

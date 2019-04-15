@@ -105,43 +105,27 @@ class Player extends Actor {
                 this.x += (otherXBoundUp - xBoundDown) / 2
             }
         }
-        if (otherActor instanceof Obstacle || otherActor instanceof Block) {
-            debugger
-            //if own x bounds is within other x bounds
-            if (xBoundDown > otherXBoundDown && xBoundUp < otherXBoundUp) {
-                if (yBoundDown <= otherYBoundUp && yBoundUp > otherYBoundUp) {
-                    this.y += (otherYBoundUp - yBoundDown) / 2;
-                }
-            
-                if (yBoundUp >= otherYBoundDown && yBoundDown < otherYBoundDown) {
-                    this.ground();
-                    this.y-= (yBoundUp - otherYBoundDown) / 2;
-                } 
-            } else {
+
+        if (otherActor instanceof Obstacle) {
+
+            if ( (xBoundUp > otherXBoundDown && otherXBoundDown - xBoundDown > this.width / 2) || (xBoundDown < otherXBoundUp && xBoundUp - otherXBoundUp > this.width / 2) ) {
                 if (xBoundUp >= otherXBoundDown && xBoundDown < otherXBoundDown) {
                     this.x -= (xBoundUp - otherXBoundDown) / 2;
                 } else if (xBoundDown <= otherXBoundUp && xBoundUp > otherXBoundUp) {
                     this.x += (otherXBoundUp - xBoundDown) / 2
                 }
-            }
-
-            // if ( (yBoundUp < otherYBoundDown && yBound) ) {
-            //     if (xBoundUp >= otherXBoundDown && xBoundDown < otherXBoundDown) {
-            //         this.x -= (xBoundUp - otherXBoundDown) / 2;
-            //     } else if (xBoundDown <= otherXBoundUp && xBoundUp > otherXBoundUp) {
-            //         this.x += (otherXBoundUp - xBoundDown) / 2
-            //     }
-            // } else {
-            //     if (yBoundDown <= otherYBoundUp && yBoundUp > otherYBoundUp) {
-            //         this.y += (otherYBoundUp - yBoundDown) / 2;
-            //     }
+            } else {
+                if (yBoundDown <= otherYBoundUp && yBoundUp > otherYBoundUp) {
+                    this.y += (otherYBoundUp - yBoundDown) / 2;
+                }
     
-            //     if (yBoundUp >= otherYBoundDown && yBoundDown < otherYBoundDown) {
-            //         this.ground();
-            //         this.y-= (yBoundUp - otherYBoundDown) / 2;
-            //     }
-            // }
+                if (yBoundUp >= otherYBoundDown && yBoundDown < otherYBoundDown) {
+                    this.ground();
+                    this.y-= (yBoundUp - otherYBoundDown) / 2;
+                }
+            }
         }
+
         if (otherActor instanceof Enemy) {
             this.takeDamage();
         }

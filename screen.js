@@ -34,7 +34,7 @@ class Screen {
         this.player = new Player({x:210, y:330, screen:this});
         this.actors = [this.player];
 
-        this.gravity = -1;
+        this.gravity = -10;
         this.shotCooldown = false;
 
         this.rightPressed = false;
@@ -114,7 +114,7 @@ class Screen {
     }
 
     isEndOfStage() {
-        return this.distance < -5000;
+        return this.distance < -10000;
     }
 
     generateFloor() {
@@ -128,7 +128,7 @@ class Screen {
             const leftWall = new Wall({x:0, y:720, vy:this.getGravity});
             const rightWall = new Wall({x:454, y:720, vy:this.getGravity});
             this.actors.push(leftWall, rightWall);
-            setTimeout( () => this.wallCooldown = false, 100);
+            setTimeout( () => this.wallCooldown = false, 50);
         }
     }
 
@@ -217,15 +217,15 @@ class Screen {
     updateGravity() {
         if (this.player.grounded) {
             this.gravity = 0;
-        } else if (this.gravity > -1) {
-            this.gravity -= 0.15;
-        } else if (this.gravity > -2) {
-            this.gravity -= 0.07;
-        } else if (this.gravity > -4) {
-            this.gravity -= 0.04;
-        } else if (this.gravity > -6) {
-            this.gravity -= 0.02;
+        } else if (this.gravity > -5) {
+            this.gravity -= 0.25;
+        } else if (this.gravity > -8) {
+            this.gravity -= 0.1;
         } else if (this.gravity > -10) {
+            this.gravity -= 0.05;
+        } else if (this.gravity > -15) {
+            this.gravity -= 0.001;
+        } else if (this.gravity > -20) {
             this.gravity = this.gravity - 0.0005;
         }
     }
@@ -291,7 +291,8 @@ class Screen {
 
     handleShoot() {
         if (!this.shotCooldown && !this.isGameOver()) {
-            const bullet = new Bullet({x:this.player.x + this.player.vx + 3.5, y:this.player.y + 40, vy:7, screen:this});
+            this.handleBounce();
+            const bullet = new Bullet({x:this.player.x + this.player.vx + 3.5, y:this.player.y + 40, vy:15, screen:this});
             this.actors.push(bullet);
             this.shotCooldown = true;
             setTimeout(this.reload, 500);
@@ -301,7 +302,7 @@ class Screen {
     handleJump() {
         if (this.player.grounded) {
             this.player.jump();
-            this.gravity = 5;
+            this.gravity = 7;
         }
     }
 

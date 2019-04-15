@@ -4,6 +4,9 @@ class Block extends Actor {
         super(options);
         this.width = 30;
         this.height = 30;
+        this.blockGroup = options.blockGroup;
+        this.becomeLeftBlock = this.becomeLeftBlock.bind(this);
+        this.becomeRightBlock = this.becomeRightBlock.bind(this);
     }
 
     handleCollision(otherActor) {
@@ -17,9 +20,18 @@ class Block extends Actor {
         if (otherActor instanceof Bullet) {
             if (yBoundDown <= otherYBoundUp && yBoundUp > otherYBoundUp) {
                 this.remove = true;
+                this.blockGroup.removeBlock(this);
             }
         }
 
+    }
+
+    becomeLeftBlock() {
+        this.leftBlock = true;
+    }
+
+    becomeRightBlock() {
+        this.rightBlock = true;
     }
 
     drawFunction(ctx) {

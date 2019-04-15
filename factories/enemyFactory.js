@@ -34,7 +34,7 @@ class enemyFactory {
         const r = this.numToGenerate();
         for(let i = 0; i < r; i++) {
             const enemyType = this.getRandomEnemyType();
-            const x = Math.max(60, (Math.random()*420) );
+            const x = Math.max(120, (Math.random()*380) );
             const y = 740 + (Math.random() * 50);
             const enemy = new enemyType({x:x, y:y, vy:this.screen.getGravity, screen:this.screen});
             enemies.push(enemy);

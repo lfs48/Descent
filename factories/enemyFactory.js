@@ -17,9 +17,9 @@ class enemyFactory {
 
     numToGenerate() {
         const r = Math.random();
-        if (r < 0.7) {
+        if (r < 0.8) {
             return 1;
-        } else if (r < 0.9) {
+        } else if (r < 0.95) {
             return 2;
         } else {
             return 3;

@@ -299,6 +299,7 @@ class Screen {
 
     handleShoot() {
         if (!this.shotCooldown && !this.isGameOver()) {
+            this.handleBounce();
             const bullet = new Bullet({x:this.player.x + this.player.vx + 3.5, y:this.player.y + 40, vy:7, screen:this});
             this.actors.push(bullet);
             this.shotCooldown = true;
@@ -314,7 +315,7 @@ class Screen {
     }
 
     handleBounce() {
-        this.gravity = 5;
+        this.gravity = 3;
     }
 
     clearActors() {

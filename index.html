@@ -41,6 +41,7 @@
     <canvas id="healthbar-canvas" width="100" height="50"></canvas>
 </div>
 
+<script src="./display.js"></script>
 <script src="./actors/actor.js"></script>
 <script src="./actors/player.js"></script>
 <script src="./actors/enemy.js"></script>
@@ -59,19 +60,8 @@
 <script src="./healthbar.js"></script>
 
 <script>
-    const descentCanvas = document.getElementById("descent-canvas");
-    const scoreCanvas = document.getElementById("score-canvas");
-    const healthbarCanvas = document.getElementById("healthbar-canvas");
-    const screen = new Screen(descentCanvas);
-    const score = new Score(scoreCanvas, screen);
-    const healthbar = new Healthbar(healthbarCanvas, screen);
-
-    document.addEventListener("keydown", screen.keyDownHandler, false);
-    document.addEventListener("keyup", screen.keyUpHandler, false);
-
-    setInterval(screen.draw, 17);
-    setInterval(score.draw, 17);
-    setInterval(healthbar.draw, 17);
+    const display = new Display();
+    setInterval(display.draw, 17);
 </script>
 
 </body>

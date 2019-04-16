@@ -6,7 +6,7 @@ class Splash {
         this.ctx = canvas.getContext("2d");
         this.ctx.font = "50px Arial";
 
-        this.cursor = new Visual({x:50, y:50, width:80, height:66, file:'assets/arrow-right.png', numFrames:2, framesPerTick:45});
+        this.cursor = new Visual({x:50, y:50, width:80, height:66, file:'assets/arrow-right.png', numFrames:1, framesPerTick:45});
 
         this.draw = this.draw.bind(this);
         this.clear = this.clear.bind(this);
@@ -27,8 +27,33 @@ class Splash {
     }
 
     keyDownHandler(e) {
+        e.preventDefault();
         if(e.key == "Enter") {
             this.display.leaveSplash();
+        }
+        if(e.key == "Down" || e.key == "ArrowDown") {
+            this.moveCursorDown();
+        }
+        else if(e.key == "Up" || e.key == "ArrowUp") {
+            this.moveCursorUp();
+        } 
+    }
+
+    moveCursorDown() {
+        const y = this.cursor.y + 100;
+        if (y > 250) {
+            this.cursor.y = 50;
+        } else {
+            this.cursor.y = y;
+        }
+    }
+
+    moveCursorUp() {
+        const y = this.cursor.y - 100;
+        if (y < 50) {
+            this.cursor.y = 250;
+        } else {
+            this.cursor.y = y;
         }
     }
 

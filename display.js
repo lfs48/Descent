@@ -5,18 +5,13 @@ class Display {
         const scoreCanvas = document.getElementById("score-canvas");
         const healthbarCanvas = document.getElementById("healthbar-canvas");
 
-        this.splash = new Splash(splashCanvas);
+        this.splash = new Splash(splashCanvas, this);
         this.screen = new Screen(descentCanvas);
         this.score = new Score(scoreCanvas, this.screen);
         this.healthbar = new Healthbar(healthbarCanvas, this.screen);
         this.gameStarted = false;
         this.draw = this.draw.bind(this);
-        this.keyDownHandler = this.keyDownHandler.bind(this);
-        document.addEventListener("keydown", this.keyDownHandler, false);
-        // document.addEventListener("keydown", this.screen.keyDownHandler, false);
-        // document.addEventListener("keyup", this.screen.keyUpHandler, false);
-
-        
+        document.addEventListener("keydown", this.splash.keyDownHandler, false);
     }
 
     draw() {
@@ -29,13 +24,11 @@ class Display {
         }
     }
 
-    keyDownHandler(e) {
-        if(e.key == "Enter") {
-            this.gameStarted = true;
-            document.removeEventListener("keydown", this.keyDownHandler);
-            document.addEventListener("keydown", this.screen.keyDownHandler, false);
-            document.addEventListener("keyup", this.screen.keyUpHandler, false);
-        }
+    leaveSplash() {
+        this.gameStarted = true;
+        document.removeEventListener("keydown", this.splash.keyDownHandler);
+        document.addEventListener("keydown", this.screen.keyDownHandler, false);
+        document.addEventListener("keyup", this.screen.keyUpHandler, false);
     }
     
 }

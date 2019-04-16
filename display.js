@@ -23,7 +23,7 @@ class Display {
             element.style.opacity = opacity;
             element.style.filter = 'alpha(opacity=' + opacity * 100 + ")";
             opacity *= 1.01;
-        }, 10);
+        }, 5);
     }
 
     fadeOut(element) {
@@ -35,7 +35,7 @@ class Display {
             element.style.opacity = opacity;
             element.style.filter = 'alpha(opacity=' + opacity * 100 + ")";
             opacity -= opacity * .01;
-        }, 10);
+        }, 5);
     }
 
     draw() {
@@ -101,10 +101,11 @@ class Display {
             this.createDescentCanvas();
             this.createScoreCanvas();
             this.createHealthCanvas();
+            this.fadeIn(this.container);
             document.removeEventListener("keydown", this.splash.keyDownHandler);
             document.addEventListener("keydown", this.screen.keyDownHandler, false);
             document.addEventListener("keyup", this.screen.keyUpHandler, false);
-        }, 1000);
+        }, 2000);
     }
     
 }

@@ -23,6 +23,7 @@ class Screen {
         this.isEndOfStage = this.isEndOfStage.bind(this);
         this.gameHasStarted = this.gameHasStarted.bind(this);
         this.updateGravity = this.updateGravity.bind(this);
+        this.getScore = this.getScore.bind(this);
         this.gainScore = this.gainScore.bind(this);
         this.renderInstructions = this.renderInstructions.bind(this);
         this.unrenderInstructions = this.unrenderInstructions.bind(this);

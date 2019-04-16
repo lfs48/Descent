@@ -11,8 +11,8 @@ class Score {
 
     draw() {
         this.clear();
-        this.ctx.fillText(`Score: ${screen.getScore()}`, 12, 25);
-        this.ctx.fillText(`Combo: ${screen.getCombo()}`, 12, 50);
+        this.ctx.fillText(`Score: ${this.screen.getScore()}`, 12, 25);
+        this.ctx.fillText(`Combo: ${this.screen.getCombo()}`, 12, 50);
         const cookie = document.cookie
         if (cookie.includes("hiscore=")) {
             this.ctx.fillText(`Hiscore: ${cookie.slice(cookie.indexOf("=")+1)}`, 12, 75);

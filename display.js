@@ -1,11 +1,9 @@
 class Display {
     constructor() {
-        const splashCanvas = document.getElementById("descent-canvas");
-        const descentCanvas = document.getElementById("descent-canvas");
+        const splashCanvas = document.getElementById("splash-canvas");
         this.container = document.getElementById("descent-container");
 
         this.splash = new Splash(splashCanvas, this);
-        this.screen = new Screen(descentCanvas);
         this.gameStarted = false;
         this.draw = this.draw.bind(this);
         document.addEventListener("keydown", this.splash.keyDownHandler, false);
@@ -47,15 +45,33 @@ class Display {
         scoreCanvas.setAttributeNode(width);
         scoreCanvas.setAttributeNode(height);
         scoreCanvas.setAttributeNode(id);
-        this.container.appendChild(scoreCanvas);
+        this.container.insertBefore(scoreCanvas, this.container.firstChild);
         this.score = new Score(scoreCanvas, this.screen);
+    }
+
+    createDescentCanvas() {
+        const descentCanvas = document.createElement("CANVAS");
+        const width = document.createAttribute("width");
+        width.value = "480";
+        const height = document.createAttribute("height");
+        height.value = "720";
+        const id = document.createAttribute("id");
+        id.value = "descent-canvas";
+        descentCanvas.setAttributeNode(width);
+        descentCanvas.setAttributeNode(height);
+        descentCanvas.setAttributeNode(id);
+        this.container.appendChild(descentCanvas);
+        this.screen = new Screen(descentCanvas, this.screen);
     }
 
     leaveSplash() {
         this.gameStarted = true;
+        const splashCanvas = document.getElementById("splash-canvas");
+        this.createDescentCanvas();
         this.createScoreCanvas();
         this.createHealthCanvas();
-    
+        splashCanvas.parentNode.removeChild(splashCanvas);
+
         document.removeEventListener("keydown", this.splash.keyDownHandler);
         document.addEventListener("keydown", this.screen.keyDownHandler, false);
         document.addEventListener("keyup", this.screen.keyUpHandler, false);

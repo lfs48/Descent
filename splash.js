@@ -4,7 +4,6 @@ class Splash {
         this.canvas = canvas;
         this.display = display;
         this.ctx = canvas.getContext("2d");
-        this.ctx.font = "50px Arial";
 
         this.cursor = new Visual({x:50, y:50, width:80, height:66, file:'assets/arrow-right.png', numFrames:1, framesPerTick:45});
 
@@ -18,13 +17,39 @@ class Splash {
     draw() {
         this.clear();
         if(this.stage === "menu") {
-            this.ctx.fillStyle="white";
-            this.ctx.fillText(`Play`, 150, 100);
-            this.ctx.fillText(`Instructions`, 150, 200);
-            this.ctx.fillText(`About Me`, 150, 300);
-            this.cursor.drawFunction(this.ctx);  
+            this.drawMainMenu();
+        } else if (this.stage === 'instructions') {
+            this.drawInstructions();
+        } else if (this.stage === 'about') {
+            this.drawAbout();
         }
         
+    }
+
+    drawMainMenu() {
+        this.ctx.font = "50px Arial";
+        this.ctx.fillStyle="white";
+        this.ctx.fillText(`Play`, 150, 100);
+        this.ctx.fillText(`Instructions`, 150, 200);
+        this.ctx.fillText(`About Me`, 150, 300);
+        this.cursor.drawFunction(this.ctx);  
+    }
+
+    drawInstructions() {
+        this.ctx.font = "50px Arial";
+        this.ctx.fillStyle="white";
+        this.ctx.fillText(`Instructions`, 100, 100);
+        this.ctx.font = "25px Arial";
+        this.ctx.fillText(`Descent is a game about falling`, 70, 200);
+    }
+
+    drawAbout() {
+        this.ctx.font = "50px Arial";
+        this.ctx.fillStyle="white";
+        this.ctx.fillText(`About Me`, 100, 100);
+        this.ctx.font = "25px Arial";
+        this.ctx.fillText(`Name: Lucas Schraier`, 70, 200);
+        this.ctx.fillText(`Github: https://github.com/lfs48`, 70, 300);
     }
 
     clear() {

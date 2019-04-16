@@ -1,12 +1,41 @@
 class Display {
     constructor() {
-        const splashCanvas = document.getElementById("splash-canvas");
+        this.splashCanvas = document.getElementById("splash-canvas");
         this.container = document.getElementById("descent-container");
 
-        this.splash = new Splash(splashCanvas, this);
+        this.splash = new Splash(this.splashCanvas, this);
         this.gameStarted = false;
         this.draw = this.draw.bind(this);
+        this.start = this.start.bind(this);
         document.addEventListener("keydown", this.splash.keyDownHandler, false);
+    }
+
+    start() {
+        this.fadeIn(this.splashCanvas);
+    }
+
+    fadeIn(element) {
+        let opacity = 0.1;
+        const timer = setInterval( () => {
+            if (opacity > 1){
+                clearInterval(timer);
+            }
+            element.style.opacity = opacity;
+            element.style.filter = 'alpha(opacity=' + opacity * 100 + ")";
+            opacity *= 1.01;
+        }, 10);
+    }
+
+    fadeOut(element) {
+        let opacity = 1;
+        const timer = setInterval( () => {
+            if (opacity <= 0){
+                clearInterval(timer);
+            }
+            element.style.opacity = opacity;
+            element.style.filter = 'alpha(opacity=' + opacity * 100 + ")";
+            opacity -= opacity * .01;
+        }, 10);
     }
 
     draw() {
@@ -65,16 +94,17 @@ class Display {
     }
 
     leaveSplash() {
-        this.gameStarted = true;
-        const splashCanvas = document.getElementById("splash-canvas");
-        this.createDescentCanvas();
-        this.createScoreCanvas();
-        this.createHealthCanvas();
-        splashCanvas.parentNode.removeChild(splashCanvas);
-
-        document.removeEventListener("keydown", this.splash.keyDownHandler);
-        document.addEventListener("keydown", this.screen.keyDownHandler, false);
-        document.addEventListener("keyup", this.screen.keyUpHandler, false);
+        this.fadeOut(this.splashCanvas);
+        setTimeout( () => {
+            this.splashCanvas.parentNode.removeChild(this.splashCanvas);
+            this.gameStarted = true;
+            this.createDescentCanvas();
+            this.createScoreCanvas();
+            this.createHealthCanvas();
+            document.removeEventListener("keydown", this.splash.keyDownHandler);
+            document.addEventListener("keydown", this.screen.keyDownHandler, false);
+            document.addEventListener("keyup", this.screen.keyUpHandler, false);
+        }, 1000);
     }
     
 }

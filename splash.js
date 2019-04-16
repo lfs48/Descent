@@ -11,15 +11,20 @@ class Splash {
         this.draw = this.draw.bind(this);
         this.clear = this.clear.bind(this);
         this.keyDownHandler = this.keyDownHandler.bind(this);
+
+        this.stage = "menu";
     }
 
     draw() {
         this.clear();
-        this.ctx.fillStyle="white";
-        this.ctx.fillText(`Play`, 150, 100);
-        this.ctx.fillText(`Instructions`, 150, 200);
-        this.ctx.fillText(`About Me`, 150, 300);
-        this.cursor.drawFunction(this.ctx);
+        if(this.stage === "menu") {
+            this.ctx.fillStyle="white";
+            this.ctx.fillText(`Play`, 150, 100);
+            this.ctx.fillText(`Instructions`, 150, 200);
+            this.ctx.fillText(`About Me`, 150, 300);
+            this.cursor.drawFunction(this.ctx);  
+        }
+        
     }
 
     clear() {
@@ -28,15 +33,29 @@ class Splash {
 
     keyDownHandler(e) {
         e.preventDefault();
-        if(e.key == "Enter") {
+        if(e.key == "Enter" || e.key == " " || e.key == "z") {
+            this.handleEnter();
+        } else if (e.key == 'Backspace') {
+            this.stage = "menu";
+        }
+        if (this.stage == "menu") {
+            if(e.key == "Down" || e.key == "ArrowDown") {
+                this.moveCursorDown();
+            }
+            else if(e.key == "Up" || e.key == "ArrowUp") {
+                this.moveCursorUp();
+            } 
+        }
+    }
+
+    handleEnter() {
+        if (this.cursor.y === 50) {
             this.display.leaveSplash();
+        } else if (this.cursor.y === 150) {
+            this.stage = "instructions";
+        } else if (this.cursor.y === 250) {
+            this.stage = "about";
         }
-        if(e.key == "Down" || e.key == "ArrowDown") {
-            this.moveCursorDown();
-        }
-        else if(e.key == "Up" || e.key == "ArrowUp") {
-            this.moveCursorUp();
-        } 
     }
 
     moveCursorDown() {

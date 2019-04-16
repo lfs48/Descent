@@ -11,6 +11,10 @@
             display: flex; 
             justify-content: center;
         }
+        #splash-canvas {
+            border: 5px solid gray;
+            border-radius: 5px;
+        }
     	#descent-canvas { background:rgb(0,0,0); }
         #score-canvas { 
             background:rgb(255,255,255); 
@@ -36,7 +40,7 @@
 <body>
 
 <div id="descent-container">
-    <canvas id="splash-canvas" width="480" height="720"></canvas>
+    <canvas id="splash-canvas" width="720" height="720"></canvas>
 </div>
 
 <script src="./display.js"></script>
@@ -60,6 +64,7 @@
 
 <script>
     const display = new Display();
+    display.start();
     setInterval(display.draw, 17);
 </script>
 

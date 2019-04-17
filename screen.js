@@ -50,6 +50,24 @@ class Screen {
 
         this.distance = 0;
         this.maxDistance = 0;
+
+        this.startMusic();
+    }
+
+    startMusic() {
+        if (this.audio) {
+            this.audio.pause();
+        }
+        this.audio = new Audio('assets/bg_music.mp3');
+        this.audio.volume = 0.05;
+        this.audio.play();
+        this.audio.loop = true;
+        const timer = setInterval( () => {
+            if (this.audio.volume >= 0.5) {
+                clearInterval(timer);
+            }
+            this.audio.volume += .0005;
+        }, 5 );
     }
 
     gameHasStarted() {

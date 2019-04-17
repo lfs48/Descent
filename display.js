@@ -34,7 +34,7 @@ class Display {
             }
             element.style.opacity = opacity;
             element.style.filter = 'alpha(opacity=' + opacity * 100 + ")";
-            opacity -= opacity * .01;
+            opacity -= .005;
         }, 5);
     }
 
@@ -105,7 +105,7 @@ class Display {
             document.removeEventListener("keydown", this.splash.keyDownHandler);
             document.addEventListener("keydown", this.screen.keyDownHandler, false);
             document.addEventListener("keyup", this.screen.keyUpHandler, false);
-        }, 2000);
+        }, 1000);
     }
     
 }

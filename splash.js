@@ -32,7 +32,7 @@ class Splash {
     }
 
     drawMainMenu() {
-        this.ctx.font = "50px Arial";
+        this.ctx.font = "30px press_start_2pregular";
         this.ctx.fillStyle="white";
         this.ctx.fillText(`Play`, 350, 300);
         this.ctx.fillText(`Instructions`, 350, 400);
@@ -42,10 +42,10 @@ class Splash {
     }
 
     drawInstructions() {
-        this.ctx.font = "50px Verdana";
+        this.ctx.font = "35px press_start_2pregular";
         this.ctx.fillStyle="white";
         this.ctx.fillText(`Instructions`, 350, 100);
-        this.ctx.font = "20px Arial";
+        this.ctx.font = "10px press_start_2pregular";
         this.ctx.fillText(`Descent is a game about falling!`, 70, 200);
         this.ctx.fillText(`Gain score based on how long you fall and`, 70, 230);
         this.ctx.fillText(`build up a big combo by avoiding platforms!`, 70, 260);

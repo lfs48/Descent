@@ -109,15 +109,18 @@ class Screen {
     }
 
     gameOverMessage() {
-        this.ctx.font = "25px Arial";
-        this.ctx.fillStyle = "white";
+        this.ctx.font = "20px press_start_2pregular";
         if (this.player.won) {
-            this.ctx.fillText(`CONGRATULATIONS!`, 100, 50);
-            this.ctx.fillText(`YOUR SCORE WAS ${this.getScore()}`, 100, 100);
-            this.ctx.fillText(`PRESS ENTER TO PLAY AGAIN`, 50, 150);
+            this.ctx.fillStyle = "green";
+            this.ctx.fillText(`CONGRATULATIONS!`, 95, 50);
+            this.ctx.fillText(`YOUR SCORE WAS ${this.getScore()}`, 80, 100);
+            this.ctx.fillText(`PRESS ENTER`, 140, 150);
+            this.ctx.fillText(`TO PLAY AGAIN`, 120, 200);
         } else {
-            this.ctx.fillText(`GAME OVER`, 170, 100);
-            this.ctx.fillText(`PRESS ENTER TO PLAY AGAIN`, 50, 200);
+            this.ctx.fillStyle = "red";
+            this.ctx.fillText(`GAME OVER`, 153, 100);
+            this.ctx.fillText(`PRESS ENTER`, 140, 200);
+            this.ctx.fillText(`TO PLAY AGAIN`, 120, 300);
         }
     }
 

@@ -2,7 +2,7 @@ class Healthbar {
     constructor(canvas, screen) {
         this.canvas = canvas;
         this.ctx = canvas.getContext("2d");
-        this.ctx.font = "15px Arial";
+        this.ctx.font = "15px press_start_2pregular";
         this.screen = screen;
 
         this.draw = this.draw.bind(this);
@@ -17,7 +17,7 @@ class Healthbar {
         this.ctx.fill();
         this.ctx.closePath();
         this.ctx.fillStyle = "white";
-        this.ctx.fillText(`${this.screen.player.hp} / 4`, 35, 30);
+        this.ctx.fillText(`${this.screen.player.hp} / 4`, 15, 32);
     }
 
     clear() {

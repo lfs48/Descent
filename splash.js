@@ -6,7 +6,6 @@ class Splash {
         this.ctx = canvas.getContext("2d");
 
         this.logo = new Visual({x: 250, y: 0, width: 500, height: 280, file: "assets/logo.png", numFrames: 1, framesPerTick: 60});
-        this.instructions = new Visual({x:0, y:0, width: 720, height: 720, file: 'assets/instructions.png', numFrames: 1, framesPerTick: 60});
         this.cursor = new Visual({x:250, y:250, width:80, height:68, file:'assets/arrow-right.png', numFrames:1, framesPerTick:45});
         const bouncy = new Bouncy({x: 50, y: 380});
         const ghost = new Ghost({x: 50, y: 550});

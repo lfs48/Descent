@@ -58,7 +58,6 @@ class Splash {
         this.instructionsActors.forEach( (actor) =>
             actor.drawFunction(this.ctx) 
         );
-        // this.instructions.drawFunction(this.ctx);
     }
 
     drawAbout() {

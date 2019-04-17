@@ -67,6 +67,8 @@ class Splash {
         this.ctx.font = "20px press_start_2pregular";
         this.ctx.fillText(`Name: Lucas Schraier`, 70, 200);
         this.ctx.fillText(`Github: https://github.com/lfs48`, 70, 300);
+        this.ctx.font = "10px press_start_2pregular";
+        this.ctx.fillText(`Press BACK to return to menu`, 650, 680);
     }
 
     clear() {

@@ -5,9 +5,12 @@ class Splash {
         this.display = display;
         this.ctx = canvas.getContext("2d");
 
-        this.cursor = new Visual({x:50, y:50, width:80, height:66, file:'assets/arrow-right.png', numFrames:1, framesPerTick:45});
-        this.bouncy = new Visual({x: 50, y: 360, width: 79, height: 49, file: 'assets/bouncy-right.png', numFrames: 6, framesPerTick: 15});
-        this.ghost = new Visual({x: 50, y: 550, width: 80, height: 70, file: 'assets/big-ghost-right.png', numFrames: 6, framesPerTick: 15});
+        this.instructions = new Visual({x:0, y:0, width: 720, height: 720, file: 'assets/instructions.png', numFrames: 1, framesPerTick: 60});
+        this.cursor = new Visual({x:50, y:50, width:80, height:68, file:'assets/arrow-right.png', numFrames:1, framesPerTick:45});
+        const bouncy = new Bouncy({x: 50, y: 380});
+        const ghost = new Ghost({x: 50, y: 550});
+        const bullet = new Bullet({x: 600, y: 380});
+        this.instructionsActors = [bouncy, ghost, bullet];
 
         this.draw = this.draw.bind(this);
         this.clear = this.clear.bind(this);
@@ -38,15 +41,23 @@ class Splash {
     }
 
     drawInstructions() {
-        this.ctx.font = "50px Arial";
+        this.ctx.font = "50px Verdana";
         this.ctx.fillStyle="white";
-        this.ctx.fillText(`Instructions`, 100, 100);
+        this.ctx.fillText(`Instructions`, 350, 100);
         this.ctx.font = "20px Arial";
-        this.ctx.fillText(`Descent is a game about falling`, 70, 200);
-        this.ctx.fillText(`Land on bubbles to bounce`, 150, 400);
-        this.bouncy.drawFunction(this.ctx);
-        this.ctx.fillText(`Touching enemies will hurt you`, 150, 600);
-        this.ghost.drawFunction(this.ctx);
+        this.ctx.fillText(`Descent is a game about falling!`, 70, 200);
+        this.ctx.fillText(`Gain score based on how long you fall and`, 70, 230);
+        this.ctx.fillText(`build up a big combo by avoiding platforms!`, 70, 260);
+        this.ctx.fillText(`Land on bubbles to bounce upward`, 150, 400);
+        this.ctx.fillText(`and reset your fall speed`, 150, 430);
+        this.ctx.fillText(`Avoid enemies! Colliding with them will hurt`, 150, 600);
+        this.ctx.fillText(`Press Z to shoot a blast.`, 650, 400);
+        this.ctx.fillText(`Hitting an enemy will destroy it!`, 650, 430);
+        this.ctx.fillText(`Press BACK to return to menu`, 650, 680);
+        this.instructionsActors.forEach( (actor) =>
+            actor.drawFunction(this.ctx) 
+        );
+        // this.instructions.drawFunction(this.ctx);
     }
 
     drawAbout() {

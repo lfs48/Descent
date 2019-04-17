@@ -5,8 +5,9 @@ class Splash {
         this.display = display;
         this.ctx = canvas.getContext("2d");
 
+        this.logo = new Visual({x: 250, y: 0, width: 500, height: 280, file: "assets/logo.png", numFrames: 1, framesPerTick: 60});
         this.instructions = new Visual({x:0, y:0, width: 720, height: 720, file: 'assets/instructions.png', numFrames: 1, framesPerTick: 60});
-        this.cursor = new Visual({x:50, y:50, width:80, height:68, file:'assets/arrow-right.png', numFrames:1, framesPerTick:45});
+        this.cursor = new Visual({x:250, y:250, width:80, height:68, file:'assets/arrow-right.png', numFrames:1, framesPerTick:45});
         const bouncy = new Bouncy({x: 50, y: 380});
         const ghost = new Ghost({x: 50, y: 550});
         const bullet = new Bullet({x: 600, y: 380});
@@ -34,10 +35,11 @@ class Splash {
     drawMainMenu() {
         this.ctx.font = "50px Arial";
         this.ctx.fillStyle="white";
-        this.ctx.fillText(`Play`, 150, 100);
-        this.ctx.fillText(`Instructions`, 150, 200);
-        this.ctx.fillText(`About Me`, 150, 300);
+        this.ctx.fillText(`Play`, 350, 300);
+        this.ctx.fillText(`Instructions`, 350, 400);
+        this.ctx.fillText(`About Me`, 350, 500);
         this.cursor.drawFunction(this.ctx);  
+        this.logo.drawFunction(this.ctx);
     }
 
     drawInstructions() {
@@ -91,19 +93,19 @@ class Splash {
     }
 
     handleEnter() {
-        if (this.cursor.y === 50) {
+        if (this.cursor.y === 250) {
             this.display.leaveSplash();
-        } else if (this.cursor.y === 150) {
+        } else if (this.cursor.y === 350) {
             this.stage = "instructions";
-        } else if (this.cursor.y === 250) {
+        } else if (this.cursor.y === 450) {
             this.stage = "about";
         }
     }
 
     moveCursorDown() {
         const y = this.cursor.y + 100;
-        if (y > 250) {
-            this.cursor.y = 50;
+        if (y > 450) {
+            this.cursor.y = 250;
         } else {
             this.cursor.y = y;
         }
@@ -111,8 +113,8 @@ class Splash {
 
     moveCursorUp() {
         const y = this.cursor.y - 100;
-        if (y < 50) {
-            this.cursor.y = 250;
+        if (y < 250) {
+            this.cursor.y = 450;
         } else {
             this.cursor.y = y;
         }

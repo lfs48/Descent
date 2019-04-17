@@ -61,10 +61,10 @@ class Splash {
     }
 
     drawAbout() {
-        this.ctx.font = "50px Arial";
+        this.ctx.font = "35px press_start_2pregular";
         this.ctx.fillStyle="white";
-        this.ctx.fillText(`About Me`, 100, 100);
-        this.ctx.font = "25px Arial";
+        this.ctx.fillText(`About Me`, 350, 100);
+        this.ctx.font = "20px press_start_2pregular";
         this.ctx.fillText(`Name: Lucas Schraier`, 70, 200);
         this.ctx.fillText(`Github: https://github.com/lfs48`, 70, 300);
     }

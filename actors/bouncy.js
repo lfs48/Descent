@@ -3,6 +3,7 @@ class Bouncy extends Actor {
         super(options);
         this.width = 79;
         this.height = 49;
+        this.vx = Math.random() > 0.5 ? 2 : -2;
         this.direction = "Right";
         this.randomPath = false;
         this.generateRandomPath = this.generateRandomPath.bind(this);

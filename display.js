@@ -66,7 +66,7 @@ class Display {
     createScoreCanvas() {
         const scoreCanvas = document.createElement("CANVAS");
         const width = document.createAttribute("width");
-        width.value = "100";
+        width.value = "150";
         const height = document.createAttribute("height");
         height.value = "100";
         const id = document.createAttribute("id");

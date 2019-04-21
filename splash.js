@@ -5,7 +5,7 @@ class Splash {
         this.display = display;
         this.ctx = canvas.getContext("2d");
 
-        this.logo = new Visual({x: 250, y: 0, width: 500, height: 280, file: "assets/logo.png", numFrames: 1, framesPerTick: 60});
+        this.player = new Visual({x: 50, y: 50, width: 50, height: 42, file: 'assets/player-balancing-right.png', numFrames: 15, framesPerTick: 7});
         this.cursor = new Visual({x:250, y:250, width:80, height:68, file:'assets/arrow-right.png', numFrames:1, framesPerTick:45});
         const bouncy = new Bouncy({x: 50, y: 380});
         const ghost = new Ghost({x: 50, y: 550});
@@ -40,6 +40,7 @@ class Splash {
         this.ctx.fillText(`Instructions`, 350, 400);
         this.ctx.fillText(`About Me`, 350, 500);
         this.cursor.drawFunction(this.ctx);  
+        this.player.drawFunction(this.ctx);
     }
 
     drawInstructions() {
@@ -62,6 +63,7 @@ class Splash {
     }
 
     drawAbout() {
+        this.aboutCursor = new Visual({x:250, y:250, width:80, height:68, file:'assets/arrow-right.png', numFrames:1, framesPerTick:45});
         this.ctx.font = "35px press_start_2pregular";
         this.ctx.fillStyle="white";
         this.ctx.fillText(`About Me`, 350, 100);
@@ -70,6 +72,7 @@ class Splash {
         this.ctx.fillText(`Github: https://github.com/lfs48`, 70, 300);
         this.ctx.font = "10px press_start_2pregular";
         this.ctx.fillText(`Press BACK to return to menu`, 650, 680);
+        this.aboutCursor.drawFunction(this.ctx);
     }
 
     clear() {

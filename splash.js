@@ -5,8 +5,9 @@ class Splash {
         this.display = display;
         this.ctx = canvas.getContext("2d");
 
-        this.player = new Visual({x: 50, y: 50, width: 50, height: 42, file: 'assets/player-balancing-right.png', numFrames: 15, framesPerTick: 7});
+        this.player = new Visual({x: 360, y: 560, width: 50, height: 42, file: 'assets/player-balancing-right.png', numFrames: 15, framesPerTick: 7});
         this.cursor = new Visual({x:250, y:250, width:80, height:68, file:'assets/arrow-right.png', numFrames:1, framesPerTick:45});
+        this.well = new Visual({x:300, y:600, width:348, height:295, file:'assets/well.png', numFrames:1, framesPerTick:45});
         const bouncy = new Bouncy({x: 50, y: 380});
         const ghost = new Ghost({x: 50, y: 550});
         const bullet = new Bullet({x: 600, y: 380});
@@ -40,6 +41,7 @@ class Splash {
         this.ctx.fillText(`Instructions`, 350, 400);
         this.ctx.fillText(`About Me`, 350, 500);
         this.cursor.drawFunction(this.ctx);  
+        this.well.drawFunction(this.ctx);
         this.player.drawFunction(this.ctx);
     }
 

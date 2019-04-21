@@ -346,13 +346,13 @@ class Screen {
     }
 
     keyDownHandler(e) {
-        if(e.key == "Right" || e.key == "ArrowRight") {
+        if(e.key == "Right" || e.key == "ArrowRight" || e.key == "d") {
             this.rightPressed = true;
         }
-        else if(e.key == "Left" || e.key == "ArrowLeft") {
+        else if(e.key == "Left" || e.key == "ArrowLeft" || e.key == "a") {
             this.leftPressed = true;
         } 
-        if (e.key == 'z' || e.key == 'Z') {
+        if (e.key == 'z' || e.key == 'Enter') {
             this.handleShoot();
         }
         if (e.key == ' ') {
@@ -365,10 +365,10 @@ class Screen {
     }
 
     keyUpHandler(e) {
-        if(e.key == "Right" || e.key == "ArrowRight") {
+        if(e.key == "Right" || e.key == "ArrowRight" || e.key == "d") {
             this.rightPressed = false;
         }
-        else if(e.key == "Left" || e.key == "ArrowLeft") {
+        else if(e.key == "Left" || e.key == "ArrowLeft" || e.key == "a") {
             this.leftPressed = false;
         }
     } 

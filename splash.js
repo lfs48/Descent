@@ -65,16 +65,24 @@ class Splash {
     }
 
     drawAbout() {
-        this.aboutCursor = new Visual({x:250, y:250, width:80, height:68, file:'assets/arrow-right.png', numFrames:1, framesPerTick:45});
-        this.ctx.font = "35px press_start_2pregular";
+        // this.aboutCursor = new Visual({x:250, y:250, width:80, height:68, file:'assets/arrow-right.png', numFrames:1, framesPerTick:45});
+        // this.ctx.font = "35px press_start_2pregular";
+        // this.ctx.fillStyle="white";
+        // this.ctx.fillText(`About Me`, 350, 100);
+        // this.ctx.font = "20px press_start_2pregular";
+        // this.ctx.fillText(`Name: Lucas Schraier`, 70, 200);
+        // this.ctx.fillText(`Github: https://github.com/lfs48`, 70, 300);
+        // this.ctx.font = "10px press_start_2pregular";
+        // this.ctx.fillText(`Press BACK to return to menu`, 650, 680);
+        // this.aboutCursor.drawFunction(this.ctx);
         this.ctx.fillStyle="white";
-        this.ctx.fillText(`About Me`, 350, 100);
-        this.ctx.font = "20px press_start_2pregular";
-        this.ctx.fillText(`Name: Lucas Schraier`, 70, 200);
-        this.ctx.fillText(`Github: https://github.com/lfs48`, 70, 300);
-        this.ctx.font = "10px press_start_2pregular";
-        this.ctx.fillText(`Press BACK to return to menu`, 650, 680);
-        this.aboutCursor.drawFunction(this.ctx);
+        this.ctx.font = "65px press_start_2pregular";
+        this.ctx.fillText("Lucas Schraier", 50, 200);
+        this.ctx.font = "30px press_start_2pregular";
+        this.ctx.fillText(`Github`, 350, 300);
+        this.ctx.fillText(`LinkedIn`, 350, 400);
+        this.ctx.fillText(`Angellist`, 350, 500);
+        this.cursor.drawFunction(this.ctx); 
     }
 
     clear() {
@@ -86,9 +94,12 @@ class Splash {
         if(e.key == "Enter" || e.key == " " || e.key == "z") {
             this.handleEnter();
         } else if (e.key == 'Backspace') {
+            if (this.stage == "about") {
+                this.cursor.y = 450;
+            }
             this.stage = "menu";
         }
-        if (this.stage == "menu") {
+        if (this.stage == "menu" || this.stage == "about") {
             if(e.key == "Down" || e.key == "ArrowDown") {
                 this.moveCursorDown();
             }
@@ -99,12 +110,23 @@ class Splash {
     }
 
     handleEnter() {
-        if (this.cursor.y === 250) {
-            this.display.leaveSplash();
-        } else if (this.cursor.y === 350) {
-            this.stage = "instructions";
-        } else if (this.cursor.y === 450) {
-            this.stage = "about";
+        if (this.stage == "menu") {
+            if (this.cursor.y === 250) {
+                this.display.leaveSplash();
+            } else if (this.cursor.y === 350) {
+                this.stage = "instructions";
+            } else if (this.cursor.y === 450) {
+                this.cursor.y = 250;
+                this.stage = "about";
+            }
+        } else if (this.stage == "about") {
+            if (this.cursor.y === 250) {
+                window.location.assign("https://github.com/lfs48");
+            } else if (this.cursor.y === 350) {
+                window.location.assign("https://www.linkedin.com/in/lucas-schraier-559baa180/");
+            } else if (this.cursor.y === 450) {
+                window.location.assign("https://angel.co/lucas-schraier");
+            }
         }
     }
 

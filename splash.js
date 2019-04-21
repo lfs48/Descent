@@ -8,10 +8,10 @@ class Splash {
         this.player = new Visual({x: 358, y: 560, width: 50, height: 42, file: 'assets/player-balancing-right.png', numFrames: 15, framesPerTick: 7});
         this.cursor = new Visual({x:250, y:250, width:80, height:68, file:'assets/arrow-right.png', numFrames:5, framesPerTick:10});
         this.well = new Visual({x:300, y:600, width:348, height:295, file:'assets/well.png', numFrames:1, framesPerTick:45});
-        const bouncy = new Bouncy({x: 50, y: 380});
-        const ghost = new Ghost({x: 50, y: 550});
-        const bullet = new Bullet({x: 600, y: 380});
-        this.instructionsActors = [bouncy, ghost, bullet];
+        const keyboard = new Visual({x:100, y:280, width:120, height:79, file:'assets/keyboard.png', numFrames:1, framesPertick:45})
+        const bouncy = new Bouncy({x: 120, y: 430});
+        const ghost = new Ghost({x: 125, y: 570});
+        this.instructionsActors = [keyboard, bouncy, ghost];
 
         this.draw = this.draw.bind(this);
         this.clear = this.clear.bind(this);
@@ -46,19 +46,27 @@ class Splash {
     }
 
     drawInstructions() {
-        this.ctx.font = "35px press_start_2pregular";
         this.ctx.fillStyle="white";
-        this.ctx.fillText(`Instructions`, 350, 100);
-        this.ctx.font = "10px press_start_2pregular";
-        this.ctx.fillText(`Descent is a game about falling!`, 70, 200);
-        this.ctx.fillText(`Gain score based on how long you fall and`, 70, 230);
-        this.ctx.fillText(`build up a big combo by avoiding platforms!`, 70, 260);
-        this.ctx.fillText(`Land on bubbles to bounce upward`, 150, 400);
-        this.ctx.fillText(`and reset your fall speed`, 150, 430);
-        this.ctx.fillText(`Avoid enemies! Colliding with them will hurt`, 150, 600);
-        this.ctx.fillText(`Press Z to shoot a blast.`, 650, 400);
-        this.ctx.fillText(`Hitting an enemy will destroy it!`, 650, 430);
+
+        this.ctx.font = "20px press_start_2pregular";
+
+        this.ctx.fillText(`Descent is a game about falling!`, 200, 100);
+        this.ctx.fillText(`Gain score based on how long you fall and`, 100, 150);
+        this.ctx.fillText(`build up a big combo by avoiding platforms!`, 90, 200);
+
+        this.ctx.font = "12px press_start_2pregular";
+
+        this.ctx.fillText("Use the A & D or left & right keys to move left/right", 250, 300);
+        this.ctx.fillText("Use the Enter or Z key to shoot", 250, 320);
+        this.ctx.fillText("Use the Space key to jump when on the ground", 250, 340);
+
+        this.ctx.fillText(`Land on bubbles to bounce upward`, 250, 450);
+        this.ctx.fillText(`and reset your fall speed`, 250, 480);
+
+        this.ctx.fillText(`Avoid enemies! Colliding with them will hurt`, 250, 600);
+        this.ctx.fillText(`Elimate them by shooting to clear your path`, 250, 620);
         this.ctx.fillText(`Press BACK to return to menu`, 650, 680);
+
         this.instructionsActors.forEach( (actor) =>
             actor.drawFunction(this.ctx) 
         );

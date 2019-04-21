@@ -230,8 +230,8 @@ class Screen {
     renderInstructions() {
         if (!this.hasArrows) {
             this.hasArrows = true;
-            this.leftArrow = new Visual({x:100, y:340, width:80, height:66, file:'assets/arrow-left.png', numFrames:2, framesPerTick:45});
-            this.rightArrow = new Visual({x:300, y:340, width:80, height:66, file:'assets/arrow-right.png', numFrames:2, framesPerTick:45});
+            this.leftArrow = new Visual({x:100, y:340, width:80, height:66, file:'assets/arrow-left.png', numFrames:5, framesPerTick:10});
+            this.rightArrow = new Visual({x:300, y:340, width:80, height:66, file:'assets/arrow-right.png', numFrames:5, framesPerTick:10});
             this.actors.push(this.leftArrow, this.rightArrow);
         }
     }

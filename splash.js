@@ -65,16 +65,6 @@ class Splash {
     }
 
     drawAbout() {
-        // this.aboutCursor = new Visual({x:250, y:250, width:80, height:68, file:'assets/arrow-right.png', numFrames:1, framesPerTick:45});
-        // this.ctx.font = "35px press_start_2pregular";
-        // this.ctx.fillStyle="white";
-        // this.ctx.fillText(`About Me`, 350, 100);
-        // this.ctx.font = "20px press_start_2pregular";
-        // this.ctx.fillText(`Name: Lucas Schraier`, 70, 200);
-        // this.ctx.fillText(`Github: https://github.com/lfs48`, 70, 300);
-        // this.ctx.font = "10px press_start_2pregular";
-        // this.ctx.fillText(`Press BACK to return to menu`, 650, 680);
-        // this.aboutCursor.drawFunction(this.ctx);
         this.ctx.fillStyle="white";
         this.ctx.font = "65px press_start_2pregular";
         this.ctx.fillText("Lucas Schraier", 50, 200);
@@ -82,6 +72,8 @@ class Splash {
         this.ctx.fillText(`Github`, 350, 300);
         this.ctx.fillText(`LinkedIn`, 350, 400);
         this.ctx.fillText(`Angellist`, 350, 500);
+        this.ctx.font = "10px press_start_2pregular";
+        this.ctx.fillText(`Press BACK to return to menu`, 650, 680);
         this.cursor.drawFunction(this.ctx); 
     }
 

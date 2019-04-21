@@ -17,7 +17,7 @@ class Score {
         if (cookie.includes("hiscore=")) {
             this.ctx.fillText(`Hiscore: ${cookie.slice(cookie.indexOf("=")+1)}`, 8, 75);
         } else {
-            this.ctx.fillText(`Hiscore: 0`, 8, 75);
+            this.ctx.fillText(`Hiscore: 63`, 8, 75);
         }
     }
 

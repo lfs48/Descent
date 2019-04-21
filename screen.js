@@ -186,16 +186,14 @@ class Screen {
 
             if (!this.recentSpawn && !this.player.grounded && !this.isEndOfStage() && this.maxDistance === this.distance ) {
                 const r = Math.random();
-                if (r > 0.95) {
+                if (r > 0.97) {
                     this.recentSpawn = true;
-                    if (r <= 0.965) {
-                        this.generateObstacle();
-                    } else if (r <= 0.985) {
+                    if (r <= 0.985) {
                         this.generateEnemies();
                     } else {
-                        this.generateBouncy();
+                        this.generateObstacle();
                     }
-                    setTimeout( () => this.recentSpawn = false, 100 );
+                    setTimeout( () => this.recentSpawn = false, 700 );
                 }
             }
             

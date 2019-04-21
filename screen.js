@@ -51,8 +51,6 @@ class Screen {
 
         this.distance = 0;
         this.maxDistance = 0;
-
-        this.startMusic();
     }
 
     startMusic() {

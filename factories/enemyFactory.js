@@ -2,26 +2,21 @@ class enemyFactory {
 
     constructor(screen) {
         this.screen = screen;
-        this.enemyTypes = [Ghost, Skull];
-        this.shouldGenerateEnemy = this.shouldGenerateEnemy.bind(this);
+        this.enemyTypes = [Ghost, Skull, Bouncy];
         this.generateEnemies = this.generateEnemies.bind(this);
+        this.patterns = [
+            [ {x: 140 + (Math.random() * 100) , y: 740} ],
+            [ {x: 260 + (Math.random() * 100) , y: 740} ],
+            [ {x: 140, y: 740}, {x: 360, y: 820} ],
+            [ {x: 140 + (Math.random() * 40), y: 740}, {x: 180 + (Math.random() * 40), y: 820} ],
+            [ {x: 260 + (Math.random() * 40), y: 740}, {x: 300 + (Math.random() * 40), y: 820} ],
+            [ {x: 140 + (Math.random() * 60), y: 740}, {x: 220 + (Math.random() * 60), y: 820}, {x: 300 + (Math.random() * 60), y: 900} ]
+        ];
     }
 
-    shouldGenerateEnemy() {
-        if (Math.random() > 0.99) {
-            return true
-        } else {
-            return false;
-        }
-    }
-
-    numToGenerate() {
-        const r = Math.random();
-        if (r < 0.85) {
-            return 1;
-        } else {
-            return 2;
-        }
+    randomPattern() {
+        const r = Math.floor(Math.random() * this.patterns.length);
+        return this.patterns[r];
     }
 
     getRandomEnemyType() {
@@ -31,11 +26,10 @@ class enemyFactory {
 
     generateEnemies() {
         const enemies = [];
-        const r = this.numToGenerate();
-        for(let i = 0; i < r; i++) {
+        const pattern = this.randomPattern();
+        for(let i = 0; i < pattern.length; i++) {
+            const {x, y} = pattern[i];
             const enemyType = this.getRandomEnemyType();
-            const x = Math.max(120, (Math.random()*380) );
-            const y = 740 + (Math.random() * 50);
             const enemy = new enemyType({x:x, y:y, vy:this.screen.getGravity, screen:this.screen});
             enemies.push(enemy);
         }

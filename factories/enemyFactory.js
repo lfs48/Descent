@@ -6,11 +6,11 @@ class enemyFactory {
         this.generateEnemies = this.generateEnemies.bind(this);
         this.patterns = [
             [ {x: () => 140 + (Math.random() * 100) , y: () => 740} ],
-            [ {x: () => 260 + (Math.random() * 100) , y: () => 740} ],
-            [ {x: () => 140, y: () => 740}, {x: () => 350, y: () => 820} ],
+            [ {x: () => 240 + (Math.random() * 100) , y: () => 740} ],
+            [ {x: () => 140, y: () => 740}, {x: () => 340, y: () => 820} ],
             [ {x: () => 140 + (Math.random() * 40), y: () => 740}, {x: () => 180 + (Math.random() * 40), y: () => 820} ],
             [ {x: () => 260 + (Math.random() * 40), y: () => 740}, {x: () => 300 + (Math.random() * 40), y: () => 820} ],
-            [ {x: () => 140 + (Math.random() * 60), y: () => 740}, {x: () => 220 + (Math.random() * 60), y: () => 820}, {x: () => 290 + (Math.random() * 60), y: () => 900} ]
+            [ {x: () => 140 + (Math.random() * 60), y: () => 740}, {x: () => 220 + (Math.random() * 60), y: () => 820}, {x: () => 280 + (Math.random() * 60), y: () => 900} ]
         ];
     }
 

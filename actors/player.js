@@ -18,7 +18,9 @@ class Player extends Actor {
             standingRight: new Sprite(this, 'assets/player-standing-right.png'),
             standingLeft: new Sprite(this, 'assets/player-standing-left.png'),
             landedRight: new Sprite(this, 'assets/player-landed-right.png', 8, 10),
-            landedLeft: new Sprite(this, 'assets/player-landed-left.png', 8 , 10)
+            landedLeft: new Sprite(this, 'assets/player-landed-left.png', 8 , 10),
+            walkingRight: new Sprite(this, 'assets/player-walking-right.png', 2, 10),
+            walkingLeft: new Sprite(this, 'assets/player-walking-left.png', 2, 10),
         };
         this.activeSprite = this.sprites['fallingRight'];
     }
@@ -42,7 +44,12 @@ class Player extends Actor {
 
     ground() {
         this.grounded = true;
-        this.updateSprite('standing');
+        if (this.getVx() !== 0) {
+            this.updateSprite('walking');
+        } else {
+            this.updateSprite('standing');
+        }
+        
     }
 
     moveRight() {

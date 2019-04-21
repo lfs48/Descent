@@ -3,6 +3,7 @@ class Screen {
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d");
         this.enemyFactory = new enemyFactory(this);
+        this.obstacleFactory = new obstacleFactory(this);
 
         this.initializeGame();
 
@@ -186,14 +187,14 @@ class Screen {
 
             if (!this.recentSpawn && !this.player.grounded && !this.isEndOfStage() && this.maxDistance === this.distance ) {
                 const r = Math.random();
-                if (r > 0.97) {
+                if (r > 0.9) {
                     this.recentSpawn = true;
-                    if (r <= 0.985) {
+                    if (r <= 0.95) {
                         this.generateEnemies();
                     } else {
-                        this.generateObstacle();
+                        this.generateObstacles();
                     }
-                    setTimeout( () => this.recentSpawn = false, 700 );
+                    setTimeout( () => this.recentSpawn = false, 500 + (Math.random()*500) );
                 }
             }
             
@@ -273,17 +274,9 @@ class Screen {
         this.actors = this.actors.concat(enemies);
     }
 
-    generateObstacle() {
-        const x = Math.max(30, (Math.random()*298) );
-        const obstacle = new Obstacle({x:x, y:740, vy:this.getGravity});
-        this.actors.push(obstacle);
-    }
-
-    generateBouncy() {
-        const x = Math.max(30, (Math.random()*420) );
-        const vx = Math.random() > 0.5 ? 2 : -2;
-        const bouncy = new Bouncy({x:x, y:740, vx:vx, vy:this.getGravity});
-        this.actors.push(bouncy);
+    generateObstacles() {
+        const obstacles = this.obstacleFactory.generateObstacles();
+        this.actors = this.actors.concat(obstacles);
     }
 
     checkForCollisions(actor) {

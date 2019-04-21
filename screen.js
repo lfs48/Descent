@@ -183,7 +183,6 @@ class Screen {
                     actor.updatePos();
                 }
             );
-            this.clearActors();
 
             if (!this.recentSpawn && !this.player.grounded && !this.isEndOfStage() && this.maxDistance === this.distance ) {
                 const r = Math.random();
@@ -214,7 +213,7 @@ class Screen {
             }
         );
         }
-            
+        this.clearActors();     
     }
 
     unrenderInstructions() {

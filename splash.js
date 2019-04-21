@@ -32,13 +32,14 @@ class Splash {
     }
 
     drawMainMenu() {
-        this.ctx.font = "30px press_start_2pregular";
         this.ctx.fillStyle="white";
+        this.ctx.font = "100px press_start_2pregular";
+        this.ctx.fillText("DESCENT", 165, 200);
+        this.ctx.font = "30px press_start_2pregular";
         this.ctx.fillText(`Play`, 350, 300);
         this.ctx.fillText(`Instructions`, 350, 400);
         this.ctx.fillText(`About Me`, 350, 500);
         this.cursor.drawFunction(this.ctx);  
-        this.logo.drawFunction(this.ctx);
     }
 
     drawInstructions() {

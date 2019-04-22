@@ -2,7 +2,7 @@ class Ghost extends Enemy {
     constructor(options) {
         super(options);
         this.screen = options.screen;
-        this.vx = Math.random() > 0.5 ? 2 : -2;
+        this.vx = this.generateRandomPath;
         this.width = 80;
         this.height = 70;
         this.randomPath = false;
@@ -21,9 +21,10 @@ class Ghost extends Enemy {
     }
 
     generateRandomPath() {
-        this.randomPath = false;
+        this.randomPath = true;
         this.vx = Math.random() > 0.5 ? 2 : -2;
         this.direction = this.vx > 0 ? 'Right' : 'Left';
         this.updateSprite();
+        setTimeout( () => this.randomPath = false, 500 );
     }
 }

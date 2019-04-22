@@ -15,6 +15,13 @@ class Bouncy extends Actor {
         this.activeSprite.update();
     }
 
+    handleRemove() {
+        this.height = 45;
+        this.width = 35;
+        this.vx = 0;
+        this.activeSprite = new Sprite(this, 'assets/player-explode.png', 7, 10);
+    }
+
     handleCollision(otherActor) {
         const { xBoundUp, xBoundDown, yBoundUp, yBoundDown } = this.collisionBox();
         const otherCollision = otherActor.collisionBox();
@@ -43,12 +50,4 @@ class Bouncy extends Actor {
         this.vx = Math.random() > 0.5 ? 2 : -2;
     }
 
-    updatePos() {
-        if (!this.randomPath) {
-            this.randomPath = true;
-            setTimeout(this.generateRandomPath, 500);
-        }
-        this.x += this.getVx();
-        this.y += this.getVy();
-    }
 }

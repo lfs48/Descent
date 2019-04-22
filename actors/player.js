@@ -41,7 +41,7 @@ class Player extends Actor {
 
     die() {
         this.updateSprite("exploding");
-        setTimeout( () => this.drawFunction = () => {}, 1000 );
+        setTimeout( () => this.drawFunction = () => {}, 1200 );
     }
 
     unground() {

@@ -12,7 +12,6 @@ class Screen {
         this.keyDownHandler = this.keyDownHandler.bind(this);
         this.keyUpHandler = this.keyUpHandler.bind(this);
         this.handleShoot = this.handleShoot.bind(this);
-        this.clearActors = this.clearActors.bind(this);
         this.checkForCollisions = this.checkForCollisions.bind(this);
         this.getGravity = this.getGravity.bind(this);
         this.setGravity = this.setGravity.bind(this);
@@ -150,6 +149,8 @@ class Screen {
             const rightWall = new Wall({x:454, y:720, vy:this.getGravity});
             this.actors.push(leftWall, rightWall);
             setTimeout( () => this.wallCooldown = false, 100);
+        } else if (this.actors.length >= 100) {
+            console.log(this.actors);
         }
     }
 
@@ -219,8 +220,8 @@ class Screen {
 
     unrenderInstructions() {
         if (this.hasArrows) {
-            this.leftArrow.remove = true;
-            this.rightArrow.remove = true;
+            this.leftArrow.remove();
+            this.rightArrow.remove();
         } else {
             this.hasArrows = true;
         }
@@ -282,7 +283,7 @@ class Screen {
     checkForCollisions(actor) {
         for(let i = 0; i < this.actors.length; i++) {
             const otherActor = this.actors[i];
-            if (actor !== otherActor && actor.willCollide(otherActor) ) {
+            if (actor !== otherActor && !actor.removing && !otherActor.removing && actor.willCollide(otherActor) ) {
                 actor.handleCollision(otherActor);
             }
         }
@@ -323,17 +324,14 @@ class Screen {
     }
 
     clearActors() {
-        const toDelete = [];
-        this.actors.forEach( (actor, idx) => {
+        this.actors.forEach( (actor) => {
             if (actor.x < 0 || actor.x > 480 || actor.y < -200 || actor.y > 920) {
-                toDelete.push(idx);
-            } else if (actor.remove) {
-                toDelete.push(idx);
+                actor.remove();
             }
-        })
-        this.actors = this.actors.filter( (_, idx) => 
-            !toDelete.includes(idx)
-        )
+        });
+        this.actors = this.actors.filter( (actor) => 
+            !actor.shouldRemove
+        );
     }
 
     keyDownHandler(e) {

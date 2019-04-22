@@ -4,11 +4,21 @@ class Actor {
         this.y = y;
         this.vx = vx ? vx : 0;
         this.vy = vy ? vy : 0;
+        this.remove = this.remove.bind(this);
     }
 
     drawFunction(ctx) {
         this.activeSprite.draw(ctx);
         this.activeSprite.update();
+    }
+
+    remove() {
+        if (!this.removing) {
+            this.height = 0;
+            this.width = 0;
+            setTimeout( () => this.shouldRemove = true, 1200 )
+        };
+        this.removing = true;
     }
 
     collisionBox() {

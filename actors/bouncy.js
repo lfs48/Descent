@@ -30,7 +30,11 @@ class Bouncy extends Actor {
         const otherYBoundUp = otherCollision.yBoundUp;
         const otherYBoundDown = otherCollision.yBoundDown;
 
-        if (otherActor instanceof Bullet || otherActor instanceof Player) {
+        if (otherActor instanceof Bullet) {
+            this.remove();
+            otherActor.remove();
+        }
+        if (otherActor instanceof Player) {
             if (yBoundDown <= otherYBoundUp && yBoundUp > otherYBoundUp) {
                 this.remove();
             }

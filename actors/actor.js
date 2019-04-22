@@ -14,11 +14,15 @@ class Actor {
 
     remove() {
         if (!this.removing) {
-            this.height = 0;
-            this.width = 0;
             setTimeout( () => this.shouldRemove = true, 1200 )
+            this.handleRemove();
         };
         this.removing = true;
+    }
+
+    handleRemove() {
+        this.height = 0;
+        this.width = 0;
     }
 
     collisionBox() {

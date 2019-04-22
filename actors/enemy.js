@@ -25,12 +25,11 @@ class Enemy extends Actor {
         }
     }
 
-    updatePos() {
-        if (!this.randomPath) {
-            this.randomPath = true;
-            setTimeout(this.generateRandomPath, 500);
-        }
-        this.x += this.getVx();
-        this.y += this.getVy();
+    handleRemove() {
+        this.height = 45;
+        this.width = 35;
+        this.vx = 0;
+        this.activeSprite = new Sprite(this, 'assets/player-explode.png', 7, 10)
     }
+
 }

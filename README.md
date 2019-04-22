@@ -9,6 +9,8 @@
 
 Descent is a retro-style browser game, built from the ground up with a custom engine in pure Javascript. Players take control of a character falling down a well, dodging obstacles and enemies as they rack up a high score.
 
+![](https://66.media.tumblr.com/7a4087ca382688a9cf5981bc3bc430fb/tumblr_pqcd7kN5am1wejsx8o1_540.gif)
+
 ## Object Oriented Design
 
 The engine I designed for this game sticks closely to the OOP principles of encapsulation and inheritence. All ingame entities, such the player, the ghostly enemies, and even the walls, inherit from an `Actor` superclass. This class defines common behavior such as movement, collision detection, and rendering onto the canvas.

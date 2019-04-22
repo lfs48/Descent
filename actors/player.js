@@ -21,6 +21,8 @@ class Player extends Actor {
             landedLeft: new Sprite(this, 'assets/player-landed-left.png', 8 , 10),
             walkingRight: new Sprite(this, 'assets/player-walking-right.png', 2, 10),
             walkingLeft: new Sprite(this, 'assets/player-walking-left.png', 2, 10),
+            explodingRight: new Sprite(this, 'assets/player-explode.png', 7, 10),
+            explodingLeft: new Sprite(this, 'assets/player-explode.png', 7, 10),
         };
         this.activeSprite = this.sprites['fallingRight'];
     }
@@ -35,6 +37,11 @@ class Player extends Actor {
             this.flash = false;
         }
         this.activeSprite.update();
+    }
+
+    die() {
+        this.updateSprite("exploding");
+        setTimeout( () => this.drawFunction = () => {}, 1000 );
     }
 
     unground() {

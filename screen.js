@@ -164,6 +164,7 @@ class Screen {
         }
 
         if (this.isGameOver()) {
+            this.player.die();
             this.gameOverMessage();
         } else if(this.gameHasStarted()) {
             

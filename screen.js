@@ -134,7 +134,7 @@ class Screen {
     }
 
     isEndOfStage() {
-        return this.distance < -5000;
+        return this.distance < -10000;
     }
 
     generateFloor() {

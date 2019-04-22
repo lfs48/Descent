@@ -22,11 +22,9 @@ class Bullet extends Actor {
         const otherYBoundUp = otherCollision.yBoundUp;
         const otherYBoundDown = otherCollision.yBoundDown;
 
-        if (yBoundUp >= otherYBoundDown && yBoundDown < otherYBoundDown) {
-            if (otherActor instanceof Enemy || otherActor instanceof Bouncy) {
-                otherActor.remove = true;
-                this.screen.gainScore(1);
-            }
+        if (otherActor instanceof Enemy || otherActor instanceof Bouncy) {
+            otherActor.remove = true;
+            this.screen.gainScore(1);
         }
     }
 }

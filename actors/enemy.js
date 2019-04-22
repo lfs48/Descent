@@ -9,9 +9,8 @@ class Enemy extends Actor {
         const otherYBoundDown = otherCollision.yBoundDown;
 
         if (otherActor instanceof Bullet) {
-            if (yBoundDown <= otherYBoundUp && yBoundUp > otherYBoundUp) {
-                this.remove = true;
-            }
+            this.remove = true;
+            otherActor.remove = true;
         }
 
         if (otherActor instanceof Wall) {

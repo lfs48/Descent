@@ -13,7 +13,7 @@ class Bullet extends Actor {
 
     handleCollision(otherActor) {
         if (!(otherActor instanceof Player)) {
-            this.remove = true;
+            this.remove();
         }
         const { xBoundUp, xBoundDown, yBoundUp, yBoundDown } = this.collisionBox();
         const otherCollision = otherActor.collisionBox();
@@ -23,7 +23,7 @@ class Bullet extends Actor {
         const otherYBoundDown = otherCollision.yBoundDown;
 
         if (otherActor instanceof Enemy || otherActor instanceof Bouncy) {
-            otherActor.remove = true;
+            otherActor.remove();
             this.screen.gainScore(1);
         }
     }

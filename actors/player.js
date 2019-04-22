@@ -151,7 +151,7 @@ class Player extends Actor {
             if (yBoundUp >= otherYBoundDown && yBoundDown < otherYBoundDown) {
                 this.grounded = true;
                 this.screen.handleBounce();
-                otherActor.remove = true;
+                otherActor.remove();
                 this.grounded = false;
             }
         }

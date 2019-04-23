@@ -1,7 +1,7 @@
 
 # Descent
 
-[*A furiously fast-paced freefall.*](www.lschraier/Descent)
+[*A furiously fast-paced freefall.*](http://www.lschraier.com/Descent/)
 
 ![](https://66.media.tumblr.com/3f3adbd5866f0f327cecf9bbd4e0dd83/tumblr_pqc8pa5A8l1wejsx8o1_1280.gif)
 

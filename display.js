@@ -8,6 +8,24 @@ class Display {
         this.draw = this.draw.bind(this);
         this.start = this.start.bind(this);
         document.addEventListener("keydown", this.splash.keyDownHandler, false);
+        const filenames = ["arrow-left.png", "arrow-right.png", 
+        "big-ghost-left.png", "big-ghost-right.png", "bouncy-right.png", 
+        "bullet.png", "keyboard.png", "logo.png", "obstacle.png", 
+        "player-balancing-right.png", "player-explode.png", 
+        "player-falling-right.png", "player-falling-left.png", 
+        "player-landed-left.png", "player-landed-right.png", 
+        "player-standing-left.png", "player-standing-right.png", 
+        "player-walking-left.png", "player-walking-right.png", 
+        "skull-left.png", "skull-right.png", "wall.png", "well.png"]
+        this.preloadImages(filenames);
+    }
+
+    preloadImages(filenames) {
+        for (let i = 0; i < filenames.length; i++) {
+            const file = filenames[i];
+            const img = new Image();
+            img.src = `assets/${file}`;
+        }
     }
 
     start() {

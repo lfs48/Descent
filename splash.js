@@ -22,14 +22,23 @@ class Splash {
 
     draw() {
         this.clear();
-        if(this.stage === "menu") {
-            this.drawMainMenu();
-        } else if (this.stage === 'instructions') {
-            this.drawInstructions();
-        } else if (this.stage === 'about') {
-            this.drawAbout();
+        if (this.loaded) {
+            if(this.stage === "menu") {
+                this.drawMainMenu();
+            } else if (this.stage === 'instructions') {
+                this.drawInstructions();
+            } else if (this.stage === 'about') {
+                this.drawAbout();
+            }
+        } else {
+            this.drawLoading();
         }
-        
+    }
+
+    drawLoading() {
+        this.ctx.fillStyle="white";
+        this.ctx.font = "100px press_start_2pregular";
+        this.ctx.fillText("LOADING...", 165, 200);
     }
 
     drawMainMenu() {
@@ -91,21 +100,23 @@ class Splash {
 
     keyDownHandler(e) {
         e.preventDefault();
-        if(e.key == "Enter" || e.key == " " || e.key == "z") {
-            this.handleEnter();
-        } else if (e.key == 'Backspace') {
-            if (this.stage == "about") {
-                this.cursor.y = 450;
+            if (this.loaded) {
+            if(e.key == "Enter" || e.key == " " || e.key == "z") {
+                this.handleEnter();
+            } else if (e.key == 'Backspace') {
+                if (this.stage == "about") {
+                    this.cursor.y = 450;
+                }
+                this.stage = "menu";
             }
-            this.stage = "menu";
-        }
-        if (this.stage == "menu" || this.stage == "about") {
-            if(e.key == "Down" || e.key == "ArrowDown") {
-                this.moveCursorDown();
+            if (this.stage == "menu" || this.stage == "about") {
+                if(e.key == "Down" || e.key == "ArrowDown") {
+                    this.moveCursorDown();
+                }
+                else if(e.key == "Up" || e.key == "ArrowUp") {
+                    this.moveCursorUp();
+                } 
             }
-            else if(e.key == "Up" || e.key == "ArrowUp") {
-                this.moveCursorUp();
-            } 
         }
     }
 

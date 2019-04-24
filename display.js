@@ -8,17 +8,7 @@ class Display {
         this.draw = this.draw.bind(this);
         this.start = this.start.bind(this);
         this.preloadImages = this.preloadImages.bind(this);
-        document.addEventListener("keydown", this.splash.keyDownHandler, false);
-        const filenames = ["arrow-left.png", "arrow-right.png", 
-        "big-ghost-left.png", "big-ghost-right.png", "bouncy-right.png", 
-        "bullet.png", "keyboard.png", "logo.png", "obstacle.png", 
-        "player-balancing-right.png", "player-explode.png", 
-        "player-falling-right.png", "player-falling-left.png", 
-        "player-landed-left.png", "player-landed-right.png", 
-        "player-standing-left.png", "player-standing-right.png", 
-        "player-walking-left.png", "player-walking-right.png", 
-        "skull-left.png", "skull-right.png", "wall.png", "well.png"]
-        this.preloadImages(filenames);
+        this.fadeIn(this.splashCanvas);
     }
 
     preloadImages(filenames) {
@@ -27,11 +17,13 @@ class Display {
             const img = new Image();
             img.src = `assets/${file}`;
         }
-        setTimeout(() => this.loaded = true, 5000);
+        setTimeout(() => this.start(), 5000);
     }
 
     start() {
+        this.loaded = true;
         this.fadeIn(this.splashCanvas);
+        document.addEventListener("keydown", this.splash.keyDownHandler, false);
     }
 
     fadeIn(element) {

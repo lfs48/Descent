@@ -7,6 +7,7 @@ class Display {
         this.gameStarted = false;
         this.draw = this.draw.bind(this);
         this.start = this.start.bind(this);
+        this.preloadImages = this.preloadImages.bind(this);
         document.addEventListener("keydown", this.splash.keyDownHandler, false);
         const filenames = ["arrow-left.png", "arrow-right.png", 
         "big-ghost-left.png", "big-ghost-right.png", "bouncy-right.png", 
@@ -26,7 +27,7 @@ class Display {
             const img = new Image();
             img.src = `assets/${file}`;
         }
-        this.splash.loaded = true;
+        setTimeout(() => this.loaded = true, 5000);
     }
 
     start() {
@@ -62,9 +63,18 @@ class Display {
             this.screen.draw();
             this.score.draw();
             this.healthbar.draw();
-        } else {
+        } else if (this.loaded) {
             this.splash.draw();
+        } else {
+            this.drawLoading();
         }
+    }
+
+    drawLoading() {
+        const ctx = this.splashCanvas.getContext("2d");
+        ctx.fillStyle="white";
+        ctx.font = "80px press_start_2pregular";
+        ctx.fillText("LOADING...", 165, 400);
     }
 
     createHealthCanvas() {

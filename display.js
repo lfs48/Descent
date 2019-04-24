@@ -26,6 +26,7 @@ class Display {
             const img = new Image();
             img.src = `assets/${file}`;
         }
+        this.splash.loaded = true;
     }
 
     start() {

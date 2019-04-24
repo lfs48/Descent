@@ -16,8 +16,10 @@ class Display {
             const file = filenames[i];
             const img = new Image();
             img.src = `assets/${file}`;
+            if (i === filenames.length - 1) {
+                img.addEventListener("onload", this.start(), false);
+            }
         }
-        setTimeout(() => this.start(), 5000);
     }
 
     start() {
@@ -65,7 +67,7 @@ class Display {
     drawLoading() {
         const ctx = this.splashCanvas.getContext("2d");
         ctx.fillStyle="white";
-        ctx.font = "80px press_start_2pregular";
+        ctx.font = "80px Arial";
         ctx.fillText("LOADING...", 165, 400);
     }
 

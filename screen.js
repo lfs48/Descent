@@ -149,8 +149,6 @@ class Screen {
             const rightWall = new Wall({x:454, y:720, vy:this.getGravity});
             this.actors.push(leftWall, rightWall);
             setTimeout( () => this.wallCooldown = false, 100);
-        } else if (this.actors.length >= 100) {
-            console.log(this.actors);
         }
     }
 

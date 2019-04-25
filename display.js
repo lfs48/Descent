@@ -123,6 +123,7 @@ class Display {
     }
 
     leaveSplash() {
+        document.removeEventListener("keydown", this.splash.keyDownHandler);
         this.fadeOut(this.splashCanvas);
         setTimeout( () => {
             this.loaded = false;
@@ -139,7 +140,6 @@ class Display {
             this.createScoreCanvas();
             this.createHealthCanvas();
             this.fadeIn(this.container);
-            document.removeEventListener("keydown", this.splash.keyDownHandler);
             document.addEventListener("keydown", this.screen.keyDownHandler, false);
             document.addEventListener("keyup", this.screen.keyUpHandler, false);
         }, 7200);

@@ -7,7 +7,7 @@ class Bouncy extends Actor {
         this.direction = "Right";
         this.randomPath = false;
         this.generateRandomPath = this.generateRandomPath.bind(this);
-        this.activeSprite = new Sprite(this, 'assets/bouncy-right.png', 6);
+        this.activeSprite = new Sprite(this, 'https://66.media.tumblr.com/b313320fe3f699baabed291a7cd75a06/tumblr_pqixm4nC8Z1wejsx8o1_500.png', 6);
     }
 
     drawFunction(ctx) {

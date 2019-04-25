@@ -6,9 +6,9 @@ class Splash {
         this.ctx = canvas.getContext("2d");
 
         this.player = new Visual({x: 358, y: 560, width: 50, height: 42, file: 'https://66.media.tumblr.com/7ffb4cc34a6b962972759c8fb9d16b8e/tumblr_pqivevIxHo1wejsx8o1_1280.png', numFrames: 15, framesPerTick: 7});
-        this.cursor = new Visual({x:250, y:250, width:80, height:68, file:'assets/arrow-right.png', numFrames:5, framesPerTick:10});
-        this.well = new Visual({x:300, y:600, width:348, height:295, file:'assets/well.png', numFrames:1, framesPerTick:45});
-        const keyboard = new Visual({x:100, y:280, width:120, height:79, file:'assets/keyboard.png', numFrames:1, framesPertick:45})
+        this.cursor = new Visual({x:250, y:250, width:80, height:68, file:'https://66.media.tumblr.com/a4bf8e8e8632b84b806dd4e0a4859ad2/tumblr_pqixmeW3VY1wejsx8o2_400.png', numFrames:5, framesPerTick:10});
+        this.well = new Visual({x:300, y:600, width:348, height:295, file:'https://66.media.tumblr.com/49216e826a0926a066dac9b08cbb333b/tumblr_pqixj98a9e1wejsx8o1_400.png', numFrames:1, framesPerTick:45});
+        const keyboard = new Visual({x:100, y:280, width:120, height:79, file:'https://66.media.tumblr.com/6eee470c7ee3a2b0edce98b1581e2473/tumblr_pqixlsO8lw1wejsx8o1_250.png', numFrames:1, framesPertick:45})
         const bouncy = new Bouncy({x: 120, y: 430});
         const ghost = new Ghost({x: 125, y: 570});
         this.instructionsActors = [keyboard, bouncy, ghost];

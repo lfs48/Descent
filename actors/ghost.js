@@ -10,8 +10,8 @@ class Ghost extends Enemy {
 
         this.direction = this.vx > 0 ? 'Right' : 'Left';
         this.sprites = {
-            defaultRight: new Sprite(this, 'assets/big-ghost-right.png', 6),
-            defaultLeft: new Sprite(this, 'assets/big-ghost-left.png', 6)
+            defaultRight: new Sprite(this, 'https://66.media.tumblr.com/0a55a46a25c44178e55780ebdd9bf734/tumblr_pqixm0CIFd1wejsx8o1_500.png', 6),
+            defaultLeft: new Sprite(this, 'https://66.media.tumblr.com/b328cd58978654d6dd9bc334a8f4d691/tumblr_pqixm0CIFd1wejsx8o2_500.png', 6)
         };
         this.activeSprite = this.sprites[`default${this.direction}`];
     }

@@ -22,14 +22,14 @@ class Display {
         setTimeout( () => {
             this.fadeOut(this.splashCanvas);
         },
-        3500
+        2500
         )
         setTimeout( () => {
             this.loaded = true;
             this.fadeIn(this.splashCanvas);
             document.addEventListener("keydown", this.splash.keyDownHandler, false);
         },
-        4700
+        3700
         );
     }
 
@@ -131,7 +131,7 @@ class Display {
         }, 1000 );
         setTimeout( () => {
             this.fadeOut(this.splashCanvas);
-        }, 6000 );
+        }, 2500 );
         setTimeout( () => {
             this.loaded = true;
             this.splashCanvas.parentNode.removeChild(this.splashCanvas);
@@ -142,7 +142,7 @@ class Display {
             this.fadeIn(this.container);
             document.addEventListener("keydown", this.screen.keyDownHandler, false);
             document.addEventListener("keyup", this.screen.keyUpHandler, false);
-        }, 7200);
+        }, 3700);
     }
     
 }

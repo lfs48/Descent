@@ -79,7 +79,7 @@ class Splash {
         this.ctx.font = "30px press_start_2pregular";
         this.ctx.fillText(`Github`, 350, 300);
         this.ctx.fillText(`LinkedIn`, 350, 400);
-        this.ctx.fillText(`Angellist`, 350, 500);
+        this.ctx.fillText(`AngelList`, 350, 500);
         this.ctx.font = "10px press_start_2pregular";
         this.ctx.fillText(`Press BACK to return to menu`, 650, 680);
         this.cursor.drawFunction(this.ctx); 

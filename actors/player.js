@@ -14,13 +14,13 @@ class Player extends Actor {
         this.direction = "Right";
         this.sprites = {
             fallingRight: new Sprite(this, 'assets/player-falling-right.png'),
-            fallingLeft: new Sprite(this, 'assets/player-falling-left.png'),
-            standingRight: new Sprite(this, 'assets/player-standing-right.png'),
-            standingLeft: new Sprite(this, 'assets/player-standing-left.png'),
-            landedRight: new Sprite(this, 'assets/player-landed-right.png', 8, 10),
-            landedLeft: new Sprite(this, 'assets/player-landed-left.png', 8 , 10),
-            walkingRight: new Sprite(this, 'assets/player-walking-right.png', 2, 10),
-            walkingLeft: new Sprite(this, 'assets/player-walking-left.png', 2, 10),
+            fallingLeft: new Sprite(this, 'https://66.media.tumblr.com/0362d0dc32e12fa7e56b2cf5dc1d9be2/tumblr_pqj28zRBRl1wejsx8o1_75sq.png'),
+            standingRight: new Sprite(this, 'https://66.media.tumblr.com/13c8c0719a6cfdfd9405812b5b8822fb/tumblr_pqj20kWT051wejsx8o1_75sq.png'),
+            standingLeft: new Sprite(this, 'https://66.media.tumblr.com/3e37b1f521b2b364cca6841b178e79db/tumblr_pqj20f9lkB1wejsx8o1_75sq.png'),
+            landedRight: new Sprite(this, 'https://66.media.tumblr.com/310c5398b97df520f4020ded78fb0b06/tumblr_pqj2b4nM9B1wejsx8o1_500.png', 8, 10),
+            landedLeft: new Sprite(this, 'https://66.media.tumblr.com/1b59bef9f3f0fd2043b41334aef2a474/tumblr_pqj2axfmhZ1wejsx8o1_500.png', 8 , 10),
+            walkingRight: new Sprite(this, 'https://66.media.tumblr.com/294d62f0805be32322e2dd8e72140334/tumblr_pqj2ecsc221wejsx8o1_75sq.png', 2, 10),
+            walkingLeft: new Sprite(this, 'https://66.media.tumblr.com/a20505bafaf5608968f94a9e54bd0122/tumblr_pqj2eh0nxs1wejsx8o1_75sq.png', 2, 10),
             explodingRight: new Sprite(this, 'assets/player-explode.png', 7, 10),
             explodingLeft: new Sprite(this, 'assets/player-explode.png', 7, 10),
         };

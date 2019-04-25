@@ -8,8 +8,8 @@ class Skull extends Enemy {
 
         this.direction = this.vx > 0 ? 'Right' : 'Left';
         this.sprites = {
-            defaultRight: new Sprite(this, 'assets/skull-right.png', 4),
-            defaultLeft: new Sprite(this, 'assets/skull-left.png', 4)
+            defaultRight: new Sprite(this, 'https://66.media.tumblr.com/4bcf70c60999a4afd6a9a60b95333ce2/tumblr_pqj1y5MCp51wejsx8o1_250.png', 4),
+            defaultLeft: new Sprite(this, 'https://66.media.tumblr.com/01488824c5aa02f3e5d919da9709611d/tumblr_pqj1ye90fh1wejsx8o1_250.png', 4)
         };
         this.activeSprite = this.sprites[`default${this.direction}`];
     }

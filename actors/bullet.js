@@ -6,7 +6,7 @@ class Bullet extends Actor {
         this.width = 28;
         this.height = 44;
         this.sprites = {
-            default: new Sprite(this, "./assets/bullet.png")
+            default: new Sprite(this, "https://66.media.tumblr.com/6e2c4e9b57331b137fa70aa52d418bce/tumblr_pqj1zs6buB1wejsx8o1_75sq.png")
         }
         this.activeSprite = this.sprites.default;
     }

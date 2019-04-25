@@ -7,7 +7,6 @@ class Display {
         this.gameStarted = false;
         this.draw = this.draw.bind(this);
         this.start = this.start.bind(this);
-        this.preloadImages = this.preloadImages.bind(this);
         this.fadeIn(this.splashCanvas);
     }
 
@@ -16,16 +15,22 @@ class Display {
             const file = filenames[i];
             const img = new Image();
             img.src = `assets/${file}`;
-            if (i === filenames.length - 1) {
-                img.addEventListener("onload", this.start(), false);
-            }
         }
     }
 
     start() {
-        this.loaded = true;
-        this.fadeIn(this.splashCanvas);
-        document.addEventListener("keydown", this.splash.keyDownHandler, false);
+        setTimeout( () => {
+            this.fadeOut(this.splashCanvas);
+        },
+        3500
+        )
+        setTimeout( () => {
+            this.loaded = true;
+            this.fadeIn(this.splashCanvas);
+            document.addEventListener("keydown", this.splash.keyDownHandler, false);
+        },
+        4700
+        );
     }
 
     fadeIn(element) {
@@ -66,9 +71,10 @@ class Display {
 
     drawLoading() {
         const ctx = this.splashCanvas.getContext("2d");
+        this.splash.clear();
         ctx.fillStyle="white";
         ctx.font = "80px Arial";
-        ctx.fillText("LOADING...", 165, 400);
+        ctx.fillText("LOADING...", 250, 400);
     }
 
     createHealthCanvas() {
@@ -119,6 +125,14 @@ class Display {
     leaveSplash() {
         this.fadeOut(this.splashCanvas);
         setTimeout( () => {
+            this.loaded = false;
+            this.fadeIn(this.splashCanvas);
+        }, 1000 );
+        setTimeout( () => {
+            this.fadeOut(this.splashCanvas);
+        }, 6000 );
+        setTimeout( () => {
+            this.loaded = true;
             this.splashCanvas.parentNode.removeChild(this.splashCanvas);
             this.gameStarted = true;
             this.createDescentCanvas();
@@ -128,7 +142,7 @@ class Display {
             document.removeEventListener("keydown", this.splash.keyDownHandler);
             document.addEventListener("keydown", this.screen.keyDownHandler, false);
             document.addEventListener("keyup", this.screen.keyUpHandler, false);
-        }, 1000);
+        }, 7200);
     }
     
 }

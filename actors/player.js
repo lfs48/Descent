@@ -13,7 +13,7 @@ class Player extends Actor {
         this.won = false;
         this.direction = "Right";
         this.sprites = {
-            fallingRight: new Sprite(this, 'assets/player-falling-right.png'),
+            fallingRight: new Sprite(this, 'https://66.media.tumblr.com/b6b429d9c2d877fdfc8221fcdd686c09/tumblr_pqj353VgWs1wejsx8o1_75sq.png'),
             fallingLeft: new Sprite(this, 'https://66.media.tumblr.com/0362d0dc32e12fa7e56b2cf5dc1d9be2/tumblr_pqj28zRBRl1wejsx8o1_75sq.png'),
             standingRight: new Sprite(this, 'https://66.media.tumblr.com/13c8c0719a6cfdfd9405812b5b8822fb/tumblr_pqj20kWT051wejsx8o1_75sq.png'),
             standingLeft: new Sprite(this, 'https://66.media.tumblr.com/3e37b1f521b2b364cca6841b178e79db/tumblr_pqj20f9lkB1wejsx8o1_75sq.png'),

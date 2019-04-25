@@ -78,16 +78,17 @@
 
 <script>
     const display = new Display();
-    const filenames = ["arrow-left.png", "arrow-right.png", 
-        "big-ghost-left.png", "big-ghost-right.png", "bouncy-right.png", 
-        "bullet.png", "keyboard.png", "logo.png", "obstacle.png", 
-        "player-balancing-right.png", "player-explode.png", 
+    const filenames = ["arrow-left.png", 
+        "big-ghost-left.png",
+        "bullet.png", "obstacle.png", 
+        "player-explode.png", 
         "player-falling-right.png", "player-falling-left.png", 
         "player-landed-left.png", "player-landed-right.png", 
         "player-standing-left.png", "player-standing-right.png", 
         "player-walking-left.png", "player-walking-right.png", 
-        "skull-left.png", "skull-right.png", "wall.png", "well.png"];
+        "skull-left.png", "skull-right.png", "wall.png"];
     display.preloadImages(filenames);
+    display.start();
     setInterval(display.draw, 17);
 </script>
 

@@ -15,7 +15,6 @@ class Screen {
         this.checkForCollisions = this.checkForCollisions.bind(this);
         this.getGravity = this.getGravity.bind(this);
         this.setGravity = this.setGravity.bind(this);
-        this.reload = this.reload.bind(this);
         this.updateScore = this.updateScore.bind(this);
         this.updateCombo = this.updateCombo.bind(this);
         this.isGameOver = this.isGameOver.bind(this);
@@ -297,16 +296,13 @@ class Screen {
         }
     }
 
-    reload() {
-        this.shotCooldown = false;
-    }
-
     handleShoot() {
-        if (!this.shotCooldown && !this.isGameOver()) {
+        if (this.player.ammo > 0 && !this.shotCooldown && !this.isGameOver()) {
             const bullet = new Bullet({x:this.player.x + this.player.vx + 3.5, y:this.player.y + 40, vy:7, screen:this});
             this.actors.push(bullet);
             this.shotCooldown = true;
-            setTimeout(this.reload, 500);
+            setTimeout( () => this.shotCooldown = false, 500);
+            this.player.shoot();
         }
     }
 

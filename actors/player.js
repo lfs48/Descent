@@ -7,6 +7,7 @@ class Player extends Actor {
         this.width = 35;
         this.grounded = false;
         this.hp = 4;
+        this.ammo = 4;
         this.grounded = false;
         this.immune = false;
         this.flash = false;
@@ -57,6 +58,14 @@ class Player extends Actor {
             this.updateSprite('standing');
         }
         
+    }
+
+    shoot() {
+        this.ammo -= 1;
+    }
+
+    reload() {
+        this.ammo = 4;
     }
 
     moveRight() {
@@ -135,6 +144,7 @@ class Player extends Actor {
     
                 if (yBoundUp >= otherYBoundDown && yBoundDown < otherYBoundDown) {
                     this.ground();
+                    this.reload();
                     this.y-= (yBoundUp - otherYBoundDown) / 2;
                 }
             }

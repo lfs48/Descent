@@ -145,6 +145,7 @@ class Player extends Actor {
                 if (yBoundUp >= otherYBoundDown && yBoundDown < otherYBoundDown) {
                     this.ground();
                     this.reload();
+                    this.screen.handleLand();
                     this.y-= (yBoundUp - otherYBoundDown) / 2;
                 }
             }

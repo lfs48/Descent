@@ -32,7 +32,8 @@ class Screen {
 
     initializeGame() {
         this.player = new Player({x:210, y:330, screen:this});
-        this.actors = [this.player];
+        this.ammo = new Ammo({x: 210, y: 310, player: this.player});
+        this.actors = [this.player, this.ammo];
 
         this.gravity = -1;
         this.shotCooldown = false;
@@ -303,6 +304,7 @@ class Screen {
             this.shotCooldown = true;
             setTimeout( () => this.shotCooldown = false, 500);
             this.player.shoot();
+            this.ammo.decreaseAmmo();
         }
     }
 
@@ -311,6 +313,10 @@ class Screen {
             this.player.jump();
             this.gravity = 5;
         }
+    }
+
+    handleLand() {
+        this.ammo.resetAmmo();
     }
 
     handleBounce() {

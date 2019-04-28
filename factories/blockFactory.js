@@ -2,7 +2,7 @@ class blockFactory {
 
     constructor(screen) {
         this.screen = screen;
-        this.blockArrangements = [
+        this.patterns = [
             [ [30,750], [70,750], [110,750], [150,750], [190,750], [230, 750] ],
             [ [70,750], [110,750], [150,750], [190,750], [230, 750], [270, 750] ],
             [ [110,750], [150,750], [190,750], [230, 750], [270, 750], [310, 750] ],
@@ -17,18 +17,18 @@ class blockFactory {
         ];
     }
 
-    randomArrangement() {
-        const r = Math.floor(Math.random()*this.blockArrangements.length);
-        return this.blockArrangements[r];
+    randomPattern() {
+        const r = Math.floor(Math.random()*this.patterns.length);
+        return this.patterns[r];
     }
 
     generateBlocks() {
-        const arrangement = this.randomArrangement();
+        const pattern = this.randomPattern();
         const blocks = [];
         const blockGroup = new BlockGroup();
-        for(let i = 0; i < arrangement.length; i++) {
-            const x = arrangement[i][0];
-            const y = arrangement[i][1];
+        for(let i = 0; i < pattern.length; i++) {
+            const x = pattern[i][0];
+            const y = pattern[i][1];
             const block = new Block({x: x, y: y, vy: this.screen.getGravity, blockGroup: blockGroup});
             blocks.push(block);
             blockGroup.addBlock(block);

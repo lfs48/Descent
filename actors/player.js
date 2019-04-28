@@ -128,6 +128,34 @@ class Player extends Actor {
                 this.x += (otherXBoundUp - xBoundDown) / 2
             }
         }
+
+        if (otherActor instanceof Block) {
+            if ( (xBoundUp > otherXBoundDown && otherXBoundDown - xBoundDown > this.width / 2) || (xBoundDown < otherXBoundUp && xBoundUp - otherXBoundUp > this.width / 2) ) {
+                if (otherActor.rightBlock) {
+                    if (xBoundDown < otherXBoundUp && xBoundUp - otherXBoundUp > this.width / 2) {
+                        this.x += (otherXBoundUp - xBoundDown) / 2;
+                    }
+                }
+
+                if (otherActor.leftBlock) {
+                    if (xBoundUp > otherXBoundDown && otherXBoundDown - xBoundDown > this.width / 2) {
+                        this.x -= (xBoundUp - otherXBoundDown) / 2;
+                    }
+                }
+            } else {
+                if (yBoundDown <= otherYBoundUp && yBoundUp > otherYBoundUp) {
+                    this.y += (otherYBoundUp - yBoundDown) / 2;
+                }
+
+                if (yBoundUp >= otherYBoundDown && yBoundDown < otherYBoundDown) {
+                    this.ground();
+                    this.reload();
+                    this.screen.handleLand();
+                    this.y-= (yBoundUp - otherYBoundDown) / 2;
+                }
+            }
+        }
+
         if (otherActor instanceof Obstacle) {
 
             if ( (xBoundUp > otherXBoundDown && otherXBoundDown - xBoundDown > this.width / 2) || (xBoundDown < otherXBoundUp && xBoundUp - otherXBoundUp > this.width / 2) ) {

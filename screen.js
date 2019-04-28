@@ -4,6 +4,7 @@ class Screen {
         this.ctx = this.canvas.getContext("2d");
         this.enemyFactory = new enemyFactory(this);
         this.obstacleFactory = new obstacleFactory(this);
+        this.blockFactory = new blockFactory(this);
 
         this.initializeGame();
 
@@ -191,7 +192,7 @@ class Screen {
                     if (r <= 0.95) {
                         this.generateEnemies();
                     } else {
-                        this.generateObstacles();
+                        this.generateBlocks();
                     }
                     setTimeout( () => this.recentSpawn = false, 500 + (Math.random()*500) );
                 }
@@ -276,6 +277,11 @@ class Screen {
     generateObstacles() {
         const obstacles = this.obstacleFactory.generateObstacles();
         this.actors = this.actors.concat(obstacles);
+    }
+
+    generateBlocks() {
+        const blocks = this.blockFactory.generateBlocks();
+        this.actors = this.actors.concat(blocks);
     }
 
     checkForCollisions(actor) {

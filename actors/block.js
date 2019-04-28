@@ -33,4 +33,11 @@ class Block extends Actor {
     becomeRightBlock() {
         this.rightBlock = true;
     }
+
+    handleRemove() {
+        this.height = 45;
+        this.width = 35;
+        this.vx = 0;
+        this.activeSprite = new Sprite(this, 'assets/player-explode.png', 7, 10)
+    }
 }

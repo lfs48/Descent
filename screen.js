@@ -165,9 +165,9 @@ class Screen {
 
         if (this.isGameOver()) {
             if (this.player.hp < 1) {
-                this.ammo.remove();
                 this.player.die();
             }
+            this.ammo.remove();
             this.gameOverMessage();
         } else if(this.gameHasStarted()) {
             

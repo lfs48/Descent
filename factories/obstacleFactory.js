@@ -2,7 +2,7 @@ class obstacleFactory {
 
     constructor(screen) {
         this.screen = screen;
-        this.obstacleTypes = [Obstacle];
+        this.obstacleTypes = [Obstacle, Block];
         this.generateObstacles = this.generateObstacles.bind(this);
         this.patterns = [
             [ {x: () => 30 + (Math.random() * 135) , y: () => 740} ],
